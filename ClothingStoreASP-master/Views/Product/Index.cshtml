@@ -1,0 +1,28 @@
+﻿@model ProductViewModel
+@{
+
+}
+@if (Model != null)
+{
+    <div class="row">
+
+        <div class="col-6">
+            <img src="@Model.ImagePath" class="card-img-top" alt="...">
+        </div>
+            <div class="col-6">
+                <div style=" display: flex;">
+                <h5> <a href="/product/index/@Model.Id"> @Model.Name </a></h5>
+                <button onclick="myFunction(this)" class="btn ml-3 fa fa-heart-o"><i class=""></i></button>
+
+                </div>
+                <h5>Цена:@Model.Cost р.</h5>
+                <p>Описание:@Model.Description</p>
+                <a class="btn btn-dark" href="/cart/add?productId=@Model.Id">Добавить в карзину</a>
+                <a class="btn btn-primary" href="/home/index">Продолжить покупки</a>
+            </div> 
+    </div>
+}
+else
+{
+    <h1>Товар с данным id не существует</h1>
+}

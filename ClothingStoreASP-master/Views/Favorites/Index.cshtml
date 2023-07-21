@@ -1,0 +1,40 @@
+﻿@model List<ProductViewModel>
+@if (Model == null)
+{
+    <h1>Ваш спиок избранных товаров пуст</h1>
+}
+else
+{
+ <div class="row">
+     <div class="col-12 mb-5">
+         <h2>Избранное</h2>
+     </div>
+    @foreach (var product in Model)
+    {
+       <div class="col-3">
+            <div class="card h-100"> 
+                  <div class="card-header">
+                    <a onclick="myFunction(this);" asp-area=""
+                    asp-controller="favorites"
+                    asp-action="remove"
+                    asp-route-productId=@product.Id style="color:red" class="btn ml-3 fa fa-heart"><i class=""></i></a>
+                     </div>
+                <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="...">
+                <div class="card-body">
+                   
+                    <a class="card-title" asp-area=""
+                    asp-controller="product"
+                    asp-action="index"
+                    asp-route-productId=@product.Id> @product.Name </a>
+                    <h5>Цена:@product.Cost р.</h5>
+                    <p>Описание:@product.Description</p>
+                    <a class="btn btn-dark" asp-area=""
+                    asp-controller="cart"
+                    asp-action="add"
+                    asp-route-productId="@product.Id">Добавить в карзину</a>
+                </div> 
+            </div>
+       </div>
+    }
+</div>
+}

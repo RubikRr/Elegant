@@ -1,0 +1,16 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@await Html.PartialAsync("SearchProducts") 
+
+@if(Model==null || Model.Count==0)
+{
+    <h1>Товар который вы искали не был наиден</h1>
+}
+@await Html.PartialAsync("HomeProducts") 
+
+
+
+
+

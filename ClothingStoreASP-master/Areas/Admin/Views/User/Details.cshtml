@@ -1,0 +1,81 @@
+﻿@model User
+<div class="row">
+        @await Html.PartialAsync("LeftAdminMenu")
+  
+    <div class="col-9">
+        @if (Model == null)
+        {
+             <h1>Данный пользователь убежал</h1>   
+        }
+        else
+        {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-50">Пользователь @Model.Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr>
+                        <td>Имя</td>
+                        <td>@(Model?.FirstName ?? "-")</td>
+                    </tr>
+                    <tr>
+                        <td>Фамилия </td>
+                        <td>@(Model?.LastName ?? "-")</td>
+                    </tr>
+                    <tr>
+                        <td>Email(логин)</td>
+                        <td>@(Model?.Email ?? "-")</td>
+                    </tr>
+                    <tr>
+                        <td>Роль</td>
+                        <td>@(Model?.RoleName ?? "-")</td>
+                    </tr>
+                    <tr>
+                        <td>Номер телефона</td>
+                        <td>@(Model?.Phone ?? "-")</td>
+                    </tr>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                       <th colspan="1"></th>
+                       <th>
+                           <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle pull-right" 
+                                type="button" data-bs-toggle="dropdown" 
+                                aria-expanded="false">Действия</button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" 
+                                     asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="updatePassword"
+                                        asp-route-userId=@Model.Id>Смена пароля</a></li>
+                                    <li><a class="dropdown-item"
+                                        asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="update"
+                                        asp-route-userId=@Model.Id>Редактирование данных</a></li>
+                                    <li><a class="dropdown-item"
+                                         asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="updateRole"
+                                        asp-route-userId=@Model.Id>Права доступа</a></li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                        asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="remove"
+                                        asp-route-userId=@Model.Id>Удалить пользователя</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+        </table>
+    }
+    </div>
+</div>
