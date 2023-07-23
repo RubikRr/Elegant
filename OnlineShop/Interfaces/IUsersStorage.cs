@@ -5,17 +5,17 @@ namespace WomanShop.Interfaces
 {
     public interface IUsersStorage
     {
-        public void Add(User user);
-        public User TryGetUserById(Guid id);
+        public void Add(UserViewModel user);
+        public UserViewModel TryGetUserById(Guid id);
 
-        public User TryGetUserByEmail(string email);
+        public UserViewModel TryGetUserByEmail(string email);
 
         public bool IsCorrectPassword(Login login);
         public void Remove(Guid userId);
-        public void Update(User userId);
-        public void UpdatePassword(User user, string password);
-        public void UpdateRole(User user, Role role);
+        public void Update(UserViewModel userId);
+        public void UpdatePassword(UserViewModel user, string password);
+        public void UpdateRole(UserViewModel user, Role role);
 
-        public List<User> GetAll();
+        public List<UserViewModel> GetAll();
     }
 }

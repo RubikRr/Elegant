@@ -18,7 +18,7 @@
               <input class="form-check-input" name="remember" type="checkbox" value="true" id="flexCheckDefault">
               <label class="form-check-label" for="flexCheckDefault">Запомнить меня?</label>
           </div>
-          
+          <input type="text" hidden value="@Model.ReturnUrl" name="returnUrl"></input>
             <button type="submit" class="btn btn-dark">Войти</button>
             <a asp-controller="auth" asp-action="registration" class="btn btn-light">Регистрация нового пользователя</a>
        </div>

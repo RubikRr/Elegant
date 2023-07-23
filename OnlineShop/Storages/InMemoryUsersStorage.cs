@@ -6,25 +6,25 @@ namespace WomanShop.Storages
 {
     public class InMemoryUsersStorage:IUsersStorage
     {
-        public List<User> users=new List<User>() 
+        public List<UserViewModel> users=new List<UserViewModel>() 
         { 
-            new User("vova.chakalov.2003@yandex.ru","1"),
-            new User("alina.mamsurova.2004.ru","2")
+            new UserViewModel("vova.chakalov.2003@yandex.ru","1"),
+            new UserViewModel("alina.mamsurova.2004.ru","2")
         };
 
-        public void Add(User user)
+        public void Add(UserViewModel user)
         {
             users.Add(user);
         }
-        public List<User> GetAll()
+        public List<UserViewModel> GetAll()
         {
             return users;
         }
-        public User TryGetUserById(Guid id)
+        public UserViewModel TryGetUserById(Guid id)
         {
             return users.FirstOrDefault(user => user.Id == id);
         }
-        public User TryGetUserByEmail(string email)
+        public UserViewModel TryGetUserByEmail(string email)
         {
             return users?.FirstOrDefault(user => user.Email == email)??null;
         }
@@ -35,11 +35,11 @@ namespace WomanShop.Storages
             return user != null && user.Password == login.Password;
         }
 
-        public void UpdateRole(User user, Role newrole)
+        public void UpdateRole(UserViewModel user, Role newrole)
         {
             user.RoleName= newrole.Name;
         }
-        public void Update(User user)
+        public void Update(UserViewModel user)
         {
             var existingUser=TryGetUserById(user.Id);
             existingUser.Password = user.Password;
@@ -49,7 +49,7 @@ namespace WomanShop.Storages
             existingUser.Phone= user.Phone;
             existingUser.RoleName= user.RoleName;
         }
-        public void UpdatePassword(User user, string password)
+        public void UpdatePassword(UserViewModel user, string password)
         {
             user.Password = password;
         }

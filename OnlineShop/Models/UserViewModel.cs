@@ -3,7 +3,7 @@ using WomanShop.Areas.Admin.Models;
 
 namespace WomanShop.Models
 {
-    public class User
+    public class UserViewModel
     {
         public Guid Id { get; set; }
         [Required(ErrorMessage = "Не указана почта")]
@@ -19,16 +19,16 @@ namespace WomanShop.Models
         public string Phone { get; set; }
         [Required(ErrorMessage = "Задайте права пользователя")]
         public string RoleName { get; set; }
-        public User(){
+        public UserViewModel(){
             Id=Guid.NewGuid();
         }
 
-        public User(string email, string password):this()
+        public UserViewModel(string email, string password):this()
         {
             Email = email;
             Password = password;
         }
-        public User(string email, string password, string firstName, string lastName, string phone) : this(email, password)
+        public UserViewModel(string email, string password, string firstName, string lastName, string phone) : this(email, password)
         {
             FirstName = firstName;
             LastName = lastName;

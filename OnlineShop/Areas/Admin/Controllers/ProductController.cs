@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OnlineShop.DB.Interfaces;
+using System.Data;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Helpers;
 using WomanShop.Models;
 
 namespace WomanShop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(OnlineShop.DB.Constants.AdminRoleName)]
+    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
     public class ProductController : Controller
     {
         private IProductsStorage productsStorage;

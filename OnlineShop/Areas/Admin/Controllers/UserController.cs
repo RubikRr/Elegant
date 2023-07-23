@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
-using OnlineShop.DB.Models;
-using WomanShop.Areas.Admin.Models;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 
 namespace WomanShop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(OnlineShop.DB.Constants.AdminRoleName)]
+    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
     public class UserController : Controller
     {
         private IUsersStorage usersStorage;
@@ -47,7 +45,7 @@ namespace WomanShop.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(User user)
+        public IActionResult Add(UserViewModel user)
         {
             
             if (ModelState.IsValid)
@@ -64,7 +62,7 @@ namespace WomanShop.Areas.Admin.Controllers
             return View(user);
         }
         [HttpPost]
-        public IActionResult Update(User user)
+        public IActionResult Update(UserViewModel user)
         {
             if (ModelState.IsValid)
             {

@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB;
 using OnlineShop.DB.Interfaces;
 using WomanShop.Helpers;
 
 namespace WomanShop.Controllers
 {
+    [Authorize]
     public class FavoritesController : Controller
     {
         private IProductsStorage productsStorage;

@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Interfaces;
 
 namespace WomanShop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(OnlineShop.DB.Constants.AdminRoleName)]
+    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
     public class RoleController : Controller
     {
         private IRolesStorage rolesStorage;

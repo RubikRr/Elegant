@@ -1,4 +1,5 @@
-﻿ <header>
+﻿@using OnlineShop.DB;
+ <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WomanShop</a>
@@ -12,19 +13,45 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="Index">Главная</a>
                         </li>
                      
-                        <li class="nav-item">
+                    
+                       
+                        
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                         <li class="nav-item">
                              @await Component.InvokeAsync("Favorite")
                         </li>
                          <li class="nav-item">
                              @await Component.InvokeAsync("Cart")
                         </li>
+                        
+                        <li class="nav-item">
+                            @User.Identity.Name
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="Logout">Выход</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="favorites" asp-action="Index">Избранное</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="cart" asp-action="Index">Корзина</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="login">Войти</a>
                         </li>
-                        <li class="nav-item">
+                    }
+                    @if (User.IsInRole(Constants.AdminRoleName))
+                    {
+                     
+                       <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="admin" asp-controller="home" asp-action="index" >Администратор</a>
-                        </li>
-                    </ul>
+                        </li>                    }
+                    </ul> 
+                    
                 </div>
             </div>
         </nav>

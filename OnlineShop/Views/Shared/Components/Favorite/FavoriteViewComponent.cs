@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB;
 using OnlineShop.DB.Interfaces;
 namespace WomanShop.Views.Shared.Components.Favorite
 {

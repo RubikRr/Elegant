@@ -40,7 +40,9 @@ namespace OnlineShop.DB.Storages
         }
         public List<Product> Search(string name)
         {
-            return dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
+            if (string.IsNullOrWhiteSpace(name))
+                return new List<Product>();
+             return dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
         }
         public void Remove(Guid productId)
         {

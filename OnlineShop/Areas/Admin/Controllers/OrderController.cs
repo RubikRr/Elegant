@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB;
 using OnlineShop.DB.Interfaces;
 using OnlineShop.DB.Models;
 using WomanShop.Helpers;
@@ -8,6 +10,7 @@ using WomanShop.Models;
 namespace WomanShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles="Admin")]
     public class OrderController : Controller
     {
         private IOrdersStorage ordersStorage;

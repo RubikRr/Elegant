@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB;
 using OnlineShop.DB.Interfaces;
 using WomanShop.Helpers;
 using WomanShop.Models;
@@ -6,6 +8,7 @@ using WomanShop.Storages;
 
 namespace WomanShop.Controllers
 {
+    [Authorize]
     public class CartController:Controller
     {
 
