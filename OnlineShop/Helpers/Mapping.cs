@@ -107,5 +107,21 @@ namespace WomanShop.Helpers
         {
             return orders.Select(ToOrderViewModel).ToList() ??null;
         }
+
+        public static UserViewModel ToUserViewModel(User user)
+        {
+            return new UserViewModel
+            {
+                Id = user.Id,
+                Email=user.Email,
+                Name=user.UserName,
+                Phone=user.PhoneNumber
+            };
+        }
+        public static List<UserViewModel> ToUsersViewModel(List<User> users)
+        {
+            return users.Select(ToUserViewModel).ToList() ?? null;
+        }
+
     }
 }

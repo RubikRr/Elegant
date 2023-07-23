@@ -3,22 +3,19 @@ using WomanShop.Interfaces;
 using WomanShop.Models;
 using Microsoft.AspNetCore.Identity;
 using OnlineShop.DB.Models;
-using Serilog.Core;
-using OnlineShop.DB;
-using Serilog;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WomanShop.Controllers
 {
     public class AuthController : Controller
     {
-        private IUsersStorage usersStorage;
+       
 
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
 
-        public AuthController(IUsersStorage _usersStorage, SignInManager<User> signInManager,UserManager<User> userManager)
+        public AuthController(SignInManager<User> signInManager,UserManager<User> userManager)
         {
-            usersStorage = _usersStorage;
             this.signInManager = signInManager;
             this.userManager = userManager;
 
@@ -26,7 +23,7 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult Login(Login login)
         {
-           
+
             //if (usersStorage.TryGetUserByEmail(login.Email) == null)
             //{
             //    ModelState.AddModelError("","Пользователь с таким email не найден");
@@ -35,6 +32,7 @@ namespace WomanShop.Controllers
             //{
             //    ModelState.AddModelError("", "Пароли не совпадают");
             //}
+           
             if (ModelState.IsValid) 
             {
                 var result = signInManager.PasswordSignInAsync(login.Email, login.Password, login.Remember, false).Result;

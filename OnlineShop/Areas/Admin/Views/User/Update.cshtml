@@ -7,19 +7,19 @@
         </div>
     </div>
   
-    <div class="row mb-3">
+   @* <div class="row mb-3">
         <label for="firstName" class="col-sm-2 col-form-label">Имя</label>
         <div class="col-sm-4">
             <input type="text" asp-for="FirstName"id="firstName"class="form-control" >
          </div>
          <span style="color:red" asp-validation-for="FirstName"></span>
-    </div>
+    </div>*@
     <div class="row mb-3">
-        <label for="lastName" class="col-sm-2 col-form-label">Фамилия</label>
+        <label for="Name" class="col-sm-2 col-form-label">Фамилия</label>
         <div class="col-sm-4">
-            <input type="text" asp-for="LastName"  id="lastName"class="form-control" >
+            <input type="text" asp-for="Name"  id="Name"class="form-control" >
          </div>
-         <span style="color:red" asp-validation-for="LastName"></span>
+         <span style="color:red" asp-validation-for="Name"></span>
     </div>
      <div class="row mb-3">
         <label for="phone" class="col-sm-2 col-form-label">Телефон</label>
@@ -35,13 +35,13 @@
          </div>
          <span style="color:red" asp-validation-for="Email"></span>
     </div>
-    <div class="row mb-3">
+   @* <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label">Пароль</label>
         <div class="col-sm-4">
             <input type="text" asp-for="Password" id="password"class="form-control" >
          </div>
          <span style="color:red" asp-validation-for="Phone"></span>
-    </div>
+    </div>*@
      <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label">Роль</label>
         <div class="col-sm-4">
