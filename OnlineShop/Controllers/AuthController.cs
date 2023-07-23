@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using OnlineShop.DB.Models;
 using Serilog.Core;
 using OnlineShop.DB;
+using Serilog;
 
 namespace WomanShop.Controllers
 {
@@ -76,7 +77,9 @@ namespace WomanShop.Controllers
                 if (result.Succeeded) 
                 {
                     userManager.AddToRoleAsync(user, OnlineShop.DB.Constants.UserRoleName).Wait();
-                    return RedirectToAction("index", "home");
+                    var loginResult=signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
+                    if(loginResult.Succeeded)
+                        return Redirect(registration.ReturnUrl);
                 }
                 else
                 {
@@ -89,9 +92,9 @@ namespace WomanShop.Controllers
             }
             return View(registration);
         }
-        public IActionResult Registration()
+        public IActionResult Registration(string returnUrl)
         {
-            return View();
+            return View(new Registration() { ReturnUrl = returnUrl });
         }
 
     }

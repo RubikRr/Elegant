@@ -17,6 +17,7 @@
               <span style="color:red" asp-validation-for="ConfirmPassword"></span>
               <input asp-for="ConfirmPassword" type="password"  class="form-control" placeholder="Повторите пароль">
           </div>
+          <input hidden type="text" value=@Model.ReturnUrl name="returnUrl"></input>
           <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
        </div>
     </div>

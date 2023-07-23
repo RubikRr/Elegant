@@ -16,5 +16,7 @@ namespace WomanShop.Models
         [DataType(DataType.Password)]
         [Compare("Password",ErrorMessage ="Пароли не совпадат")]
         public string ConfirmPassword { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }
