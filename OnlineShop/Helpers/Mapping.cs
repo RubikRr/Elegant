@@ -113,10 +113,16 @@ namespace WomanShop.Helpers
             return new UserViewModel
             {
                 Id = user.Id,
-                Email=user.Email,
-                Name=user.UserName,
-                Phone=user.PhoneNumber
+                Email = user.Email,
+                Name = user.UserName,
+                Phone = user.PhoneNumber,
             };
+        }
+        public static UserViewModel ToUserViewModel(User user,List<string> roles)
+        {
+            var newUser = ToUserViewModel(user);
+            newUser.RoleName = string.Join(" ", roles);
+            return newUser;
         }
         public static List<UserViewModel> ToUsersViewModel(List<User> users)
         {

@@ -6,16 +6,8 @@
             <h1>Изменение данных</h1>
         </div>
     </div>
-  
-   @* <div class="row mb-3">
-        <label for="firstName" class="col-sm-2 col-form-label">Имя</label>
-        <div class="col-sm-4">
-            <input type="text" asp-for="FirstName"id="firstName"class="form-control" >
-         </div>
-         <span style="color:red" asp-validation-for="FirstName"></span>
-    </div>*@
     <div class="row mb-3">
-        <label for="Name" class="col-sm-2 col-form-label">Фамилия</label>
+        <label for="Name" class="col-sm-2 col-form-label">Имя</label>
         <div class="col-sm-4">
             <input type="text" asp-for="Name"  id="Name"class="form-control" >
          </div>
@@ -35,18 +27,10 @@
          </div>
          <span style="color:red" asp-validation-for="Email"></span>
     </div>
-   @* <div class="row mb-3">
-        <label for="password" class="col-sm-2 col-form-label">Пароль</label>
+     <div class="row mb-3" hidden>
+        <label for="role" class="col-sm-2 col-form-label">Роль</label>
         <div class="col-sm-4">
-            <input type="text" asp-for="Password" id="password"class="form-control" >
-         </div>
-         <span style="color:red" asp-validation-for="Phone"></span>
-    </div>*@
-     <div class="row mb-3">
-        <label for="password" class="col-sm-2 col-form-label">Роль</label>
-        <div class="col-sm-4">
-            <select class="form-control"  asp-for="RoleName" 
-             asp-items="ViewBag.Roles">
+            <select class="form-control"  asp-for="RoleName" asp-items="ViewBag.Roles">
             </select>
          </div>
          <span style="color:red" asp-validation-for="RoleName"></span>

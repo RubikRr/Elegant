@@ -24,15 +24,6 @@ namespace WomanShop.Controllers
         public IActionResult Login(Login login)
         {
 
-            //if (usersStorage.TryGetUserByEmail(login.Email) == null)
-            //{
-            //    ModelState.AddModelError("","Пользователь с таким email не найден");
-            //}
-            //if (!usersStorage.IsCorrectPassword(login))
-            //{
-            //    ModelState.AddModelError("", "Пароли не совпадают");
-            //}
-           
             if (ModelState.IsValid) 
             {
                 var result = signInManager.PasswordSignInAsync(login.Email, login.Password, login.Remember, false).Result;

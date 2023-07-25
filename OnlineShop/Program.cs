@@ -27,7 +27,9 @@ namespace WomanShop
             string connection = builder.Configuration.GetConnectionString("online_shop");
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
-            builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
+            builder.Services.Configure<DataProtectionTokenProviderOptions>
+                (opt =>opt.TokenLifespan = TimeSpan.FromHours(2));
             builder.Services.ConfigureApplicationCookie(option =>
             {
                 option.ExpireTimeSpan = TimeSpan.FromDays(1);

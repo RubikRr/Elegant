@@ -2,15 +2,17 @@
 
 namespace WomanShop.Areas.Admin.Models
 {
-    public class UpdatePasswordInfo
+    public class ResetPasswordInfo
     {
-        [Required(ErrorMessage = "Не указана почта")]
-        public Guid UserId {get;set;}
+        public string UserId {get;set;}
 
         [Required(ErrorMessage = "Необходимо заполнить поле с паролем")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
         [Required(ErrorMessage = "Необходимо подтвердить пароль")]
         [Compare("Password", ErrorMessage = "Пароли не совпадат")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
 }
