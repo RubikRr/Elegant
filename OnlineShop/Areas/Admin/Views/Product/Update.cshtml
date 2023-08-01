@@ -1,6 +1,6 @@
-﻿@model ProductViewModel
+﻿@model EditProductViewModel
 
-<form method="post" asp-area="admin" asp-controller="product" asp-action="update">
+<form method="post" enctype="multipart/form-data" asp-area="admin" asp-controller="product" asp-action="update">
     <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Название</label>
         <div class="col-sm-4">
@@ -23,12 +23,17 @@
          <span style="color:red" asp-validation-for="Description"></span>
     </div>
     <div class="row mb-3">
-        <label for="image" class="col-sm-2 col-form-label">Картинка</label>
+        <label for="image" class="col-sm-2 col-form-label">Старое изображение</label>
         <div class="col-sm-4">
             <img src="@Model.ImagePath" class="card-img-top img-thumbnail" alt="..."></img>
-            <input type="file" asp-for="ImagePath" id="image" class="form-control">
         </div>
-        <span style="color:red" asp-validation-for="ImagePath"></span>
+    </div>
+    <div class="row mb-3">
+        <label for="image" class="col-sm-2 col-form-label">Выберете новое изображение</label>
+        <div class="col-sm-4">
+            <input type="file" asp-for="UploadedImage" id="image" class="form-control">
+        </div>
+        <span style="color:red" asp-validation-for="UploadedImage"></span>
     </div>
     <div class="row mb-3">
         <div class="col-sm-4">

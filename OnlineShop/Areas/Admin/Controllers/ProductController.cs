@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OnlineShop.DB.Interfaces;
 using OnlineShop.DB.Models;
-using System.Data;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Helpers;
-using WomanShop.Models;
 
 namespace WomanShop.Areas.Admin.Controllers
 {
@@ -40,16 +37,16 @@ namespace WomanShop.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Add(CreateProductViewModel product)
         {
-            
+
             if (ModelState.IsValid)
             {
-                var productImagePath = Path.Combine(appEnvironment.WebRootPath+"/images/products/");
+                var productImagePath = Path.Combine(appEnvironment.WebRootPath + "/images/products/");
                 if (!Directory.Exists(productImagePath))
                 {
                     Directory.CreateDirectory(productImagePath);
                 }
-                var fileName = Guid.NewGuid() +"."+ product.UploadedImage.FileName.Split('.').Last();
-                using (var fileStream=new FileStream(productImagePath+fileName,FileMode.Create))
+                var fileName = Guid.NewGuid() + "." + product.UploadedImage.FileName.Split('.').Last();
+                using (var fileStream = new FileStream(productImagePath + fileName, FileMode.Create))
                 {
                     product.UploadedImage.CopyTo(fileStream);
                 }
@@ -59,7 +56,7 @@ namespace WomanShop.Areas.Admin.Controllers
                     Name = product.Name,
                     Cost = product.Cost,
                     Description = product.Description,
-                    ImagePath = "/images/products/"+fileName,
+                    ImagePath = "/images/products/" + fileName,
                 };
                 productsStorage.Add(newProduct);
                 return RedirectToAction("Index");
@@ -69,18 +66,33 @@ namespace WomanShop.Areas.Admin.Controllers
         public IActionResult Update(Guid productId)
         {
             var product = productsStorage.TryGetById(productId);
-            return View(Mapping.ToProductViewModel(product));
+
+            return View(new EditProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Cost = product.Cost,
+                Description = product.Description,
+                ImagePath = product.ImagePath,
+            });
         }
 
         [HttpPost]
-        public IActionResult Update(ProductViewModel product)
+        public IActionResult Update(EditProductViewModel product)
         {
-            if (ModelState.IsValid)
+            if (product.UploadedImage != null)
             {
-                productsStorage.Update(Mapping.ToProductModel(product));
-                return RedirectToAction("Index");
+                var productImagePath = Path.Combine(appEnvironment.WebRootPath + "/images/products/");
+                var fileName = Guid.NewGuid() + "." + product.UploadedImage.FileName.Split('.').Last();
+                using (var fileStream = new FileStream(productImagePath + fileName, FileMode.Create))
+                {
+                    product.UploadedImage.CopyTo(fileStream);
+                }
+                product.ImagePath = "/images/products/" + fileName;
             }
-            return RedirectToAction("Update");
+            productsStorage.Update(new Product { Id = product.Id, Name = product.Name, Cost = product.Cost, Description = product.Description, ImagePath = product.ImagePath });
+
+            return RedirectToAction("Index");
         }
     }
 }
