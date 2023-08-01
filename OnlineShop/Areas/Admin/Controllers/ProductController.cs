@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OnlineShop.DB.Interfaces;
+using OnlineShop.DB.Models;
 using System.Data;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Helpers;
@@ -14,9 +15,11 @@ namespace WomanShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private IProductsStorage productsStorage;
-        public ProductController(IProductsStorage _productsStorage)
+        private readonly IWebHostEnvironment appEnvironment;
+        public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment)
         {
-            productsStorage = _productsStorage;
+            this.productsStorage = productsStorage;
+            this.appEnvironment = appEnvironment;
         }
 
         public IActionResult Index()
@@ -35,11 +38,30 @@ namespace WomanShop.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(ProductViewModel product)
+        public IActionResult Add(CreateProductViewModel product)
         {
+            
             if (ModelState.IsValid)
             {
-                productsStorage.Add(Mapping.ToProductModel(product));
+                var productImagePath = Path.Combine(appEnvironment.WebRootPath+"/images/products/");
+                if (!Directory.Exists(productImagePath))
+                {
+                    Directory.CreateDirectory(productImagePath);
+                }
+                var fileName = Guid.NewGuid() +"."+ product.UploadedImage.FileName.Split('.').Last();
+                using (var fileStream=new FileStream(productImagePath+fileName,FileMode.Create))
+                {
+                    product.UploadedImage.CopyTo(fileStream);
+                }
+                var newProduct = new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Name = product.Name,
+                    Cost = product.Cost,
+                    Description = product.Description,
+                    ImagePath = "/images/products/"+fileName,
+                };
+                productsStorage.Add(newProduct);
                 return RedirectToAction("Index");
             }
             return View();

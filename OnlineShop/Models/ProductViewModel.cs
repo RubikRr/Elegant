@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace WomanShop.Models
 {
@@ -15,15 +16,6 @@ namespace WomanShop.Models
         public string Description { get;set;}
         [Required(ErrorMessage = "Выберете фотографию")]
         public string ImagePath { get; set; }
-
-        public ProductViewModel(string name, decimal cost, string description, string imagePath)
-        {
-            Name = name;
-            Cost = cost;
-            Description = description;
-            ImagePath = imagePath;
-
-        }
-        public ProductViewModel(){}
+        
     }
 }
