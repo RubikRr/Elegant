@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 using OnlineShop.DB.Interfaces;
 using OnlineShop.DB.Models;
 using WomanShop.Helpers;
-using WomanShop.Interfaces;
 using WomanShop.Models;
 
 namespace WomanShop.Areas.Admin.Controllers

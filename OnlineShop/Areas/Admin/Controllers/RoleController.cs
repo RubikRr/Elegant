@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using WomanShop.Areas.Admin.Models;
-using WomanShop.Interfaces;
 
 namespace WomanShop.Areas.Admin.Controllers
 {
