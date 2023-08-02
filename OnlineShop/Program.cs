@@ -41,7 +41,6 @@ namespace WomanShop
                 };
             });
 
-            builder.Services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
             builder.Services.AddTransient<IProductsStorage, DbProductsStorage>();
             builder.Services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
             builder.Services.AddSingleton<IUsersStorage, InMemoryUsersStorage>();
