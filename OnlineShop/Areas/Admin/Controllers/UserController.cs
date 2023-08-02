@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using OnlineShop.DB;
 using OnlineShop.DB.Models;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Helpers;
@@ -173,6 +175,11 @@ namespace WomanShop.Areas.Admin.Controllers
             ViewBag.Roles = new SelectList(roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
             var user = userManager.FindByIdAsync(userId).Result;
             var userRoles = new List<string>(await userManager.GetRolesAsync(user));
+            if (userRoles == null || userRoles.Count==0)
+            {
+                userRoles=new List<string>() {Constants.UserRoleName };
+                userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+            }
             return View(new UpdateUserRoleViewModel {RoleName= userRoles.First(), UserId=user.Id });
         }
         [HttpPost]
@@ -182,9 +189,21 @@ namespace WomanShop.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                var oldRole = new List<string>(await userManager.GetRolesAsync(user)).First();
-                userManager.RemoveFromRoleAsync(user, oldRole);
-                userManager.AddToRoleAsync(user, updateUserRole.RoleName).Wait();
+                var oldRole = new List<string>(await userManager.GetRolesAsync(user)).FirstOrDefault();
+                if (oldRole != updateUserRole.RoleName)
+                {
+                    if (!oldRole.IsNullOrEmpty())
+                    {
+                        userManager.RemoveFromRoleAsync(user, oldRole).Wait();
+                        userManager.AddToRoleAsync(user, updateUserRole.RoleName).Wait();
+                    }
+                    else
+                    {
+                        userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+                    }
+                }
+                
+                
                 return RedirectToAction("Index");
             }
 
