@@ -17,7 +17,8 @@ namespace WomanShop.Controllers
         {
             var product = productsStorage.TryGetById(productId);
             //return product != null? product.ToString():$"Товар с индексом {id} не существует";
-            return View(Mapping.ToProductViewModel(product));
+            var ans = Mapping.ToProductViewModel(product);
+            return View(ans);
         }
 
     }

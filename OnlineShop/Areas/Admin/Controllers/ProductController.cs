@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DB.Interfaces;
 using OnlineShop.DB.Models;
+using System;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Helpers;
 
@@ -38,6 +39,7 @@ namespace WomanShop.Areas.Admin.Controllers
         public IActionResult Add(CreateProductViewModel product)
         {
 
+            var str = "fasdf";
             if (ModelState.IsValid)
             {
                 var productImagePath = Path.Combine(appEnvironment.WebRootPath + "/images/products/");
@@ -45,19 +47,30 @@ namespace WomanShop.Areas.Admin.Controllers
                 {
                     Directory.CreateDirectory(productImagePath);
                 }
-                var fileName = Guid.NewGuid() + "." + product.UploadedImage.FileName.Split('.').Last();
-                using (var fileStream = new FileStream(productImagePath + fileName, FileMode.Create))
+                var imageItems = new List<ImageItem>();
+                foreach (var image in product.UploadedImage)
                 {
-                    product.UploadedImage.CopyTo(fileStream);
+                    var fileName = Guid.NewGuid() + "." + image.FileName.Split('.').Last();
+                    using (var fileStream = new FileStream(productImagePath + fileName, FileMode.Create))
+                    {
+                        image.CopyTo(fileStream);
+                    }
+                    imageItems.Add(new ImageItem { ImagePath= "/images/products/" + fileName });
                 }
+              
                 var newProduct = new Product
                 {
                     Id = Guid.NewGuid(),
                     Name = product.Name,
                     Cost = product.Cost,
                     Description = product.Description,
-                    ImagePath = "/images/products/" + fileName,
+                    ImageItems= imageItems,
+                    ImagePath = "/images/products/image1"
                 };
+                foreach (var item in newProduct.ImageItems)
+                {
+                    item.Product = newProduct;
+                }
                 productsStorage.Add(newProduct);
                 return RedirectToAction("Index");
             }

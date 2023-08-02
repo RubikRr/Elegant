@@ -29,7 +29,7 @@
     <div class="row mb-3">
         <label for="image" class="col-sm-2 col-form-label">Картинка</label>
         <div class="col-sm-4">
-            <input type="file" asp-for="UploadedImage" id="image" class="form-control">
+            <input type="file" multiple asp-for="UploadedImage" id="image" class="form-control">
         </div>
         <span style="color:red" asp-validation-for="UploadedImage"></span>
     </div>

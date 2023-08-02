@@ -14,6 +14,7 @@ namespace WomanShop.Helpers
                     Name = productModel.Name,
                     Cost = productModel.Cost,
                     Description = productModel.Description,
+                    ImageItemsPaths= productModel.ImageItems.Select(imageItem=>imageItem.ImagePath).ToList(),
                     ImagePath = productModel.ImagePath
                 };
             }

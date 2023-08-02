@@ -13,6 +13,6 @@ namespace WomanShop.Areas.Admin.Models
         [StringLength(10000, ErrorMessage = "Описание до 10000 символов")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Выберете фотографию")]
-        public IFormFile UploadedImage { get; set; }
+        public IFormFile[] UploadedImage { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace OnlineShop.DB.Storages
             dbContext = _databaseContext;
         }
 
-        public List<Product> GetAll() => dbContext.Products.Include(product=>product.CartItems).ToList();
+        public List<Product> GetAll() => dbContext.Products.Include(product => product.CartItems).Include(product =>product.ImageItems).ToList();
         public void Add(Product product)
         {
             dbContext.Products.Add(product);
@@ -43,7 +43,7 @@ namespace OnlineShop.DB.Storages
         }
         public Product TryGetById(Guid id)
         {
-            return dbContext.Products.Include(product=>product.CartItems).FirstOrDefault(pr => pr.Id == id);
+            return dbContext.Products.Include(product=>product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
         }
     }
 }

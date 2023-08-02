@@ -13,6 +13,7 @@ namespace OnlineShop.DB
         public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
+        public DbSet<ImageItem> ImageItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -28,6 +29,7 @@ namespace OnlineShop.DB
                     Name = "Пиджак",
                     Cost = 3750.50m,
                     Description = "Крутой пиджак для крутой леди",
+                   
                     ImagePath = "/images/products/image1.png"
                 },
                 new Product
@@ -36,6 +38,7 @@ namespace OnlineShop.DB
                     Name = "Платье",
                     Cost = 5700.75m,
                     Description = "Даже патрик обзавидуется такому платью",
+                   
                     ImagePath = "/images/products/image2.png"
                 },
                 new Product
@@ -44,6 +47,7 @@ namespace OnlineShop.DB
                     Name = "Туфли",
                     Cost = 3500.75m,
                     Description = "Туфельки для красотульки",
+                   
                     ImagePath = "/images/products/image3.png"
                 });
         }

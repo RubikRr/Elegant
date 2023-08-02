@@ -9,7 +9,7 @@
                     asp-action="add"
                     asp-route-productId=@product.Id class="btn ml-3 fa fa-heart-o"><i class=""></i></a>
                 </div>
-                <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
+                <img src=@product.ImageItemsPaths[0] class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
                 <div class="card-body">
                     <a class="card-title fs-5"
                     asp-area=""
