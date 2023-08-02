@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShop.DB;
 
@@ -11,9 +12,11 @@ using OnlineShop.DB;
 namespace OnlineShop.DB.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230802173808_DeleteInizProducts")]
+    partial class DeleteInizProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +97,7 @@ namespace OnlineShop.DB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -102,20 +105,6 @@ namespace OnlineShop.DB.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ImageItems");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b422ac72-39b5-41c9-851e-95d6a18ad191"),
-                            ImagePath = "/images/products/image1.png",
-                            ProductId = new Guid("8001a098-bf36-4fb7-9b46-c3c21102e288")
-                        },
-                        new
-                        {
-                            Id = new Guid("ade8cac6-89f9-48e7-9666-cc3109ab9a06"),
-                            ImagePath = "/images/products/image2.png",
-                            ProductId = new Guid("8001a098-bf36-4fb7-9b46-c3c21102e288")
-                        });
                 });
 
             modelBuilder.Entity("OnlineShop.DB.Models.Order", b =>
@@ -164,16 +153,6 @@ namespace OnlineShop.DB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8001a098-bf36-4fb7-9b46-c3c21102e288"),
-                            Cost = 3750.50m,
-                            Description = "Крутой пиджак для крутой леди",
-                            ImagePath = "/images/products/image1.png",
-                            Name = "Пиджак"
-                        });
                 });
 
             modelBuilder.Entity("WomanShop.Models.UserDeliveryInfo", b =>
@@ -231,13 +210,9 @@ namespace OnlineShop.DB.Migrations
 
             modelBuilder.Entity("OnlineShop.DB.Models.ImageItem", b =>
                 {
-                    b.HasOne("OnlineShop.DB.Models.Product", "Product")
+                    b.HasOne("OnlineShop.DB.Models.Product", null)
                         .WithMany("ImageItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("OnlineShop.DB.Models.Order", b =>

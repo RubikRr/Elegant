@@ -67,10 +67,7 @@ namespace WomanShop.Areas.Admin.Controllers
                     ImageItems= imageItems,
                     ImagePath = "/images/products/image1"
                 };
-                foreach (var item in newProduct.ImageItems)
-                {
-                    item.Product = newProduct;
-                }
+                
                 productsStorage.Add(newProduct);
                 return RedirectToAction("Index");
             }
