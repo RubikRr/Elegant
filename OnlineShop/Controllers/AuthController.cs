@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WomanShop.Interfaces;
 using WomanShop.Models;
 using Microsoft.AspNetCore.Identity;
 using OnlineShop.DB.Models;
-using Microsoft.IdentityModel.Tokens;
 
 namespace WomanShop.Controllers
 {

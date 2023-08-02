@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DB.Interfaces;
 using WomanShop.Helpers;
-using WomanShop.Models;
-using WomanShop.Storages;
 
 namespace WomanShop.Controllers
 {

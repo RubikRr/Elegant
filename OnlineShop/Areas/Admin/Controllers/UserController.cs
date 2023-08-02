@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,7 @@ using OnlineShop.DB;
 using OnlineShop.DB.Models;
 using WomanShop.Areas.Admin.Models;
 using WomanShop.Helpers;
-using WomanShop.Interfaces;
+
 using WomanShop.Models;
 
 namespace WomanShop.Areas.Admin.Controllers

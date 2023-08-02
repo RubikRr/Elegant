@@ -1,12 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Protocols;
 using OnlineShop.DB;
 using Serilog;
 using System.Globalization;
-using WomanShop.Interfaces;
-using WomanShop.Storages;
-using System.Configuration;
 using OnlineShop.DB.Storages;
 using OnlineShop.DB.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -41,10 +37,8 @@ namespace WomanShop
                 };
             });
 
-            builder.Services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
             builder.Services.AddTransient<IProductsStorage, DbProductsStorage>();
             builder.Services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
-            builder.Services.AddSingleton<IUsersStorage, InMemoryUsersStorage>();
             builder.Services.AddTransient<ICartsStorage, DbCartsStorage>();
             builder.Services.AddTransient<IOrdersStorage, DbOrdersStorage>();
             builder.Services.Configure<RequestLocalizationOptions>(options =>
