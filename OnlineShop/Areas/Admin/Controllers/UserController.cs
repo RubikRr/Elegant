@@ -168,28 +168,34 @@ namespace WomanShop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        //public IActionResult UpdateRole(Guid userId)
-        //{
-        //    ViewBag.Roles = new SelectList(rolesStorage.GetAll(), nameof(Models.Role.Name), nameof(Models.Role.Name));
-        //    var user = usersStorage.TryGetUserById(userId);
-        //    return View(user);
-        //}
-        //[HttpPost]
-        //public IActionResult UpdateRole(Guid userId,string roleName)
-        //{
-        //    var user = usersStorage.TryGetUserById(userId);
-        //    var role = rolesStorage.TryGetByName(roleName);
-        //    if (user == null)
-        //    {
-        //        ModelState.AddModelError("", "Пользователь не наеден");
-        //    }
-        //    if (ModelState.IsValid)
-        //    {
-        //        usersStorage.UpdateRole(user, role);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(user);
-        //}
+        public async Task<IActionResult> UpdateRoleAsync(string userId)
+        {
+            ViewBag.Roles = new SelectList(roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
+            var user = userManager.FindByIdAsync(userId).Result;
+            var userRoles = new List<string>(await userManager.GetRolesAsync(user));
+            return View(new UpdateUserRoleViewModel {RoleName= userRoles.First(), UserId=user.Id });
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateRoleAsync(UpdateUserRoleViewModel updateUserRole)
+        {
+            var user = userManager.FindByIdAsync(updateUserRole.UserId).Result;
+
+            if (ModelState.IsValid)
+            {
+                var oldRole = new List<string>(await userManager.GetRolesAsync(user)).First();
+                userManager.RemoveFromRoleAsync(user, oldRole);
+                userManager.AddToRoleAsync(user, updateUserRole.RoleName).Wait();
+                return RedirectToAction("Index");
+            }
+
+            //var user = usersStorage.TryGetUserById(userId);
+            //var role = rolesStorage.TryGetByName(roleName);
+            //if (user == null)
+            //{
+            //    ModelState.AddModelError("", "Пользователь не наеден");
+            //}
+            return View(user);
+        }
 
     }
 }

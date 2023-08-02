@@ -1,23 +1,31 @@
-﻿@model UserViewModel
+﻿@model UpdateUserRoleViewModel
 <form method="post" asp-area="admin" asp-controller="user" asp-action="updateRole">
     <div class="row mb-3">
         <div class="col-12">
             <h1>Изменение роли</h1>
         </div>
+        <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
     </div>
-    <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
     <div class="row mb-3">
-        <label for="password" class="col-sm-2 col-form-label">Роль</label>
+        <label for="role" class="col-sm-2 col-form-label">Старая роль</label>
         <div class="col-sm-4">
-            <select class="form-control"  name="roleName"
-                asp-items="ViewBag.Roles">
-            </select>
-            </div>
-         
+            <input type="text" value=@Model.RoleName disabled> </input>
+        </div>
     </div>
-       <div class="row mb-3">
+
+    <div class="row mb-3">
+        <label for="role" class="col-sm-2 col-form-label">Новая роль</label>
         <div class="col-sm-4">
-            <input type="text" hidden name="userId" id="id" value=@Model.Id class="form-control" >
+            <select class="form-control" asp-for="RoleName" asp-items="ViewBag.Roles">
+            </select>
+        </div>
+        <span style="color:red" asp-validation-for="RoleName"></span>
+    </div>
+   
+   
+    <div class="row mb-3">
+        <div class="col-sm-4">
+            <input type="text" hidden name="userId" id="id" value=@Model.UserId class="form-control" >
          </div>
     </div>
    
