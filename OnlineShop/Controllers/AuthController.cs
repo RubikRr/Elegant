@@ -9,12 +9,12 @@ namespace WomanShop.Controllers
 {
     public class AuthController : Controller
     {
-       
+
 
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
 
-        public AuthController(SignInManager<User> signInManager,UserManager<User> userManager)
+        public AuthController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
@@ -23,19 +23,23 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult Login(Login login)
         {
-
-            if (ModelState.IsValid) 
+            var user = userManager.FindByEmailAsync(login.Email).Result;
+            if (user != null)
             {
-                var result = signInManager.PasswordSignInAsync(login.Email, login.Password, login.Remember, false).Result;
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    return Redirect(login.ReturnUrl);
-                }
-                else 
-                {
-                    ModelState.AddModelError("", "Неправильный пароль");
+                    var result = signInManager.PasswordSignInAsync(user, login.Password, login.Remember, false).Result;
+                    if (result.Succeeded)
+                    {
+                        return Redirect(login.ReturnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Неправильный пароль");
+                    }
                 }
             }
+
             return View(login);
         }
         public IActionResult Login(string returnUrl)
@@ -54,7 +58,7 @@ namespace WomanShop.Controllers
             //{
             //    ModelState.AddModelError("", "Пользователь с данным логином уже существует");
             //}
-            if (registration.Password==registration.Email)
+            if (registration.Password == registration.Email)
             {
                 ModelState.AddModelError("", "Логин и пароль не должны совпадать");
             }
@@ -63,11 +67,11 @@ namespace WomanShop.Controllers
                 //var user = new UserViewModel(registration.Email, registration.Password);
                 var user = new User { UserName = registration.Email, Email = registration.Email };
                 var result = userManager.CreateAsync(user, registration.Password).Result;
-                if (result.Succeeded) 
+                if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, OnlineShop.DB.Constants.UserRoleName).Wait();
-                    var loginResult=signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
-                    if(loginResult.Succeeded)
+                    var loginResult = signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
+                    if (loginResult.Succeeded)
                         return Redirect(registration.ReturnUrl);
                 }
                 else

@@ -1,4 +1,4 @@
-﻿@model UserViewModel
+﻿@model AddUserViewModel
 @using WomanShop.Storages
 @using WomanShop.Areas.Admin.Models
 <form method="post" asp-area="admin" asp-controller="user" asp-action="add">
@@ -6,6 +6,7 @@
         <div class="col-12">
             <h1>Добавление пользователя</h1>
         </div>
+        <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
     </div>
     <div class="row mb-3">
         <label for="Name" class="col-sm-2 col-form-label">Имя</label>
@@ -14,13 +15,7 @@
          </div>
          <span style="color:red" asp-validation-for="Name"></span>
     </div>
-   @* <div class="row mb-3">
-        <label for="lastName" class="col-sm-2 col-form-label">Фамилия</label>
-        <div class="col-sm-4">
-            <input type="text" asp-for="LastName" id="lastName"class="form-control" >
-         </div>
-         <span style="color:red" asp-validation-for="LastName"></span>
-    </div>*@
+
      <div class="row mb-3">
         <label for="phone" class="col-sm-2 col-form-label">Телефон</label>
         <div class="col-sm-4">
@@ -35,13 +30,21 @@
          </div>
          <span style="color:red" asp-validation-for="Email"></span>
     </div>
-  @*  <div class="row mb-3">
+    <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label">Пароль</label>
         <div class="col-sm-4">
-            <input type="text" asp-for="Password" id="password"class="form-control" >
-         </div>
-         <span style="color:red" asp-validation-for="Phone"></span>
-    </div>*@
+            <input type="password" asp-for="Password" id="password" class="form-control">
+        </div>
+        <span style="color:red" asp-validation-for="Password"></span>
+    </div>
+    <div class="row mb-3">
+        <label for="comfirmPassword" class="col-sm-2 col-form-label">Повторите пароль</label>
+        <div class="col-sm-4">
+            <input type="password" asp-for="ConfirmPassword" id="comfirmPassword" class="form-control">
+        </div>
+        <span style="color:red" asp-validation-for="ConfirmPassword"></span>
+    </div>
+   
     <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label">Роль</label>
         <div class="col-sm-4">
