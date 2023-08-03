@@ -6,7 +6,7 @@ using WomanShop.Helpers;
 
 namespace WomanShop.Controllers
 {
-    [Authorize]
+    
     public class CartController:Controller
     {
 
@@ -19,6 +19,7 @@ namespace WomanShop.Controllers
            productsStorage = _productsStorage ;
            cartsStorage = _cartStorage;
         }
+
         public IActionResult Add(Guid productId)
         {
             var product = productsStorage.TryGetById(productId);
@@ -46,9 +47,5 @@ namespace WomanShop.Controllers
             cartsStorage.Change(cartId, productId, act);
             return RedirectToAction("Index");
         }
-
-     
-
-     
     }
 }
