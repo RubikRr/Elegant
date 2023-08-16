@@ -1,4 +1,4 @@
-Woman Shop онлайн магазин женской одежды на ASP.Core. В данном проекте я использовал такие технологии как EntityFramework и Linq.  
+Woman Shop онлайн магазин женской одежды на ASP.Core. В данном проекте я использовал такие технологии как ASP.Coreь, EntityFramework и Linq.  
 Скрины сайта:
 ![изображение](https://github.com/RubikRr/WomanShop/assets/65467062/d03fad4f-6323-4d48-be69-5ea5aef2c14b)
 ![изображение](https://github.com/RubikRr/WomanShop/assets/65467062/69da941d-69df-48cb-8f46-3470a421fbc5)
