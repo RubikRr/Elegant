@@ -16,7 +16,6 @@ namespace WomanShop.Controllers
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
-
         }
         [HttpPost]
         public IActionResult Login(Login login)
