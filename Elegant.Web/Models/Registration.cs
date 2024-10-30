@@ -13,7 +13,7 @@ namespace Elegant.Web.Models
         public string Password { get; set; }
         [Required(ErrorMessage = "Необходимо подтвердить пароль")]
         [DataType(DataType.Password)]
-        [Compare("Password",ErrorMessage ="Пароли не совпадат")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадат")]
         public string ConfirmPassword { get; set; }
 
         public string ReturnUrl { get; set; }

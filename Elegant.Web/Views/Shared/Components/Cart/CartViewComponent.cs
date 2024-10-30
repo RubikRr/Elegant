@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Views.Shared.Components.Cart
 {
-    public class CartViewComponent:ViewComponent
+    public class CartViewComponent : ViewComponent
     {
         private ICartsStorage cartsStorage;
 
@@ -17,9 +17,9 @@ namespace Elegant.Web.Views.Shared.Components.Cart
         public IViewComponentResult Invoke()
         {
             var cart = Mapping.ToCartViewModel(cartsStorage.TryGetByUserId(Constants.UserId));
-           
 
-            if (cart != null && cart.Quantity!=0) { return View("Cart", cart.Quantity.ToString());  }
+
+            if (cart != null && cart.Quantity != 0) { return View("Cart", cart.Quantity.ToString()); }
 
             return View("Cart", "");
             ;

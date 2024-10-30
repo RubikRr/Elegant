@@ -12,7 +12,7 @@ namespace Elegant.Web.Areas.Admin.Controllers
     {
 
         private readonly RoleManager<IdentityRole> roleManager;
-        public RoleController( RoleManager<IdentityRole> roleManager)
+        public RoleController(RoleManager<IdentityRole> roleManager)
         {
             this.roleManager = roleManager;
         }
@@ -24,10 +24,10 @@ namespace Elegant.Web.Areas.Admin.Controllers
         }
         public IActionResult Remove(Guid roleId)
         {
-            var role= roleManager.FindByIdAsync(roleId.ToString()).Result;
+            var role = roleManager.FindByIdAsync(roleId.ToString()).Result;
             if (role != null)
             {
-                roleManager.DeleteAsync(role); 
+                roleManager.DeleteAsync(role);
             }
             return RedirectToAction("Index");
         }
@@ -39,9 +39,9 @@ namespace Elegant.Web.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "Данная роль уже существуют.");
             }
-            
-            
-           
+
+
+
             if (ModelState.IsValid)
             {
                 roleManager.CreateAsync(new IdentityRole(role.Name)).Wait();

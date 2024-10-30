@@ -17,7 +17,7 @@ namespace Elegant.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var guidProduct=Guid.NewGuid();
+            var guidProduct = Guid.NewGuid();
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 Id = guidProduct,

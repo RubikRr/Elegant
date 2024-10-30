@@ -9,12 +9,13 @@ namespace Elegant.Web.Helpers
         {
             if (productModel != null)
             {
-                return new ProductViewModel {
+                return new ProductViewModel
+                {
                     Id = productModel.Id,
                     Name = productModel.Name,
                     Cost = productModel.Cost,
                     Description = productModel.Description,
-                    ImageItemsPaths= productModel.ImageItems.Select(imageItem=>imageItem.ImagePath).ToList(),
+                    ImageItemsPaths = productModel.ImageItems.Select(imageItem => imageItem.ImagePath).ToList(),
                     ImagePath = productModel.ImagePath
                 };
             }
@@ -46,7 +47,8 @@ namespace Elegant.Web.Helpers
         {
             if (cartItemModel != null)
             {
-                return new CartItemViewModel {
+                return new CartItemViewModel
+                {
                     Product = ToProductViewModel(cartItemModel.Product),
                     Quantity = cartItemModel.Quantity
                 };
@@ -78,9 +80,9 @@ namespace Elegant.Web.Helpers
         {
             return new UserDeliveryInfo
             {
-                Name= userInfo.Name,
-                Address= userInfo.Address,
-                Phone= userInfo.Phone
+                Name = userInfo.Name,
+                Address = userInfo.Address,
+                Phone = userInfo.Phone
             };
         }
         public static UserDeliveryInfoViewModel ToUserDeliveryInfoViewModel(UserDeliveryInfo userInfo)
@@ -96,17 +98,17 @@ namespace Elegant.Web.Helpers
         {
             return new OrderViewModel
             {
-                Id= order.Id,
-                DeliveryInfo=ToUserDeliveryInfoViewModel(order.DeliveryInfo),
-                Date= order.Date,
-                Items= ToCartItemsViewModel(order.Items),
-                Status= (OrderStatusViewModel)(order.Status),
+                Id = order.Id,
+                DeliveryInfo = ToUserDeliveryInfoViewModel(order.DeliveryInfo),
+                Date = order.Date,
+                Items = ToCartItemsViewModel(order.Items),
+                Status = (OrderStatusViewModel)(order.Status),
             };
         }
 
         public static List<OrderViewModel> ToOrdersViewModel(List<Order> orders)
         {
-            return orders.Select(ToOrderViewModel).ToList() ??null;
+            return orders.Select(ToOrderViewModel).ToList() ?? null;
         }
 
         public static UserViewModel ToUserViewModel(User user)
@@ -119,7 +121,7 @@ namespace Elegant.Web.Helpers
                 Phone = user.PhoneNumber,
             };
         }
-        public static UserViewModel ToUserViewModel(User user,List<string> roles)
+        public static UserViewModel ToUserViewModel(User user, List<string> roles)
         {
             var newUser = ToUserViewModel(user);
             newUser.RoleName = string.Join(" ", roles);

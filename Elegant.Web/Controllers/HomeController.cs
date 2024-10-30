@@ -21,8 +21,8 @@ namespace Elegant.Web.Controllers
 
         [HttpPost]
         public IActionResult Search(string productName)
-        {   
-            var productsModel=productsStorage.Search(productName);
+        {
+            var productsModel = productsStorage.Search(productName);
             return View(Mapping.ToProductsViewModel(productsModel));
         }
     }

@@ -55,19 +55,19 @@ namespace Elegant.Web.Areas.Admin.Controllers
                     {
                         image.CopyTo(fileStream);
                     }
-                    imageItems.Add(new ImageItem { ImagePath= "/images/products/" + fileName });
+                    imageItems.Add(new ImageItem { ImagePath = "/images/products/" + fileName });
                 }
-              
+
                 var newProduct = new Product
                 {
                     Id = Guid.NewGuid(),
                     Name = product.Name,
                     Cost = product.Cost,
                     Description = product.Description,
-                    ImageItems= imageItems,
+                    ImageItems = imageItems,
                     ImagePath = "/images/products/image1"
                 };
-                
+
                 productsStorage.Add(newProduct);
                 return RedirectToAction("Index");
             }

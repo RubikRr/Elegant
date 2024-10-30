@@ -1,6 +1,6 @@
 ﻿namespace Elegant.DAL.Models
 {
-    
+
     public class Order
     {
 
@@ -10,7 +10,7 @@
         public OrderStatus Status { get; set; }
         public DateTime Date { get; set; }
 
-        public Order() 
+        public Order()
         {
             Status = OrderStatus.New;
             Date = DateTime.Now;

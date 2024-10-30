@@ -4,7 +4,7 @@ namespace WomanShop.Areas.Admin.Models
 {
     public class ResetPasswordInfo
     {
-        public string UserId {get;set;}
+        public string UserId { get; set; }
 
         [Required(ErrorMessage = "Необходимо заполнить поле с паролем")]
         [DataType(DataType.Password)]

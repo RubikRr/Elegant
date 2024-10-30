@@ -4,8 +4,8 @@ namespace Elegant.Web.Models
 {
     public class UserDeliveryInfoViewModel
     {
-        [Required(ErrorMessage ="Впишите имя")]
-        [StringLength(100,MinimumLength =1,ErrorMessage ="ФИО содержит минимум 1 букву")]
+        [Required(ErrorMessage = "Впишите имя")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "ФИО содержит минимум 1 букву")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Впишите адрес доставки")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "Адрес содержит минимум 1 букву")]

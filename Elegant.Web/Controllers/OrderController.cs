@@ -20,7 +20,7 @@ namespace Elegant.Web.Controllers
             ordersStorage = _ordersStorage;
             cartsStorage = _cartStorage;
         }
-            
+
         public IActionResult Index()
         {
             return View();

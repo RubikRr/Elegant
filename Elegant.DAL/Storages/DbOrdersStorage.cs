@@ -14,9 +14,9 @@ namespace Elegant.DAL.Storages
             dbContext.Orders.Add(order);
             dbContext.SaveChanges();
         }
-        public List<Order> GetAll() 
-        { 
-            return dbContext.Orders.Include(order => order.Items).ThenInclude(items=>items.Product).Include(x=>x.DeliveryInfo).ToList();
+        public List<Order> GetAll()
+        {
+            return dbContext.Orders.Include(order => order.Items).ThenInclude(items => items.Product).Include(x => x.DeliveryInfo).ToList();
         }
 
         public Order TryGetById(Guid id)

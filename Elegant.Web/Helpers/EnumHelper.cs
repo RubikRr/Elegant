@@ -9,6 +9,6 @@ namespace Elegant.Web.Helpers
         {
             return enumValue.GetType().GetMember(enumValue.ToString()).First().GetCustomAttribute<DisplayAttribute>().GetName();
         }
-        
+
     }
 }

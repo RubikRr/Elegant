@@ -7,13 +7,13 @@ namespace Elegant.DAL.Storages
     public class DbProductsStorage : IProductsStorage
     {
         private DatabaseContext dbContext;
-       
+
         public DbProductsStorage(DatabaseContext _databaseContext)
         {
             dbContext = _databaseContext;
         }
 
-        public List<Product> GetAll() => dbContext.Products.Include(product => product.CartItems).Include(product =>product.ImageItems).ToList();
+        public List<Product> GetAll() => dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).ToList();
         public void Add(Product product)
         {
             dbContext.Products.Add(product);
@@ -32,17 +32,17 @@ namespace Elegant.DAL.Storages
         {
             if (string.IsNullOrWhiteSpace(name))
                 return new List<Product>();
-             return dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
+            return dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
         }
         public void Remove(Guid productId)
         {
-            var product=TryGetById(productId);
+            var product = TryGetById(productId);
             dbContext.Products.Remove(product);
-            dbContext.SaveChanges() ;
+            dbContext.SaveChanges();
         }
         public Product TryGetById(Guid id)
         {
-            return dbContext.Products.Include(product=>product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
+            return dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
         }
     }
 }

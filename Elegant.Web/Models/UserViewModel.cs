@@ -8,7 +8,7 @@ namespace Elegant.Web.Models
         [Required(ErrorMessage = "Не указана почта")]
         [EmailAddress(ErrorMessage = "Введите валидный email")]
         public string Email { get; set; }
-   
+
         [Required(ErrorMessage = "Введите ваше имя")]
         public string Name { get; set; }
 
@@ -17,5 +17,5 @@ namespace Elegant.Web.Models
         [Required(ErrorMessage = "Задайте права пользователя")]
         public string RoleName { get; set; }
 
-    }   
+    }
 }

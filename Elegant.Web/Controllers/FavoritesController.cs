@@ -26,7 +26,7 @@ namespace Elegant.Web.Controllers
         public IActionResult Add(Guid productId)
         {
             var product = productsStorage.TryGetById(productId);
-            if (product == null) { return RedirectToAction("Index"); } 
+            if (product == null) { return RedirectToAction("Index"); }
             favoritesStorage.Add(Constants.UserId, product);
             return RedirectToAction("Index");
         }

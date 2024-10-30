@@ -25,7 +25,7 @@ namespace Elegant.Web
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
             builder.Services.Configure<DataProtectionTokenProviderOptions>
-                (opt =>opt.TokenLifespan = TimeSpan.FromHours(2));
+                (opt => opt.TokenLifespan = TimeSpan.FromHours(2));
             builder.Services.ConfigureApplicationCookie(option =>
             {
                 option.ExpireTimeSpan = TimeSpan.FromDays(1);
@@ -51,7 +51,7 @@ namespace Elegant.Web
             );
             var app = builder.Build();
 
-           
+
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

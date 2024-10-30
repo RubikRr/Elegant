@@ -10,7 +10,7 @@ namespace Elegant.DAL.Storages
         private DatabaseContext dbContext;
         public DbCartsStorage(DatabaseContext _databaseContext)
         {
-            dbContext = _databaseContext; 
+            dbContext = _databaseContext;
 
         }
         public void Add(int userId, Product product)
@@ -24,12 +24,12 @@ namespace Elegant.DAL.Storages
                 };
                 newCart.Items = new List<CartItem>
                 {
-                    new CartItem() 
+                    new CartItem()
                     {
                         Quantity=1,
                         Product=product
                     }
-                }; 
+                };
                 dbContext.Carts.Add(newCart);
             }
             else
@@ -37,7 +37,7 @@ namespace Elegant.DAL.Storages
                 var existingCartItem = cart.Items.FirstOrDefault(item => item.Product.Id == product.Id);
                 if (existingCartItem == null)
                 {
-                    cart.Items.Add(new CartItem() {Quantity=1,Product=product });
+                    cart.Items.Add(new CartItem() { Quantity = 1, Product = product });
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace Elegant.DAL.Storages
         }
         public Cart TryGetByUserId(int userId)
         {
-            return dbContext.Carts.Include(cart=>cart.Items).ThenInclude(item=>item.Product).FirstOrDefault(cart => cart.UserId == userId);
+            return dbContext.Carts.Include(cart => cart.Items).ThenInclude(item => item.Product).FirstOrDefault(cart => cart.UserId == userId);
         }
 
         public Cart TryGetById(Guid cartId)
