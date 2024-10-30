@@ -12,18 +12,17 @@ using WomanShop.Areas.Admin.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers
 {
-    [Area(OnlineShop.DB.Constants.AdminRoleName)]
-    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
+    [Area(Constants.AdminRoleName)]
+    [Authorize(Roles = Constants.AdminRoleName)]
     public class UserController : Controller
     {
         private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
+
+        public UserController(UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
-    
             this.userManager = userManager;
-            this.signInManager = signInManager;
             this.roleManager = roleManager;
         }
 
@@ -41,6 +40,7 @@ namespace Elegant.Web.Areas.Admin.Controllers
                 var userRoles = new List<string>(await userManager.GetRolesAsync(user));
                 return View(Mapping.ToUserViewModel(user, userRoles));
             }
+
             return RedirectToAction("Index");
         }
 
@@ -56,11 +56,12 @@ namespace Elegant.Web.Areas.Admin.Controllers
                     {
                         ModelState.AddModelError("", item.Description);
                     }
-                    return View("Details", userId);
+
+                    return View("Details");
                 }
             }
-            return RedirectToAction("Index");
 
+            return RedirectToAction("Index");
         }
 
         public IActionResult Add()
@@ -68,14 +69,15 @@ namespace Elegant.Web.Areas.Admin.Controllers
             ViewBag.Roles = new SelectList(roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
             return View();
         }
+
         [HttpPost]
         public IActionResult Add(AddUserViewModel user)
-         {
+        {
             ViewBag.Roles = new SelectList(roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
             if (ModelState.IsValid)
             {
                 var newUser = new User { UserName = user.Name, PhoneNumber = user.Phone, Email = user.Email };
-                var result= userManager.CreateAsync(newUser,user.Password).Result;
+                var result = userManager.CreateAsync(newUser, user.Password).Result;
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(newUser, user.RoleName).Wait();
@@ -86,24 +88,29 @@ namespace Elegant.Web.Areas.Admin.Controllers
                     {
                         ModelState.AddModelError("", error.Description);
                     }
+
                     return View(user);
                 }
+
                 return RedirectToAction("Index");
             }
+
             return View(user);
         }
+
         public async Task<IActionResult> Update(string userId)
         {
-            
             ViewBag.Roles = new SelectList(roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
-            var user =await userManager.FindByIdAsync(userId);
+            var user = await userManager.FindByIdAsync(userId);
             if (user != null)
             {
                 var userRoles = new List<string>(await userManager.GetRolesAsync(user));
                 return View(Mapping.ToUserViewModel(user, userRoles));
             }
+
             return View("Index");
         }
+
         [HttpPost]
         public async Task<IActionResult> Update(UserViewModel user)
         {
@@ -117,7 +124,7 @@ namespace Elegant.Web.Areas.Admin.Controllers
                 userUpdate.PhoneNumber = user.Phone;
                 userUpdate.UserName = user.Name;
 
-                var result =await userManager.UpdateAsync(userUpdate);
+                var result = await userManager.UpdateAsync(userUpdate);
                 if (result.Succeeded)
                 {
                     var userRoles = new List<string>(await userManager.GetRolesAsync(userUpdate));
@@ -129,22 +136,26 @@ namespace Elegant.Web.Areas.Admin.Controllers
                     {
                         ModelState.AddModelError("", error.Description);
                     }
+
                     return View(user);
                 }
             }
+
             return View(user);
         }
+
         public IActionResult ResetPassword(string userId)
         {
             return View(new ResetPasswordInfo { UserId = userId });
         }
+
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordInfo resetPasswordInfo)
         {
             var user = await userManager.FindByIdAsync(resetPasswordInfo.UserId);
             if (user == null)
                 ModelState.AddModelError("", "Пользователь не наеден");
-           
+
             if (ModelState.IsValid)
             {
                 var token = await userManager.GeneratePasswordResetTokenAsync(user);
@@ -153,7 +164,7 @@ namespace Elegant.Web.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     var userRoles = new List<string>(await userManager.GetRolesAsync(user));
-                    return View("Details", Mapping.ToUserViewModel(user,userRoles));
+                    return View("Details", Mapping.ToUserViewModel(user, userRoles));
                 }
                 else
                 {
@@ -161,10 +172,11 @@ namespace Elegant.Web.Areas.Admin.Controllers
                     {
                         ModelState.AddModelError("", error.Description);
                     }
+
                     return View(resetPasswordInfo);
                 }
-
             }
+
             return RedirectToAction("Index");
         }
 
@@ -173,13 +185,15 @@ namespace Elegant.Web.Areas.Admin.Controllers
             ViewBag.Roles = new SelectList(roleManager.Roles, nameof(IdentityRole.Name), nameof(IdentityRole.Name));
             var user = userManager.FindByIdAsync(userId).Result;
             var userRoles = new List<string>(await userManager.GetRolesAsync(user));
-            if (userRoles == null || userRoles.Count==0)
+            if (userRoles == null || userRoles.Count == 0)
             {
-                userRoles=new List<string>() {Constants.UserRoleName };
+                userRoles = new List<string>() { Constants.UserRoleName };
                 userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
             }
-            return View(new UpdateUserRoleViewModel {RoleName= userRoles.First(), UserId=user.Id });
+
+            return View(new UpdateUserRoleViewModel { RoleName = userRoles.First(), UserId = user.Id });
         }
+
         [HttpPost]
         public async Task<IActionResult> UpdateRoleAsync(UpdateUserRoleViewModel updateUserRole)
         {
@@ -200,19 +214,11 @@ namespace Elegant.Web.Areas.Admin.Controllers
                         userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
                     }
                 }
-                
-                
+
+
                 return RedirectToAction("Index");
             }
-
-            //var user = usersStorage.TryGetUserById(userId);
-            //var role = rolesStorage.TryGetByName(roleName);
-            //if (user == null)
-            //{
-            //    ModelState.AddModelError("", "Пользователь не наеден");
-            //}
-            return View(user);
+            return View();
         }
-
     }
 }
