@@ -1,4 +1,6 @@
-﻿using Elegant.Web.Helpers;
+﻿using Elegant.DAL;
+using Elegant.DAL.Models;
+using Elegant.Web.Helpers;
 using Elegant.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShop.DB;
-using OnlineShop.DB.Models;
 using WomanShop.Areas.Admin.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers

@@ -1,4 +1,4 @@
-﻿using OnlineShop.DB.Models;
+﻿using Elegant.DAL.Models;
 
 namespace Elegant.DAL.Interfaces
 {

@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Elegant.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Areas.Admin.Controllers
 {
-    [Area(OnlineShop.DB.Constants.AdminRoleName)]
-    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
+    [Area(Constants.AdminRoleName)]
+    [Authorize(Roles = Constants.AdminRoleName)]
     public class HomeController : Controller
     {
         public IActionResult Index()

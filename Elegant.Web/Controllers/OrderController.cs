@@ -1,11 +1,11 @@
-﻿using Elegant.DAL.Interfaces;
+﻿using Elegant.DAL;
+using Elegant.DAL.Interfaces;
+using Elegant.DAL.Models;
 using Elegant.Web.Helpers;
 using Elegant.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DB;
-using OnlineShop.DB.Models;
-using WomanShop.Models;
 
 namespace Elegant.Web.Controllers
 {

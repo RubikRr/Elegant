@@ -3,10 +3,11 @@ using Microsoft.Extensions.Options;
 using OnlineShop.DB;
 using Serilog;
 using System.Globalization;
+using Elegant.DAL;
 using Elegant.DAL.Interfaces;
-using OnlineShop.DB.Storages;
+using Elegant.DAL.Models;
+using Elegant.DAL.Storages;
 using Microsoft.AspNetCore.Identity;
-using OnlineShop.DB.Models;
 
 namespace WomanShop
 {

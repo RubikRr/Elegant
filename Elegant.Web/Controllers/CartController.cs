@@ -1,4 +1,5 @@
-﻿using Elegant.DAL.Interfaces;
+﻿using Elegant.DAL;
+using Elegant.DAL.Interfaces;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DB;

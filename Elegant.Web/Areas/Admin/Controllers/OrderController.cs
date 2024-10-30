@@ -1,9 +1,9 @@
 ﻿using Elegant.DAL.Interfaces;
+using Elegant.DAL.Models;
 using Elegant.Web.Helpers;
 using Elegant.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers
 {
