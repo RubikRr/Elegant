@@ -1,15 +1,14 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using OnlineShop.DB;
-using Serilog;
 using System.Globalization;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Elegant.DAL.Models;
 using Elegant.DAL.Storages;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Serilog;
 
-namespace WomanShop
+namespace Elegant.Web
 {
     public class Program
     {

@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-
-namespace OnlineShop.DB
+namespace Elegant.DAL
 {
     public class IdentityContext:IdentityDbContext<User>
     {

@@ -3,7 +3,6 @@ using Elegant.DAL.Interfaces;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 
 namespace Elegant.Web.Controllers
 {

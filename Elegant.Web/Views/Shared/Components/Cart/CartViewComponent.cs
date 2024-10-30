@@ -2,9 +2,8 @@
 using Elegant.DAL.Interfaces;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 
-namespace WomanShop.Views.Shared.Components.Cart
+namespace Elegant.Web.Views.Shared.Components.Cart
 {
     public class CartViewComponent:ViewComponent
     {

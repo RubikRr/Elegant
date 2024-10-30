@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using OnlineShop.DB;
 using WomanShop.Areas.Admin.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers

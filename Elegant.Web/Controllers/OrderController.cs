@@ -5,7 +5,6 @@ using Elegant.Web.Helpers;
 using Elegant.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 
 namespace Elegant.Web.Controllers
 {

@@ -1,9 +1,8 @@
 ﻿using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 
-namespace WomanShop.Views.Shared.Components.Favorite
+namespace Elegant.Web.Views.Shared.Components.Favorite
 {
     public class FavoriteViewComponent:ViewComponent
     {

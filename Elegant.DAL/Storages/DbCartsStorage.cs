@@ -1,7 +1,6 @@
 ﻿using Elegant.DAL.Interfaces;
 using Elegant.DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.DB;
 
 namespace Elegant.DAL.Storages
 {
