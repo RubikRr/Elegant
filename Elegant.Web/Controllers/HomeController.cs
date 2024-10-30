@@ -1,31 +1,29 @@
-using System.Diagnostics;
+﻿using Elegant.DAL.Interfaces;
+using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Elegant.Web.Models;
 
-namespace Elegant.Web.Controllers;
-
-public class HomeController : Controller
+namespace Elegant.Web.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly IProductsStorage productsStorage;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(IProductsStorage _productsStorage)
+        {
+            productsStorage = _productsStorage;
+        }
+        public IActionResult Index()
+        {
+            var productsModel = productsStorage.GetAll();
+            var test = Mapping.ToProductsViewModel(productsModel);
+            return View(test);
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [HttpPost]
+        public IActionResult Search(string productName)
+        {   
+            var productsModel=productsStorage.Search(productName);
+            return View(Mapping.ToProductsViewModel(productsModel));
+        }
     }
 }
