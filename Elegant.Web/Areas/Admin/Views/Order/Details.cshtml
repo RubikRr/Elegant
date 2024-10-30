@@ -1,0 +1,59 @@
+﻿@using Elegant.Web.Models
+@using OnlineShop.DB.Models;
+@model OrderViewModel
+@if (Model == null)
+{
+    <h4>С заказом чето не так</h4>
+}
+<form method="post" admin" asp-area="admin" asp-controller="order" asp-action="UpdateStatus" asp-route-orderId=@Model.Id>
+<div class="row">
+    @await Html.PartialAsync("LeftAdminMenu")
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="w-75">Заказ №</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Дата и время оформления:</td>
+                    <td>@Model.Date.ToShortDateString() в @Model.Date.ToShortTimeString()</td>
+                </tr>
+                <tr>
+                    <td>Адрес доставки:</td>
+                    <td>@Model.DeliveryInfo.Address</td>
+                </tr>
+                <tr>
+                    <td>Получатель:</td>
+                    <td>@Model.DeliveryInfo.Name</td>
+                </tr>
+                <tr>
+                    <td>Телефон:</td>
+                    <td>@Model.DeliveryInfo.Phone</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Комментарий:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Сумма заказа:</td>
+                    <td>@Model.Total</td>
+                </tr>
+                <tr>
+                    <td>Статус заказа:</td>
+                    <td><select asp-for="@Model.Status"asp-items="@Html.GetEnumSelectList<OrderStatusViewModel>()"
+                        class=" form-control"></select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success" type="submit">Обновить</button>
+    </div>
+</div>
+</form>

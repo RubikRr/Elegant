@@ -1,0 +1,24 @@
+﻿@model Elegant.Web.Models.Registration
+<form method="post" asp-area="" asp-controller="auth" asp-action="registration">
+  <div class="row justify-content-center">
+      <div class="col-6">
+          <div class="justify-content-center"><h1>Регистрация</h1></div>
+          <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
+
+          <div class="mb-3">
+                <span style="color:red" asp-validation-for="Email"></span>
+                <input asp-for="Email" class="form-control" placeholder="Логин">
+          </div>
+          <div class="mb-3">  
+              <span style="color:red" asp-validation-for="Password"></span>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Пароль">
+          </div>
+          <div class="mb-3">    
+              <span style="color:red" asp-validation-for="ConfirmPassword"></span>
+              <input asp-for="ConfirmPassword" type="password"  class="form-control" placeholder="Повторите пароль">
+          </div>
+           <input type="text" hidden value=@(string.IsNullOrEmpty(Model.ReturnUrl) ? "/Home/index":Model.ReturnUrl) name="ReturnUrl"></input>
+          <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
+       </div>
+    </div>
+</form>

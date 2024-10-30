@@ -1,0 +1,31 @@
+﻿ <div class="row">
+    @foreach (var product in Model)
+    {
+       <div class="col-3 mb-5">     
+            <div class="card h-100"> 
+                <div class="card-header">
+                    <a onclick="myFunction(this);" asp-area=""
+                    asp-controller="favorites"
+                    asp-action="add"
+                    asp-route-productId=@product.Id class="btn ml-3 fa fa-heart-o"><i class=""></i></a>
+                </div>
+                <img src=@product.ImageItemsPaths[0] class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
+                <div class="card-body">
+                    <a class="card-title fs-5"
+                    asp-area=""
+                    asp-controller="product" 
+                    asp-action="index"
+                    asp-route-productId=@product.Id> @product.Name </a>
+
+                    <h5>Цена:@product.Cost р.</h5>
+                    <p>Описание:@product.Description</p>
+                    <a class="btn btn-dark" 
+                    asp-area=""
+                    asp-controller="cart"
+                    asp-action="add"
+                    asp-route-productId=@product.Id>Добавить в корзину</a>
+                </div> 
+            </div>
+       </div>
+    }
+</div>
