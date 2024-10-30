@@ -27,7 +27,7 @@
 ![изображение](https://github.com/RubikRr/WomanShop/assets/65467062/92567acd-3262-43cd-af3f-2283f42f0d6d)
 ![изображение](https://github.com/RubikRr/WomanShop/assets/65467062/8ba4de22-2874-422e-8519-7e1219507d4f)
 ![изображение](https://github.com/RubikRr/WomanShop/assets/65467062/12ade4f7-6418-437c-a9b7-21cb6f6fb19c)
-P.s Из-за своей неопытности коммиты с самого начала разработки остались в другом репозитории https://github.com/RubikRr/ASP_stepik_training
+
 
 
 
