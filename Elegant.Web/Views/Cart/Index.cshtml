@@ -1,0 +1,69 @@
+﻿@model Elegant.Web.Models.CartViewModel
+
+
+@if (Model == null || Model.Items.Count==0)
+{
+    <h1>Товары в корзине отсутствуют</h1>
+}
+else
+{
+<table class="table">
+  <thead style="margin-bottom:10px">
+   <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Кол-во</th>
+      <th scope="col">Стоймость</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+     @foreach (var position in Model.Items)
+       {
+          <tr>
+              <td>@position.Product.Name</td>
+              <td>@position.Quantity</td>
+              <td>@position.Product.Cost</td>
+              <td><a class="btn btn-dark border counter"
+                  asp-area=""
+                  asp-controller="cart"
+                  asp-action="ChangeCount"
+                  asp-route-cartId=@Model.Id
+                  asp-route-productId=@position.Product.Id
+                  asp-route-act="decrease">-</a></td>
+              <td><a class="btn btn-dark border counter"
+                  asp-area=""
+                  asp-controller="cart"
+                  asp-action="ChangeCount"
+                  asp-route-cartId=@Model.Id
+                  asp-route-productId=@position.Product.Id
+                  asp-route-act="increase">+</a></td>
+          </tr>
+        }
+  </tbody>
+  <tfoot>
+     <tr>
+        <td>Итого</td>
+        <td></td>
+        <td> @Model.Total₽</td>
+        <td></td>
+        <td></td>
+    </tr>
+  </tfoot>
+</table>
+
+
+<div class="row">
+    <div class="col-3"> 
+         <a class="btn btn-primary" href="/home/index">Продолжить покупки</a>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-success" href="/order/checkout">Оформить заказ</a>
+    </div>
+     <div class="col-3">
+         <a class="btn btn-danger" href="/cart/clear">Очистить карзину</a>
+    </div>
+</div>
+
+}
+
