@@ -20,7 +20,7 @@ namespace Elegant.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Cart", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +34,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("CartItem");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.FavoriteProduct", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.FavoriteProduct", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("FavoriteProducts");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.ImageItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.ImageItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -116,7 +116,7 @@ namespace Elegant.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Order", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,7 +138,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Product", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -197,17 +197,17 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("UserDeliveryInfo");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
                 {
-                    b.HasOne("OnlineShop.DB.Models.Cart", null)
+                    b.HasOne("Elegant.DAL.Models.Cart", null)
                         .WithMany("Items")
                         .HasForeignKey("CartId");
 
-                    b.HasOne("OnlineShop.DB.Models.Order", null)
+                    b.HasOne("Elegant.DAL.Models.Order", null)
                         .WithMany("Items")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("OnlineShop.DB.Models.Product", "Product")
+                    b.HasOne("Elegant.DAL.Models.Product", "Product")
                         .WithMany("CartItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -216,9 +216,9 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.FavoriteProduct", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.FavoriteProduct", b =>
                 {
-                    b.HasOne("OnlineShop.DB.Models.Product", "Product")
+                    b.HasOne("Elegant.DAL.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -227,9 +227,9 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.ImageItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.ImageItem", b =>
                 {
-                    b.HasOne("OnlineShop.DB.Models.Product", "Product")
+                    b.HasOne("Elegant.DAL.Models.Product", "Product")
                         .WithMany("ImageItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -238,7 +238,7 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Order", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Order", b =>
                 {
                     b.HasOne("WomanShop.Models.UserDeliveryInfo", "DeliveryInfo")
                         .WithMany()
@@ -249,17 +249,17 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("DeliveryInfo");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Cart", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Cart", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Order", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Order", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("OnlineShop.DB.Models.Product", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.Product", b =>
                 {
                     b.Navigation("CartItems");
 
