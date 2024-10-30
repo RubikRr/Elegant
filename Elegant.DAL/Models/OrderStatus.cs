@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineShop.DB.Models
+﻿namespace Elegant.DAL.Models
 {
     public enum OrderStatus
     {
@@ -14,6 +7,5 @@ namespace OnlineShop.DB.Models
         Paid = 2,
         Delivered = 3,
         Complited = 4
-
     }
 }

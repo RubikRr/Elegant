@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WomanShop.Models
+﻿namespace Elegant.DAL.Models
 {
     public class UserDeliveryInfo
     {

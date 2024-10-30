@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OnlineShop.DB.Models;
-using System.Security.Cryptography.X509Certificates;
-using Elegant.DAL.Interfaces;
-using WomanShop.Models;
+﻿using Elegant.DAL.Interfaces;
+using Elegant.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace OnlineShop.DB.Storages
+namespace Elegant.DAL.Storages
 {
     public class DbOrdersStorage : IOrdersStorage
     {

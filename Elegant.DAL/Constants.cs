@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.DB
+﻿namespace Elegant.DAL
 {
     public static class Constants
     {

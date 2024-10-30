@@ -1,8 +1,8 @@
 ﻿using Elegant.DAL.Interfaces;
+using Elegant.DAL.Models;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.DB.Models;
 
-namespace OnlineShop.DB.Storages
+namespace Elegant.DAL.Storages
 {
     public class DbCartsStorage : ICartsStorage
     {

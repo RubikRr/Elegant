@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace OnlineShop.DB.Migrations
+namespace Elegant.DAL.Migrations
 {
     /// <inheritdoc />
     public partial class Initialization : Migration

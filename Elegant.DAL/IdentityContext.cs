@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Elegant.DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.DB.Models;
 
-
-namespace OnlineShop.DB
+namespace Elegant.DAL
 {
     public class IdentityContext:IdentityDbContext<User>
     {

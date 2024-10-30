@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Elegant.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WomanShop.Areas.Admin.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers
 {
-    [Area(OnlineShop.DB.Constants.AdminRoleName)]
-    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
+    [Area(Constants.AdminRoleName)]
+    [Authorize(Roles = Constants.AdminRoleName)]
     public class RoleController : Controller
     {
 

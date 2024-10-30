@@ -1,8 +1,8 @@
-﻿using Elegant.Web.Models;
+﻿using Elegant.DAL;
+using Elegant.DAL.Models;
+using Elegant.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB.Models;
-using WomanShop.Models;
 
 namespace Elegant.Web.Controllers
 {
@@ -65,7 +65,7 @@ namespace Elegant.Web.Controllers
                 var result = userManager.CreateAsync(user, registration.Password).Result;
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, OnlineShop.DB.Constants.UserRoleName).Wait();
+                    userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
                     var loginResult = signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
                     if (loginResult.Succeeded)
                         return Redirect(registration.ReturnUrl);

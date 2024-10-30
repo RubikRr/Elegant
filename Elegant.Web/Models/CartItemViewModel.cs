@@ -1,6 +1,4 @@
-﻿using WomanShop.Models;
-
-namespace Elegant.Web.Models
+﻿namespace Elegant.Web.Models
 {
     public class CartItemViewModel
     {

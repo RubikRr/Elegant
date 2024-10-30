@@ -1,5 +1,5 @@
 ﻿
-namespace OnlineShop.DB.Models
+namespace Elegant.DAL.Models
 {
     public class Product
     {

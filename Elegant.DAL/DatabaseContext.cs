@@ -1,12 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OnlineShop.DB.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Elegant.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace OnlineShop.DB
+namespace Elegant.DAL
 {
     public class DatabaseContext : DbContext
     {

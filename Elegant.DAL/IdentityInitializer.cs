@@ -1,14 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.VisualBasic;
-using OnlineShop.DB.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Elegant.DAL.Models;
+using Microsoft.AspNetCore.Identity;
 
-namespace OnlineShop.DB
+namespace Elegant.DAL
 {
     public  class IdentityInitializer
     {

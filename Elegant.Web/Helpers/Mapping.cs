@@ -1,6 +1,5 @@
-﻿using Elegant.Web.Models;
-using OnlineShop.DB.Models;
-using WomanShop.Models;
+﻿using Elegant.DAL.Models;
+using Elegant.Web.Models;
 
 namespace Elegant.Web.Helpers
 {

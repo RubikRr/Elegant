@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using WomanShop.Models;
-
-namespace OnlineShop.DB.Models
+﻿namespace Elegant.DAL.Models
 {
     
     public class Order

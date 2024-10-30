@@ -1,14 +1,15 @@
-﻿using Elegant.DAL.Interfaces;
+﻿using Elegant.DAL;
+using Elegant.DAL.Interfaces;
+using Elegant.DAL.Models;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB.Models;
 using WomanShop.Areas.Admin.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers
 {
-    [Area(OnlineShop.DB.Constants.AdminRoleName)]
-    [Authorize(Roles = OnlineShop.DB.Constants.AdminRoleName)]
+    [Area(Constants.AdminRoleName)]
+    [Authorize(Roles = Constants.AdminRoleName)]
     public class ProductController : Controller
     {
         private IProductsStorage productsStorage;
