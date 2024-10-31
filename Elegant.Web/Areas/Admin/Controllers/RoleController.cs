@@ -1,8 +1,8 @@
 ﻿using Elegant.DAL;
+using Elegant.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WomanShop.Areas.Admin.Models;
 
 namespace Elegant.Web.Areas.Admin.Controllers
 {
@@ -11,23 +11,23 @@ namespace Elegant.Web.Areas.Admin.Controllers
     public class RoleController : Controller
     {
 
-        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public RoleController(RoleManager<IdentityRole> roleManager)
         {
-            this.roleManager = roleManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Index()
         {
-            var roles = roleManager.Roles.ToList();
+            var roles = _roleManager.Roles.ToList();
             return View(roles);
         }
         public IActionResult Remove(Guid roleId)
         {
-            var role = roleManager.FindByIdAsync(roleId.ToString()).Result;
+            var role = _roleManager.FindByIdAsync(roleId.ToString()).Result;
             if (role != null)
             {
-                roleManager.DeleteAsync(role);
+                _roleManager.DeleteAsync(role);
             }
             return RedirectToAction("Index");
         }
@@ -35,16 +35,14 @@ namespace Elegant.Web.Areas.Admin.Controllers
         public IActionResult Add(AddRoleViewModel role)
         {
 
-            if (roleManager.FindByNameAsync(role.Name).Result != null)
+            if (_roleManager.FindByNameAsync(role.Name).Result != null)
             {
                 ModelState.AddModelError("", "Данная роль уже существуют.");
             }
 
-
-
             if (ModelState.IsValid)
             {
-                roleManager.CreateAsync(new IdentityRole(role.Name)).Wait();
+                _roleManager.CreateAsync(new IdentityRole(role.Name)).Wait();
                 return RedirectToAction("Index");
             }
             return View(role);

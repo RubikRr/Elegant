@@ -6,15 +6,15 @@ namespace Elegant.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProductsStorage productsStorage;
+        private readonly IProductsStorage _productsStorage;
 
-        public HomeController(IProductsStorage _productsStorage)
+        public HomeController(IProductsStorage productsStorage)
         {
-            productsStorage = _productsStorage;
+            _productsStorage = productsStorage;
         }
         public IActionResult Index()
         {
-            var productsModel = productsStorage.GetAll();
+            var productsModel = _productsStorage.GetAll();
             var test = Mapping.ToProductsViewModel(productsModel);
             return View(test);
         }
@@ -22,7 +22,7 @@ namespace Elegant.Web.Controllers
         [HttpPost]
         public IActionResult Search(string productName)
         {
-            var productsModel = productsStorage.Search(productName);
+            var productsModel = _productsStorage.Search(productName);
             return View(Mapping.ToProductsViewModel(productsModel));
         }
     }

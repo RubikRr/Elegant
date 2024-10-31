@@ -6,14 +6,14 @@ namespace Elegant.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProductsStorage productsStorage;
-        public ProductController(IProductsStorage _productsStorage)
+        private readonly IProductsStorage _productsStorage;
+        public ProductController(IProductsStorage productsStorage)
         {
-            productsStorage = _productsStorage;
+           _productsStorage = productsStorage;
         }
         public IActionResult Index(Guid productId)
         {
-            var product = productsStorage.TryGetById(productId);
+            var product = _productsStorage.TryGetById(productId);
             //return product != null? product.ToString():$"Товар с индексом {id} не существует";
             var ans = Mapping.ToProductViewModel(product);
             return View(ans);

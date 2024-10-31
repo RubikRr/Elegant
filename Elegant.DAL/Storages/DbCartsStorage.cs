@@ -7,10 +7,10 @@ namespace Elegant.DAL.Storages
     public class DbCartsStorage : ICartsStorage
     {
 
-        private DatabaseContext dbContext;
-        public DbCartsStorage(DatabaseContext _databaseContext)
+        private readonly DatabaseContext dbContext;
+        public DbCartsStorage(DatabaseContext databaseContext)
         {
-            dbContext = _databaseContext;
+            dbContext = databaseContext;
 
         }
         public void Add(int userId, Product product)

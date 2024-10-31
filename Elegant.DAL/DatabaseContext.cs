@@ -5,11 +5,11 @@ namespace Elegant.DAL
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
-        public DbSet<ImageItem> ImageItems { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; init; }
+        public DbSet<Cart> Carts { get; init; }
+        public DbSet<FavoriteProduct> FavoriteProducts { get; init; }
+        public DbSet<ImageItem> ImageItems { get; init; }
+        public DbSet<Order> Orders { get; init; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Database.Migrate();

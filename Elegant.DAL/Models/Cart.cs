@@ -2,8 +2,8 @@
 {
     public class Cart
     {
-        public Guid Id { get; set; }
-        public int UserId { get; set; }
+        public Guid Id { get; init; }
+        public int UserId { get; init; }
         public List<CartItem> Items { get; set; }
         public Cart()
         {

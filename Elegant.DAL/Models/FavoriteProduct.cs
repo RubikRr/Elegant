@@ -2,8 +2,8 @@
 {
     public class FavoriteProduct
     {
-        public Guid Id { get; set; }
-        public int UserId { get; set; }
-        public Product Product { get; set; }
+        public Guid Id { get; init; }
+        public int UserId { get; init; }
+        public Product Product { get; init; }
     }
 }

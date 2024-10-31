@@ -6,6 +6,6 @@
         Confirmed = 1,
         Paid = 2,
         Delivered = 3,
-        Complited = 4
+        Complete = 4
     }
 }

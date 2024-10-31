@@ -11,26 +11,26 @@ namespace Elegant.Web.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class OrderController : Controller
     {
-        private IOrdersStorage ordersStorage;
-        public OrderController(IOrdersStorage _ordersStorage)
+        private readonly IOrdersStorage _ordersStorage;
+        public OrderController(IOrdersStorage ordersStorage)
         {
-            ordersStorage = _ordersStorage;
+            _ordersStorage = ordersStorage;
         }
         public IActionResult Index()
         {
-            var orders = ordersStorage.GetAll();
+            var orders = _ordersStorage.GetAll();
             return View(Mapping.ToOrdersViewModel(orders));
         }
         public IActionResult Details(Guid orderId)
         {
-            var order = ordersStorage.TryGetById(orderId);
+            var order = _ordersStorage.TryGetById(orderId);
             return View(Mapping.ToOrderViewModel(order));
         }
         [HttpPost]
         public IActionResult UpdateStatus(Guid orderId, OrderStatusViewModel status)
         {
             var newStatus = (OrderStatus)(status);
-            ordersStorage.UpdateStatus(orderId, newStatus);
+            _ordersStorage.UpdateStatus(orderId, newStatus);
             return RedirectToAction("Index");
         }
     }

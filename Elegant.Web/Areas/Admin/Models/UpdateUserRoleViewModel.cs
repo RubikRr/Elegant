@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WomanShop.Areas.Admin.Models
+namespace Elegant.Web.Areas.Admin.Models
 {
     public class UpdateUserRoleViewModel
     {
-        public string UserId { get; set; }
+        public string UserId { get; init; }
         [Required(ErrorMessage = "Задайте права пользователя")]
-        public string RoleName { get; set; }
+        public string RoleName { get; init; }
     }
 }

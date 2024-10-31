@@ -11,14 +11,14 @@ namespace Elegant.Web.Controllers
     [Authorize]
     public class OrderController : Controller
     {
-        private IOrdersStorage ordersStorage;
+        private readonly IOrdersStorage _ordersStorage;
 
-        private ICartsStorage cartsStorage;
+        private readonly ICartsStorage _cartsStorage;
 
-        public OrderController(IOrdersStorage _ordersStorage, ICartsStorage _cartStorage)
+        public OrderController(IOrdersStorage ordersStorage, ICartsStorage cartStorage)
         {
-            ordersStorage = _ordersStorage;
-            cartsStorage = _cartStorage;
+            _ordersStorage = ordersStorage;
+            _cartsStorage = cartStorage;
         }
 
         public IActionResult Index()
@@ -30,7 +30,7 @@ namespace Elegant.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cart = cartsStorage.TryGetByUserId(Constants.UserId);
+                var cart = _cartsStorage.TryGetByUserId(Constants.UserId);
                 var orderItems = new List<CartItem>();
                 orderItems.AddRange(cart.Items);
                 var order = new Order
@@ -38,9 +38,9 @@ namespace Elegant.Web.Controllers
                     DeliveryInfo = Mapping.ToUserDeliveryInfoModel(userDeliveryInfo),
                     Items = orderItems
                 };
-                ordersStorage.Add(order);
+                _ordersStorage.Add(order);
                 //cartsStorage.Destroy(Constants.UserId);
-                cartsStorage.Clear(Constants.UserId);
+                _cartsStorage.Clear(Constants.UserId);
                 return View();
             }
             return RedirectToAction("Checkout", userDeliveryInfo);

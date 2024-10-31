@@ -8,23 +8,23 @@ namespace Elegant.Web.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         public AuthController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
-            this.signInManager = signInManager;
-            this.userManager = userManager;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
         [HttpPost]
         public IActionResult Login(Login login)
         {
-            var user = userManager.FindByEmailAsync(login.Email).Result;
+            var user = _userManager.FindByEmailAsync(login.Email).Result;
             if (user != null)
             {
                 if (ModelState.IsValid)
                 {
-                    var result = signInManager.PasswordSignInAsync(user, login.Password, login.Remember, false).Result;
+                    var result = _signInManager.PasswordSignInAsync(user, login.Password, login.Remember, false).Result;
                     if (result.Succeeded)
                     {
                         return Redirect(login.ReturnUrl);
@@ -44,7 +44,7 @@ namespace Elegant.Web.Controllers
         }
         public IActionResult Logout()
         {
-            signInManager.SignOutAsync();
+            _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
         [HttpPost]
@@ -62,11 +62,11 @@ namespace Elegant.Web.Controllers
             {
                 //var user = new UserViewModel(registration.Email, registration.Password);
                 var user = new User { UserName = registration.Email, Email = registration.Email };
-                var result = userManager.CreateAsync(user, registration.Password).Result;
+                var result = _userManager.CreateAsync(user, registration.Password).Result;
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
-                    var loginResult = signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
+                    _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+                    var loginResult = _signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
                     if (loginResult.Succeeded)
                         return Redirect(registration.ReturnUrl);
                 }

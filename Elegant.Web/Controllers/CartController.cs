@@ -5,24 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Controllers
 {
-
     public class CartController : Controller
     {
+        private IProductsStorage ProductsStorage { get; }
 
-        private IProductsStorage productsStorage { get; }
+        private ICartsStorage CartsStorage { get; set; }
 
-        private ICartsStorage cartsStorage { get; set; }
-
-        public CartController(IProductsStorage _productsStorage, ICartsStorage _cartStorage)
+        public CartController(IProductsStorage productsStorage, ICartsStorage cartStorage)
         {
-            productsStorage = _productsStorage;
-            cartsStorage = _cartStorage;
+            ProductsStorage = productsStorage;
+            CartsStorage = cartStorage;
         }
 
         public IActionResult Add(Guid productId)
         {
-            var product = productsStorage.TryGetById(productId);
-            cartsStorage.Add(Constants.UserId, product);
+            var product = ProductsStorage.TryGetById(productId);
+            CartsStorage.Add(Constants.UserId, product);
 
             return RedirectToAction("Index");
         }
@@ -30,20 +28,19 @@ namespace Elegant.Web.Controllers
 
         public IActionResult Index()
         {
-            var userCart = cartsStorage.TryGetByUserId(Constants.UserId);
+            var userCart = CartsStorage.TryGetByUserId(Constants.UserId);
 
             return View(Mapping.ToCartViewModel(userCart));
         }
 
         public IActionResult Clear()
         {
-
-            cartsStorage.Clear(Constants.UserId);
+            CartsStorage.Clear(Constants.UserId);
             return RedirectToAction("Index");
         }
         public IActionResult ChangeCount(Guid cartId, Guid productId, string act)
         {
-            cartsStorage.Change(cartId, productId, act);
+            CartsStorage.Change(cartId, productId, act);
             return RedirectToAction("Index");
         }
     }

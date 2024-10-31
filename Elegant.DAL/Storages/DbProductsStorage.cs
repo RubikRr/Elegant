@@ -6,18 +6,18 @@ namespace Elegant.DAL.Storages
 {
     public class DbProductsStorage : IProductsStorage
     {
-        private DatabaseContext dbContext;
+        private readonly DatabaseContext _dbContext;
 
-        public DbProductsStorage(DatabaseContext _databaseContext)
+        public DbProductsStorage(DatabaseContext databaseContext)
         {
-            dbContext = _databaseContext;
+            _dbContext = databaseContext;
         }
 
-        public List<Product> GetAll() => dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).ToList();
+        public List<Product> GetAll() => _dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).ToList();
         public void Add(Product product)
         {
-            dbContext.Products.Add(product);
-            dbContext.SaveChanges();
+            _dbContext.Products.Add(product);
+            _dbContext.SaveChanges();
         }
         public void Update(Product product)
         {
@@ -26,23 +26,23 @@ namespace Elegant.DAL.Storages
             productInStorage.Cost = product.Cost;
             productInStorage.Description = product.Description;
             productInStorage.ImagePath = product.ImagePath;
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
         public List<Product> Search(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 return new List<Product>();
-            return dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
+            return _dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
         }
         public void Remove(Guid productId)
         {
             var product = TryGetById(productId);
-            dbContext.Products.Remove(product);
-            dbContext.SaveChanges();
+            _dbContext.Products.Remove(product);
+            _dbContext.SaveChanges();
         }
         public Product TryGetById(Guid id)
         {
-            return dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
+            return _dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
         }
     }
 }
