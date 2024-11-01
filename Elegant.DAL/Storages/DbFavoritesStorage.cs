@@ -6,9 +6,9 @@ namespace Elegant.DAL.Storages;
 
 public class DbFavoritesStorage : IFavoritesStorage
 {
-    private readonly DatabaseContext _dbContext;
+    private readonly EfCoreDbContext _dbContext;
 
-    public DbFavoritesStorage(DatabaseContext dbContext)
+    public DbFavoritesStorage(EfCoreDbContext dbContext)
     {
         _dbContext = dbContext;
     }

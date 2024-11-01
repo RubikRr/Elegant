@@ -8,12 +8,8 @@ public class Product
     public decimal Cost { get; set; }
     public string Description { get; set; }
     public string ImagePath { get; set; }
-    public List<ImageItem> ImageItems { get; init; }
-    public List<CartItem> CartItems { get; init; }
+    public List<ImageItem> ImageItems { get; init; } = new();
+    public List<CartItem> CartItems { get; init; } = new();
 
-    public Product()
-    {
-        CartItems = new List<CartItem>();
-        ImageItems = new List<ImageItem>();
-    }
+  
 }

@@ -6,5 +6,5 @@ public class ImageItem
     public string ImagePath { get; init; } = string.Empty;
     public Guid ProductId { get; init; }
 
-    public required Product Product { get; init; } = new();
+    public Product Product { get; init; } = new();
 }

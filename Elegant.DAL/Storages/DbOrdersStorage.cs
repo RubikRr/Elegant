@@ -6,9 +6,9 @@ namespace Elegant.DAL.Storages;
 
 public class DbOrdersStorage : IOrdersStorage
 {
-    private readonly DatabaseContext _dbContext;
+    private readonly EfCoreDbContext _dbContext;
 
-    public DbOrdersStorage(DatabaseContext dbContext)
+    public DbOrdersStorage(EfCoreDbContext dbContext)
     {
         _dbContext = dbContext;
     }

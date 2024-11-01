@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elegant.DAL.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(EfCoreDbContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

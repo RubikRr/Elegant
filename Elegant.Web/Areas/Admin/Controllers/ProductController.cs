@@ -58,7 +58,11 @@ public class ProductController : Controller
                     image.CopyTo(fileStream);
                 }
 
-                imageItems.Add(new ImageItem { ImagePath = "/images/products/" + fileName });
+                imageItems.Add(new ImageItem
+                {
+                    ImagePath = "/images/products/" + fileName,
+                    Product = null
+                });
             }
 
             var newProduct = new Product

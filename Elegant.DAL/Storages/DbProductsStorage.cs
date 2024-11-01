@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 namespace Elegant.DAL.Storages;
 public class DbProductsStorage : IProductsStorage
 {
-    private readonly DatabaseContext _dbContext;
+    private readonly EfCoreDbContext _dbContext;
 
-    public DbProductsStorage(DatabaseContext databaseContext)
+    public DbProductsStorage(EfCoreDbContext efCoreDbContext)
     {
-        _dbContext = databaseContext;
+        _dbContext = efCoreDbContext;
     }
 
     public List<Product> GetAll() => _dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).ToList();

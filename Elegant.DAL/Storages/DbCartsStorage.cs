@@ -6,10 +6,10 @@ namespace Elegant.DAL.Storages;
 
 public class DbCartsStorage : ICartsStorage
 {
-    private readonly DatabaseContext _dbContext;
-    public DbCartsStorage(DatabaseContext databaseContext)
+    private readonly EfCoreDbContext _dbContext;
+    public DbCartsStorage(EfCoreDbContext efCoreDbContext)
     {
-        _dbContext = databaseContext;
+        _dbContext = efCoreDbContext;
 
     }
         

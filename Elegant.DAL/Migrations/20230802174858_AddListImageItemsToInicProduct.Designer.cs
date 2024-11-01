@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Elegant.DAL.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(EfCoreDbContext))]
     [Migration("20230802174858_AddListImageItemsToInicProduct")]
     partial class AddListImageItemsToInicProduct
     {

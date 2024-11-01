@@ -20,7 +20,7 @@ namespace Elegant.Web
 
             builder.Services.AddControllersWithViews();
             string connection = builder.Configuration.GetConnectionString("online_shop");
-            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddDbContext<EfCoreDbContext>(options => options.UseSqlServer(connection));
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
             builder.Services.Configure<DataProtectionTokenProviderOptions>
