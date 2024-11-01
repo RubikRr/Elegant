@@ -4,52 +4,51 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Elegant.Web.Areas.Admin.Controllers
+namespace Elegant.Web.Areas.Admin.Controllers;
+
+[Area(Constants.AdminRoleName)]
+[Authorize(Roles = Constants.AdminRoleName)]
+public class RoleController : Controller
 {
-    [Area(Constants.AdminRoleName)]
-    [Authorize(Roles = Constants.AdminRoleName)]
-    public class RoleController : Controller
+
+    private readonly RoleManager<IdentityRole> _roleManager;
+    public RoleController(RoleManager<IdentityRole> roleManager)
+    {
+        _roleManager = roleManager;
+    }
+
+    public IActionResult Index()
+    {
+        var roles = _roleManager.Roles.ToList();
+        return View(roles);
+    }
+    public IActionResult Remove(Guid roleId)
+    {
+        var role = _roleManager.FindByIdAsync(roleId.ToString()).Result;
+        if (role != null)
+        {
+            _roleManager.DeleteAsync(role);
+        }
+        return RedirectToAction("Index");
+    }
+    [HttpPost]
+    public IActionResult Add(AddRoleViewModel role)
     {
 
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        if (_roleManager.FindByNameAsync(role.Name).Result != null)
         {
-            _roleManager = roleManager;
+            ModelState.AddModelError("", "Данная роль уже существуют.");
         }
 
-        public IActionResult Index()
+        if (ModelState.IsValid)
         {
-            var roles = _roleManager.Roles.ToList();
-            return View(roles);
-        }
-        public IActionResult Remove(Guid roleId)
-        {
-            var role = _roleManager.FindByIdAsync(roleId.ToString()).Result;
-            if (role != null)
-            {
-                _roleManager.DeleteAsync(role);
-            }
+            _roleManager.CreateAsync(new IdentityRole(role.Name)).Wait();
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        public IActionResult Add(AddRoleViewModel role)
-        {
-
-            if (_roleManager.FindByNameAsync(role.Name).Result != null)
-            {
-                ModelState.AddModelError("", "Данная роль уже существуют.");
-            }
-
-            if (ModelState.IsValid)
-            {
-                _roleManager.CreateAsync(new IdentityRole(role.Name)).Wait();
-                return RedirectToAction("Index");
-            }
-            return View(role);
-        }
-        public IActionResult Add()
-        {
-            return View();
-        }
+        return View(role);
+    }
+    public IActionResult Add()
+    {
+        return View();
     }
 }
