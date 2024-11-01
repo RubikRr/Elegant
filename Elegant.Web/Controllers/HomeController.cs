@@ -1,8 +1,5 @@
-﻿using Elegant.DAL;
-using Elegant.DAL.Interfaces;
-using Elegant.Web.Helpers;
+﻿using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Elegant.Web.Controllers;
 
 public class HomeController : Controller
@@ -13,6 +10,7 @@ public class HomeController : Controller
     {
         _productsStorage = productsStorage;
     }
+
     public IActionResult Index()
     {
         var productsModel = _productsStorage.GetAll();
