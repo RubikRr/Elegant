@@ -2,9 +2,9 @@
 {
     public class CartViewModel
     {
-        public Guid Id { get; set; }
-        public int UserId { get; set; }
-        public List<CartItemViewModel> Items { get; set; }
+        public Guid Id { get; init; }
+        public int UserId { get; init; }
+        public List<CartItemViewModel> Items { get; init; }
 
         public decimal Total
         {

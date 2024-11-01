@@ -1,18 +1,17 @@
+using System.Globalization;
+using Elegant.DAL;
+using Elegant.DAL.Interfaces;
+using Elegant.DAL.Models;
+using Elegant.DAL.Storages;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using OnlineShop.DB;
 using Serilog;
-using System.Globalization;
-using Elegant.DAL.Interfaces;
-using OnlineShop.DB.Storages;
-using Microsoft.AspNetCore.Identity;
-using OnlineShop.DB.Models;
 
-namespace WomanShop
+namespace Elegant.Web
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
 
@@ -21,11 +20,11 @@ namespace WomanShop
 
             builder.Services.AddControllersWithViews();
             string connection = builder.Configuration.GetConnectionString("online_shop");
-            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddDbContext<EfCoreDbContext>(options => options.UseSqlServer(connection));
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
             builder.Services.Configure<DataProtectionTokenProviderOptions>
-                (opt =>opt.TokenLifespan = TimeSpan.FromHours(2));
+                (opt => opt.TokenLifespan = TimeSpan.FromHours(2));
             builder.Services.ConfigureApplicationCookie(option =>
             {
                 option.ExpireTimeSpan = TimeSpan.FromDays(1);
@@ -51,7 +50,7 @@ namespace WomanShop
             );
             var app = builder.Build();
 
-           
+
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

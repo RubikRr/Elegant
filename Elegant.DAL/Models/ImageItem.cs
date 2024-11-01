@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Elegant.DAL.Models;
 
-namespace OnlineShop.DB.Models
+public class ImageItem
 {
-    public class ImageItem
-    {
-        public Guid Id { get; set; }
-        public string ImagePath { get; set; }
+    public Guid Id { get; init; }
+    public string ImagePath { get; init; } = string.Empty;
+    public Guid ProductId { get; init; }
 
-        public Guid ProductId { get; set; }
-        public Product Product { get; set; }
-    }
+    public Product Product { get; init; } = new();
 }

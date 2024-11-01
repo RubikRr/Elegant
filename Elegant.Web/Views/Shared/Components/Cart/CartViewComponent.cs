@@ -1,25 +1,25 @@
-﻿using Elegant.DAL.Interfaces;
+﻿using Elegant.DAL;
+using Elegant.DAL.Interfaces;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 
-namespace WomanShop.Views.Shared.Components.Cart
+namespace Elegant.Web.Views.Shared.Components.Cart
 {
-    public class CartViewComponent:ViewComponent
+    public class CartViewComponent : ViewComponent
     {
-        private ICartsStorage cartsStorage;
+        private readonly ICartsStorage _cartsStorage;
 
-        public CartViewComponent(ICartsStorage _cartsStorage)
+        public CartViewComponent(ICartsStorage cartsStorage)
         {
-            cartsStorage = _cartsStorage;
+            _cartsStorage = cartsStorage;
         }
 
         public IViewComponentResult Invoke()
         {
-            var cart = Mapping.ToCartViewModel(cartsStorage.TryGetByUserId(Constants.UserId));
-           
+            var cart = Mapping.ToCartViewModel(_cartsStorage.TryGetByUserId(Constants.UserId));
 
-            if (cart != null && cart.Quantity!=0) { return View("Cart", cart.Quantity.ToString());  }
+
+            if (cart != null && cart.Quantity != 0) { return View("Cart", cart.Quantity.ToString()); }
 
             return View("Cart", "");
             ;

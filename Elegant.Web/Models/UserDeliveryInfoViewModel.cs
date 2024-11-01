@@ -1,16 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.Models
+namespace Elegant.Web.Models;
+
+public class UserDeliveryInfoViewModel
 {
-    public class UserDeliveryInfoViewModel
-    {
-        [Required(ErrorMessage ="Впишите имя")]
-        [StringLength(100,MinimumLength =1,ErrorMessage ="ФИО содержит минимум 1 букву")]
-        public string Name { get; set; }
-        [Required(ErrorMessage = "Впишите адрес доставки")]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "Адрес содержит минимум 1 букву")]
-        public string Address { get; set; }
-        [Required(ErrorMessage = "Впишите номер телефона")]
-        public string Phone { get; set; }
-    }
+    [Required(ErrorMessage = "Впишите имя")]
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "ФИО содержит минимум 1 букву")]
+    public string Name { get; init; }
+    [Required(ErrorMessage = "Впишите адрес доставки")]
+    [StringLength(100, MinimumLength = 1, ErrorMessage = "Адрес содержит минимум 1 букву")]
+    public string Address { get; init; }
+    [Required(ErrorMessage = "Впишите номер телефона")]
+    public string Phone { get; init; }
 }

@@ -1,34 +1,29 @@
-﻿using WomanShop.Models;
+﻿namespace Elegant.Web.Models;
 
-namespace Elegant.Web.Models
+public class OrderViewModel
 {
-
-    public class OrderViewModel
+    public Guid Id { get; init; }
+    public UserDeliveryInfoViewModel DeliveryInfo { get; init; }
+    public List<CartItemViewModel> Items { get; init; }
+    public OrderStatusViewModel Status { get; init; }
+    public decimal Total
     {
-
-        public Guid Id { get; set; }
-        public UserDeliveryInfoViewModel DeliveryInfo { get; set; }
-        public List<CartItemViewModel> Items { get; set; }
-        public OrderStatusViewModel Status { get; set; }
-        public decimal Total 
-        { 
-            get 
-            {
-                return Items.Sum(x => x.Total);
-            }
-        }
-
-        public DateTime Date { get; set; }
-
-        public OrderViewModel() { }
-        public OrderViewModel(UserDeliveryInfoViewModel deliveryInfo,List<CartItemViewModel> items)
+        get
         {
-            Id = Guid.NewGuid();
-            Status = OrderStatusViewModel.New;
-            DeliveryInfo= deliveryInfo;
-            Items = items;
-            Date = DateTime.Now;
+            return Items.Sum(x => x.Total);
         }
-
     }
+
+    public DateTime Date { get; init; }
+
+    public OrderViewModel() { }
+    public OrderViewModel(UserDeliveryInfoViewModel deliveryInfo, List<CartItemViewModel> items)
+    {
+        Id = Guid.NewGuid();
+        Status = OrderStatusViewModel.New;
+        DeliveryInfo = deliveryInfo;
+        Items = items;
+        Date = DateTime.Now;
+    }
+
 }

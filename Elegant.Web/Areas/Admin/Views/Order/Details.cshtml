@@ -1,22 +1,21 @@
 ﻿@using Elegant.Web.Models
-@using OnlineShop.DB.Models;
 @model OrderViewModel
 @if (Model == null)
 {
     <h4>С заказом чето не так</h4>
 }
-<form method="post" admin" asp-area="admin" asp-controller="order" asp-action="UpdateStatus" asp-route-orderId=@Model.Id>
-<div class="row">
-    @await Html.PartialAsync("LeftAdminMenu")
-    <div class="col-9">
-        <table class="table">
-            <thead>
+<form method="post" admin asp-area="admin" asp-controller="order" asp-action="UpdateStatus" asp-route-orderId=@Model.Id>
+    <div class="row">
+        @await Html.PartialAsync("LeftAdminMenu")
+        <div class="col-9">
+            <table class="table">
+                <thead>
                 <tr>
                     <th class="w-75">Заказ №</th>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
                     <td>Дата и время оформления:</td>
                     <td>@Model.Date.ToShortDateString() в @Model.Date.ToShortTimeString()</td>
@@ -47,13 +46,15 @@
                 </tr>
                 <tr>
                     <td>Статус заказа:</td>
-                    <td><select asp-for="@Model.Status"asp-items="@Html.GetEnumSelectList<OrderStatusViewModel>()"
-                        class=" form-control"></select>
+                    <td>
+                        <select asp-for="@Model.Status"asp-items="@Html.GetEnumSelectList<OrderStatusViewModel>()"
+                                class=" form-control">
+                        </select>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-        <button class="btn btn-success" type="submit">Обновить</button>
+                </tbody>
+            </table>
+            <button class="btn btn-success" type="submit">Обновить</button>
+        </div>
     </div>
-</div>
 </form>

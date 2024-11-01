@@ -1,13 +1,8 @@
-﻿namespace OnlineShop.DB.Models
+﻿namespace Elegant.DAL.Models;
+
+public class Cart
 {
-    public class Cart
-    {
-        public Guid Id { get; set; }
-        public int UserId { get; set; }
-        public List<CartItem> Items { get; set; }
-        public Cart()
-        {
-            Items = new List<CartItem>();
-        }
-    }
+    public Guid Id { get; init; }
+    public int UserId { get; init; }
+    public List<CartItem> Items { get; set; } = new();
 }

@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Elegant.DAL.Models;
 
-namespace WomanShop.Models
+public class UserDeliveryInfo
 {
-    public class UserDeliveryInfo
-    {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string Name { get; init; } = string.Empty;
+    public string Address { get; init; } = string.Empty;
+    public  string Phone { get; init; } = string.Empty;
 }

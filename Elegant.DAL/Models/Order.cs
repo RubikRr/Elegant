@@ -1,23 +1,10 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using WomanShop.Models;
+﻿namespace Elegant.DAL.Models;
 
-namespace OnlineShop.DB.Models
+public class Order
 {
-    
-    public class Order
-    {
-
-        public Guid Id { get; set; }
-        public UserDeliveryInfo DeliveryInfo { get; set; }
-        public List<CartItem> Items { get; set; }
-        public OrderStatus Status { get; set; }
-        public DateTime Date { get; set; }
-
-        public Order() 
-        {
-            Status = OrderStatus.New;
-            Date = DateTime.Now;
-        }
-    }
+    public Guid Id { get; init; }
+    public UserDeliveryInfo DeliveryInfo { get; init; } = new();
+    public List<CartItem> Items { get; init; } = new();
+    public OrderStatus Status { get; set; } = OrderStatus.New;
+    public DateTime Date { get; init; } = DateTime.Now;
 }

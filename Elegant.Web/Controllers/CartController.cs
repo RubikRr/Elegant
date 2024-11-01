@@ -1,50 +1,46 @@
-﻿using Elegant.DAL.Interfaces;
+﻿using Elegant.DAL;
+using Elegant.DAL.Interfaces;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShop.DB;
 
-namespace Elegant.Web.Controllers
+namespace Elegant.Web.Controllers;
+
+public class CartController : Controller
 {
-    
-    public class CartController:Controller
+    private IProductsStorage ProductsStorage { get; }
+
+    private ICartsStorage CartsStorage { get; set; }
+
+    public CartController(IProductsStorage productsStorage, ICartsStorage cartStorage)
     {
+        ProductsStorage = productsStorage;
+        CartsStorage = cartStorage;
+    }
 
-        private IProductsStorage productsStorage { get; }
+    public IActionResult Add(Guid productId)
+    {
+        var product = ProductsStorage.TryGetById(productId);
+        CartsStorage.Add(Constants.UserId, product);
 
-        private ICartsStorage cartsStorage { get; set; }
-
-        public CartController(IProductsStorage _productsStorage,ICartsStorage _cartStorage)
-        {
-           productsStorage = _productsStorage ;
-           cartsStorage = _cartStorage;
-        }
-
-        public IActionResult Add(Guid productId)
-        {
-            var product = productsStorage.TryGetById(productId);
-            cartsStorage.Add(Constants.UserId, product);
-      
-            return RedirectToAction("Index");
-        }
+        return RedirectToAction("Index");
+    }
 
 
-        public IActionResult Index()
-        {
-            var userCart = cartsStorage.TryGetByUserId(Constants.UserId);
-           
-            return View(Mapping.ToCartViewModel(userCart));
-        }
+    public IActionResult Index()
+    {
+        var userCart = CartsStorage.TryGetByUserId(Constants.UserId);
 
-        public IActionResult Clear()
-        {
-            
-            cartsStorage.Clear(Constants.UserId);
-            return RedirectToAction("Index");
-        }
-        public IActionResult ChangeCount(Guid cartId,Guid productId, string act)
-        {
-            cartsStorage.Change(cartId, productId, act);
-            return RedirectToAction("Index");
-        }
+        return View(Mapping.ToCartViewModel(userCart));
+    }
+
+    public IActionResult Clear()
+    {
+        CartsStorage.Clear(Constants.UserId);
+        return RedirectToAction("Index");
+    }
+    public IActionResult ChangeCount(Guid cartId, Guid productId, string act)
+    {
+        CartsStorage.Change(cartId, productId, act);
+        return RedirectToAction("Index");
     }
 }

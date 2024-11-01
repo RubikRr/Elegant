@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Elegant.DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.DB.Models;
 
+namespace Elegant.DAL;
 
-namespace OnlineShop.DB
+public sealed class IdentityContext : IdentityDbContext<User>
 {
-    public class IdentityContext:IdentityDbContext<User>
+    public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
     {
-        public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
-        {
-            Database.Migrate();
-        }
+        Database.Migrate();
     }
 }

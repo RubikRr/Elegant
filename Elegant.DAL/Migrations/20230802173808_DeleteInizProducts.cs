@@ -1,14 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
-namespace OnlineShop.DB.Migrations
+namespace Elegant.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class DeleteInizProducts : Migration
+    public partial class DeleteInitProducts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
