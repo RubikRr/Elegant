@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.Areas.Admin.Models;
+namespace Elegant.Web.Areas.Admin.ViewModels;
 
-public class CreateProductViewModel
+public class EditProductViewModel
 {
+    public Guid Id { get; init; }
     public string Name { get; init; }
     [Required(ErrorMessage = "Введите цену продукта")]
     [Range(0.0, 1000000, ErrorMessage = "Цена варьируется от 0 до 1000000")]
@@ -12,5 +13,6 @@ public class CreateProductViewModel
     [StringLength(10000, ErrorMessage = "Описание до 10000 символов")]
     public string Description { get; init; }
     [Required(ErrorMessage = "Выберете фотографию")]
-    public IFormFile[] UploadedImage { get; init; }
+    public string ImagePath { get; set; }
+    public IFormFile UploadedImage { get; init; }
 }

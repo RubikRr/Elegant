@@ -26,6 +26,5 @@ public static class IdentityInitializer
                 userManager.AddToRoleAsync(admin, Constants.AdminRoleName).Wait();
             }
         }
-
     }
 }

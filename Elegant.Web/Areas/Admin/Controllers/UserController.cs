@@ -1,8 +1,8 @@
 ﻿using Elegant.Core.Models;
 using Elegant.DAL;
-using Elegant.Web.Areas.Admin.Models;
+using Elegant.Web.Areas.Admin.ViewModels;
 using Elegant.Web.Helpers;
-using Elegant.Web.Models;
+using Elegant.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

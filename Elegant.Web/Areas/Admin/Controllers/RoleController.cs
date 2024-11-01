@@ -1,5 +1,5 @@
 ﻿using Elegant.DAL;
-using Elegant.Web.Areas.Admin.Models;
+using Elegant.Web.Areas.Admin.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

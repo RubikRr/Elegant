@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Elegant.Common\Elegant.Common.csproj" />
       <ProjectReference Include="..\Elegant.DAL\Elegant.DAL.csproj" />
     </ItemGroup>
 
