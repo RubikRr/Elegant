@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Elegant.DAL
+namespace Elegant.DAL;
+
+public class IdentityContext : IdentityDbContext<User>
 {
-    public class IdentityContext : IdentityDbContext<User>
+    public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
     {
-        public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
-        {
-            Database.Migrate();
-        }
+        Database.Migrate();
     }
 }

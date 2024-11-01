@@ -1,9 +1,8 @@
-﻿namespace Elegant.DAL.Models
+﻿namespace Elegant.DAL.Models;
+
+public class FavoriteProduct
 {
-    public class FavoriteProduct
-    {
-        public Guid Id { get; init; }
-        public int UserId { get; init; }
-        public Product Product { get; init; }
-    }
+    public Guid Id { get; init; }
+    public int UserId { get; init; }
+    public Product Product { get; init; }
 }

@@ -1,11 +1,10 @@
-﻿namespace Elegant.DAL.Models
+﻿namespace Elegant.DAL.Models;
+
+public enum OrderStatus
 {
-    public enum OrderStatus
-    {
-        New = 0,
-        Confirmed = 1,
-        Paid = 2,
-        Delivered = 3,
-        Complete = 4
-    }
+    New = 0,
+    Confirmed = 1,
+    Paid = 2,
+    Delivered = 3,
+    Complete = 4
 }
