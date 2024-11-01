@@ -8,6 +8,8 @@ namespace Elegant.Web.Controllers;
 public class CartController : Controller
 {
     //1
+    ////2
+    /////
     private IProductsStorage ProductsStorage { get; }
 
     private ICartsStorage CartsStorage { get; set; }
