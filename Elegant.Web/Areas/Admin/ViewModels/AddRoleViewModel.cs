@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.Areas.Admin.Models;
+namespace Elegant.Web.Areas.Admin.ViewModels;
 
 public class AddRoleViewModel
 {

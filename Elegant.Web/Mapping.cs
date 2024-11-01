@@ -1,7 +1,7 @@
 ﻿using Elegant.Core.Models;
-using Elegant.Web.Models;
+using Elegant.Web.ViewModels;
 
-namespace Elegant.Web.Helpers;
+namespace Elegant.Web;
 
 public static class Mapping
 {
