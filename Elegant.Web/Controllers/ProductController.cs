@@ -14,7 +14,6 @@ public class ProductController : Controller
     public IActionResult Index(Guid productId)
     {
         var product = _productsStorage.TryGetById(productId);
-        //return product != null? product.ToString():$"Товар с индексом {id} не существует";
         var ans = Mapping.ToProductViewModel(product);
         return View(ans);
     }

@@ -38,12 +38,14 @@ public sealed class EfCoreDbContext : DbContext
                     Id = Guid.NewGuid(),
                     ProductId = guidProduct,
                     ImagePath = "/images/products/image1.png",
+                    Product = null!
                 },
                 new ImageItem
                 {
                     Id = Guid.NewGuid(),
                     ProductId = guidProduct,
                     ImagePath = "/images/products/image2.png",
+                    Product = null!
                 });
     }
 }

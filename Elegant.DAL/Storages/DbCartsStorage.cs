@@ -71,12 +71,20 @@ public class DbCartsStorage : ICartsStorage
     }
     public Cart TryGetByUserId(int userId)
     {
-        return _dbContext.Carts.Include(cart => cart.Items).ThenInclude(item => item.Product).FirstOrDefault(cart => cart.UserId == userId);
+        return _dbContext
+            .Carts
+            .Include(cart => cart.Items)
+            .ThenInclude(item => item.Product)
+            .FirstOrDefault(cart => cart.UserId == userId) ?? throw new InvalidOperationException();
     }
 
     public Cart TryGetById(Guid cartId)
     {
-        return _dbContext.Carts.Include(cart => cart.Items).ThenInclude(item => item.Product).FirstOrDefault(cart => cart.Id == cartId);
+        return _dbContext
+            .Carts
+            .Include(cart => cart.Items)
+            .ThenInclude(item => item.Product)
+            .FirstOrDefault(cart => cart.Id == cartId) ?? throw new InvalidOperationException();
     }
 
     public void Clear(int userId)

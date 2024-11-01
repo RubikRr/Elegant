@@ -49,7 +49,9 @@ public class DbFavoritesStorage : IFavoritesStorage
 
     public FavoriteProduct TryGetByUserIdAndProductId(int userId, Guid productId)
     {
-        return _dbContext.FavoriteProducts.FirstOrDefault(fav => fav.UserId == userId && fav.Product.Id == productId);
+        return _dbContext
+            .FavoriteProducts
+            .FirstOrDefault(fav => fav.UserId == userId && fav.Product.Id == productId) ?? throw new InvalidOperationException();
 
     }
 }
