@@ -1,5 +1,5 @@
-﻿using Elegant.DAL.Interfaces;
-using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
+using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elegant.DAL.Storages;
@@ -22,9 +22,9 @@ public class DbCartsStorage : ICartsStorage
             {
                 UserId = userId,
             };
-            newCart.Items = new List<CartItem>
+            newCart.Items = new List<CartOrder>
             {
-                new CartItem()
+                new CartOrder()
                 {
                     Quantity=1,
                     Product=product
@@ -37,7 +37,7 @@ public class DbCartsStorage : ICartsStorage
             var existingCartItem = cart.Items.FirstOrDefault(item => item.Product.Id == product.Id);
             if (existingCartItem == null)
             {
-                cart.Items.Add(new CartItem() { Quantity = 1, Product = product });
+                cart.Items.Add(new CartOrder() { Quantity = 1, Product = product });
             }
             else
             {

@@ -1,4 +1,4 @@
-﻿using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,3 +11,4 @@ public sealed class IdentityContext : IdentityDbContext<User>
         Database.Migrate();
     }
 }
+

@@ -1,5 +1,5 @@
-﻿using Elegant.DAL;
-using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
+using Elegant.DAL;
 using Elegant.Web.Areas.Admin.Models;
 using Elegant.Web.Helpers;
 using Elegant.Web.Models;
@@ -189,7 +189,7 @@ public class UserController : Controller
             _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
         }
 
-        return View(new UpdateUserRoleViewModel { RoleName = userRoles.First(), UserId = user.Id });
+        return View(new UpdateUserRoleViewModel { RoleName = userRoles.First(), UserId = user.Id.ToString() });
     }
 
     [HttpPost]
