@@ -1,9 +1,9 @@
-﻿using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Elegant.DAL;
 
-public class IdentityInitializer
+public static class IdentityInitializer
 {
     public static void Initialize(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
     {

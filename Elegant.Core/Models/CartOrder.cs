@@ -1,6 +1,6 @@
-﻿namespace Elegant.DAL.Models;
+﻿namespace Elegant.Core.Models;
 
-public class CartItem
+public class CartOrder : IEntity
 {
     public Guid Id { get; set; }
     public Product Product { get; init; } = new();

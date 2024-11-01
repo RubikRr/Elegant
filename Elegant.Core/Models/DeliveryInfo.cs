@@ -1,6 +1,8 @@
-﻿namespace Elegant.DAL.Models;
+﻿using Elegant.Abstraction.Entity;
 
-public class UserDeliveryInfo
+namespace Elegant.Core.Models;
+
+public class DeliveryInfo : IEntity
 {
     public Guid Id { get; set; }
     public string Name { get; init; } = string.Empty;

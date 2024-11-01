@@ -1,4 +1,4 @@
-﻿using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elegant.DAL;
@@ -8,7 +8,7 @@ public sealed class EfCoreDbContext : DbContext
     public DbSet<Product> Products { get; init; }
     public DbSet<Cart> Carts { get; init; }
     public DbSet<FavoriteProduct> FavoriteProducts { get; init; }
-    public DbSet<ImageItem> ImageItems { get; init; }
+    public DbSet<Image> ImageItems { get; init; }
     public DbSet<Order> Orders { get; init; }
     public EfCoreDbContext(DbContextOptions<EfCoreDbContext> options) : base(options)
     {
@@ -32,15 +32,15 @@ public sealed class EfCoreDbContext : DbContext
             .HasData(product);
 
         modelBuilder
-            .Entity<ImageItem>()
-            .HasData(new ImageItem
+            .Entity<Image>()
+            .HasData(new Image
                 {
                     Id = Guid.NewGuid(),
                     ProductId = guidProduct,
                     ImagePath = "/images/products/image1.png",
                     Product = null!
                 },
-                new ImageItem
+                new Image
                 {
                     Id = Guid.NewGuid(),
                     ProductId = guidProduct,

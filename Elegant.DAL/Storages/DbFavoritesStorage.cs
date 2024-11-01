@@ -1,5 +1,5 @@
-﻿using Elegant.DAL.Interfaces;
-using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
+using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elegant.DAL.Storages;

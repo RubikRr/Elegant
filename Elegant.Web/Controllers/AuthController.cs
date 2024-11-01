@@ -1,5 +1,5 @@
-﻿using Elegant.DAL;
-using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
+using Elegant.DAL;
 using Elegant.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

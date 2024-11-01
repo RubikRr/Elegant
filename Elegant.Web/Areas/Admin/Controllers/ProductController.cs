@@ -1,6 +1,6 @@
-﻿using Elegant.DAL;
+﻿using Elegant.Core.Models;
+using Elegant.DAL;
 using Elegant.DAL.Interfaces;
-using Elegant.DAL.Models;
 using Elegant.Web.Areas.Admin.Models;
 using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
@@ -49,7 +49,7 @@ public class ProductController : Controller
                 Directory.CreateDirectory(productImagePath);
             }
 
-            var imageItems = new List<ImageItem>();
+            var imageItems = new List<Image>();
             foreach (var image in product.UploadedImage)
             {
                 var fileName = Guid.NewGuid() + "." + image.FileName.Split('.').Last();
@@ -58,7 +58,7 @@ public class ProductController : Controller
                     image.CopyTo(fileStream);
                 }
 
-                imageItems.Add(new ImageItem
+                imageItems.Add(new Image
                 {
                     ImagePath = "/images/products/" + fileName,
                     Product = null

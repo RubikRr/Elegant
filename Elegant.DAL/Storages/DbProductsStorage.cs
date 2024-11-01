@@ -1,5 +1,5 @@
-﻿using Elegant.DAL.Interfaces;
-using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
+using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elegant.DAL.Storages;
@@ -12,7 +12,11 @@ public class DbProductsStorage : IProductsStorage
         _dbContext = efCoreDbContext;
     }
 
-    public List<Product> GetAll() => _dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).ToList();
+    public List<Product> GetAll() => _dbContext
+        .Products
+        .Include(product => product.CartItems)
+        .Include(product => product.ImageItems)
+        .ToList();
     public void Add(Product product)
     {
         _dbContext.Products.Add(product);

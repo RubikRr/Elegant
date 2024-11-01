@@ -1,4 +1,4 @@
-﻿using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
 
 namespace Elegant.DAL.Interfaces;
 

@@ -1,7 +1,7 @@
 using System.Globalization;
+using Elegant.Core.Models;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
-using Elegant.DAL.Models;
 using Elegant.DAL.Storages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

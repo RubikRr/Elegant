@@ -1,4 +1,4 @@
-﻿using Elegant.DAL.Models;
+﻿using Elegant.Core.Models;
 using Elegant.Web.Models;
 
 namespace Elegant.Web.Helpers;
@@ -43,20 +43,20 @@ public static class Mapping
         return ans;
     }
 
-    public static CartItemViewModel ToCartItemViewModel(CartItem cartItemModel)
+    public static CartItemViewModel ToCartItemViewModel(CartOrder cartOrderModel)
     {
-        if (cartItemModel != null)
+        if (cartOrderModel != null)
         {
             return new CartItemViewModel
             {
-                Product = ToProductViewModel(cartItemModel.Product),
-                Quantity = cartItemModel.Quantity
+                Product = ToProductViewModel(cartOrderModel.Product),
+                Quantity = cartOrderModel.Quantity
             };
         }
         return null;
 
     }
-    public static List<CartItemViewModel> ToCartItemsViewModel(List<CartItem> cartItemsModel)
+    public static List<CartItemViewModel> ToCartItemsViewModel(List<CartOrder> cartItemsModel)
     {
         var ans = cartItemsModel?.Select(ToCartItemViewModel)?.ToList() ?? null;
         return ans;
@@ -76,22 +76,22 @@ public static class Mapping
         return null;
     }
 
-    public static UserDeliveryInfo ToUserDeliveryInfoModel(UserDeliveryInfoViewModel userInfo)
+    public static DeliveryInfo ToUserDeliveryInfoModel(UserDeliveryInfoViewModel userInfo)
     {
-        return new UserDeliveryInfo
+        return new DeliveryInfo
         {
             Name = userInfo.Name,
             Address = userInfo.Address,
             Phone = userInfo.Phone
         };
     }
-    public static UserDeliveryInfoViewModel ToUserDeliveryInfoViewModel(UserDeliveryInfo userInfo)
+    public static UserDeliveryInfoViewModel ToUserDeliveryInfoViewModel(DeliveryInfo info)
     {
         return new UserDeliveryInfoViewModel
         {
-            Name = userInfo.Name,
-            Address = userInfo.Address,
-            Phone = userInfo.Phone
+            Name = info.Name,
+            Address = info.Address,
+            Phone = info.Phone
         };
     }
     public static OrderViewModel ToOrderViewModel(Order order)
@@ -115,12 +115,12 @@ public static class Mapping
     {
         return new UserViewModel
         {
-            Id = user.Id,
+            Id = user.Id.ToString(),
             Email = user.Email,
             Name = user.UserName,
             Phone = user.PhoneNumber,
         };
-    }
+    } 
     public static UserViewModel ToUserViewModel(User user, List<string> roles)
     {
         var newUser = ToUserViewModel(user);
