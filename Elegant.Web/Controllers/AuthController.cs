@@ -85,5 +85,4 @@ public class AuthController : Controller
     {
         return View(new Registration() { ReturnUrl = returnUrl });
     }
-
 }
