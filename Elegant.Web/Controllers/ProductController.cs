@@ -15,6 +15,6 @@ public class ProductController : Controller
     {
         var product = _productsStorage.GetById(productId);
         var ans = Mapping.ToProductViewModel(product);
-        return View();
+        return View(ans);
     }
 }
