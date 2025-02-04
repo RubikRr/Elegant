@@ -1,4 +1,5 @@
-﻿using Elegant.DAL;
+﻿using Elegant.Business.Services;
+using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ public class FavoritesController : Controller
 
     public IActionResult Add(Guid productId)
     {
-        var product = _productsStorage.TryGetById(productId);
+        var product = _productsStorage.GetById(productId);
         if (product == null) { return RedirectToAction("Index"); }
         _favoritesStorage.Add(Constants.UserId, product);
         return RedirectToAction("Index");

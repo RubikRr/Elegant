@@ -1,4 +1,5 @@
-﻿using Elegant.Core.Models;
+﻿using Elegant.Business.Services;
+using Elegant.Core.Models;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Elegant.Web.Areas.Admin.ViewModels;
@@ -84,7 +85,7 @@ public class ProductController : Controller
 
     public IActionResult Update(Guid productId)
     {
-        var product = _productsStorage.TryGetById(productId);
+        var product = _productsStorage.GetById(productId);
 
         return View(new EditProductViewModel
         {

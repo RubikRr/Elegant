@@ -1,4 +1,5 @@
-﻿using Elegant.DAL;
+﻿using Elegant.Business.Services;
+using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,7 @@ public class CartController : Controller
 
     public IActionResult Add(Guid productId)
     {
-        var product = ProductsStorage.TryGetById(productId);
+        var product = ProductsStorage.GetById(productId);
         CartsStorage.Add(Constants.UserId, product);
 
         return RedirectToAction("Index");
