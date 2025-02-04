@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Elegant.Business\Elegant.Business.csproj" />
       <ProjectReference Include="..\Elegant.Core\Elegant.Core.csproj" />
     </ItemGroup>
 

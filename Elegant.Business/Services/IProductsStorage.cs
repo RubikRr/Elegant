@@ -1,11 +1,11 @@
 ﻿using Elegant.Core.Models;
 
-namespace Elegant.DAL.Interfaces;
+namespace Elegant.Business.Services;
 
 public interface IProductsStorage
 {
     public List<Product> GetAll();
-    public Product TryGetById(Guid id);
+    public Product GetById(Guid id);
     public void Remove(Guid productId);
     public void Add(Product product);
     public void Update(Product product);

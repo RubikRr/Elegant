@@ -1,5 +1,5 @@
-﻿using Elegant.Core.Models;
-using Elegant.DAL.Interfaces;
+﻿using Elegant.Business.Services;
+using Elegant.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elegant.DAL.Storages;
@@ -24,7 +24,7 @@ public class DbProductsStorage : IProductsStorage
     }
     public void Update(Product product)
     {
-        var productInStorage = TryGetById(product.Id);
+        var productInStorage = GetById(product.Id);
         productInStorage.Name = product.Name;
         productInStorage.Cost = product.Cost;
         productInStorage.Description = product.Description;
@@ -39,11 +39,11 @@ public class DbProductsStorage : IProductsStorage
     }
     public void Remove(Guid productId)
     {
-        var product = TryGetById(productId);
+        var product = GetById(productId);
         _dbContext.Products.Remove(product);
         _dbContext.SaveChanges();
     }
-    public Product TryGetById(Guid id)
+    public Product GetById(Guid id)
     {
         return _dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
     }
