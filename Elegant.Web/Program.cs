@@ -1,5 +1,6 @@
 using System.Globalization;
 using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business;
 using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Elegant.Core.Models;
 using Elegant.DAL;
@@ -16,17 +17,20 @@ namespace Elegant.Web
     {
         public static void Main(string[] args)
         {
-
             var builder = WebApplication.CreateBuilder(args);
-            builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+            builder.Host.UseSerilog((context, configuration) =>
+                configuration.ReadFrom.Configuration(context.Configuration));
 
             builder.Services.AddControllersWithViews();
+
             string connection = builder.Configuration.GetConnectionString("online_shop");
             builder.Services.AddDbContext<EfCoreDbContext>(options => options.UseSqlServer(connection));
             builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connection));
-            builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>()
+                .AddDefaultTokenProviders();
             builder.Services.Configure<DataProtectionTokenProviderOptions>
                 (opt => opt.TokenLifespan = TimeSpan.FromHours(2));
+
             builder.Services.ConfigureApplicationCookie(option =>
             {
                 option.ExpireTimeSpan = TimeSpan.FromDays(1);
@@ -38,14 +42,16 @@ namespace Elegant.Web
                 };
             });
 
-           
+            builder.Services.AddRepositories();
+            builder.Services.AddHandlers();
+
             builder.Services.Configure<RequestLocalizationOptions>(options =>
-            {
-                var supportedCultures = new[] { new CultureInfo("en-US") };
-                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
-                options.SupportedCultures = supportedCultures;
-                options.SupportedUICultures = supportedCultures;
-            }
+                {
+                    var supportedCultures = new[] { new CultureInfo("en-US") };
+                    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+                    options.SupportedCultures = supportedCultures;
+                    options.SupportedUICultures = supportedCultures;
+                }
             );
             var app = builder.Build();
 
@@ -55,6 +61,7 @@ namespace Elegant.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseSerilogRequestLogging();
 
             app.UseStaticFiles();
