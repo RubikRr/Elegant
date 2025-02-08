@@ -15,7 +15,7 @@ namespace Elegant.Web.Views.Shared.Components.Cart
 
         public IViewComponentResult Invoke()
         {
-            var cart = Mapping.ToCartViewModel(_cartsStorage.TryGetByUserId(Constants.UserId));
+            var cart = Mapping.ToCartViewModel(_cartsStorage.TryGetByUserId(DbConstants.UserId));
 
 
             if (cart != null && cart.Quantity != 0) { return View("Cart", cart.Quantity.ToString()); }

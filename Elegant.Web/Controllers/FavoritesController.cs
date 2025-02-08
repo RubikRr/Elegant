@@ -18,7 +18,7 @@ public class FavoritesController : Controller
     }
     public IActionResult Index()
     {
-        var favoriteProducts = _favoritesStorage.GetAllProducts(Constants.UserId);
+        var favoriteProducts = _favoritesStorage.GetAllProducts(DbConstants.UserId);
         return View(Mapping.ToProductsViewModel(favoriteProducts));
     }
 
@@ -26,13 +26,13 @@ public class FavoritesController : Controller
     {
         var product = _productsStorage.GetById(productId);
         if (product == null) { return RedirectToAction("Index"); }
-        _favoritesStorage.Add(Constants.UserId, product);
+        _favoritesStorage.Add(DbConstants.UserId, product);
         return RedirectToAction("Index");
     }
 
     public IActionResult Remove(Guid productId)
     {
-        _favoritesStorage.Remove(Constants.UserId, productId);
+        _favoritesStorage.Remove(DbConstants.UserId, productId);
         return RedirectToAction("Index");
     }
 }

@@ -19,7 +19,7 @@ public class CartController : Controller
     public IActionResult Add(Guid productId)
     {
         var product = ProductsStorage.GetById(productId);
-        CartsStorage.Add(Constants.UserId, product);
+        CartsStorage.Add(DbConstants.UserId, product);
 
         return RedirectToAction("Index");
     }
@@ -27,14 +27,14 @@ public class CartController : Controller
 
     public IActionResult Index()
     {
-        var userCart = CartsStorage.TryGetByUserId(Constants.UserId);
+        var userCart = CartsStorage.TryGetByUserId(DbConstants.UserId);
 
         return View(Mapping.ToCartViewModel(userCart));
     }
 
     public IActionResult Clear()
     {
-        CartsStorage.Clear(Constants.UserId);
+        CartsStorage.Clear(DbConstants.UserId);
         return RedirectToAction("Index");
     }
     public IActionResult ChangeCount(Guid cartId, Guid productId, string act)

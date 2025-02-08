@@ -11,8 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Elegant.Web.Areas.Admin.Controllers;
 
-[Area(Constants.AdminRoleName)]
-[Authorize(Roles = Constants.AdminRoleName)]
+[Area(DbConstants.AdminRoleName)]
+[Authorize(Roles = DbConstants.AdminRoleName)]
 public class UserController : Controller
 {
     private readonly UserManager<User> _userManager;
@@ -184,8 +184,8 @@ public class UserController : Controller
         var userRoles = new List<string>(await _userManager.GetRolesAsync(user));
         if (userRoles.Count == 0)
         {
-            userRoles = [Constants.UserRoleName];
-            _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+            userRoles = [DbConstants.UserRoleName];
+            _userManager.AddToRoleAsync(user, DbConstants.UserRoleName).Wait();
         }
 
         return View(new UpdateUserRoleViewModel { RoleName = userRoles.First(), UserId = user.Id.ToString() });
@@ -208,7 +208,7 @@ public class UserController : Controller
                 }
                 else
                 {
-                    _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+                    _userManager.AddToRoleAsync(user, DbConstants.UserRoleName).Wait();
                 }
             }
 
