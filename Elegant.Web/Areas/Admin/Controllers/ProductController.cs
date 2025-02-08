@@ -20,9 +20,9 @@ public class ProductController : Controller
         _appEnvironment = appEnvironment;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var products = _productsStorage.GetAll();
+        var products = await _productsStorage.GetAll();
         return View(Mapping.ToProductsViewModel(products));
     }
 
@@ -81,9 +81,9 @@ public class ProductController : Controller
         return View();
     }
 
-    public IActionResult Update(Guid productId)
+    public async Task<IActionResult> Update(Guid productId)
     {
-        var product = _productsStorage.GetById(productId);
+        var product = await _productsStorage.GetById(productId);
 
         return View(new EditProductViewModel
         {

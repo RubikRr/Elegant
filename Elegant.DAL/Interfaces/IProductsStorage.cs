@@ -4,10 +4,10 @@ namespace Elegant.DAL.Interfaces;
 
 public interface IProductsStorage
 {
-    public List<Product> GetAll();
-    public Product? GetById(Guid id);
-    public void Remove(Guid productId);
-    public void Add(Product product);
-    public void Update(Product product);
-    public List<Product> Search(string name);
+    public Task<List<Product>> GetAll();
+    public Task<Product?> GetById(Guid id);
+    public Task Remove(Guid productId);
+    public Task Add(Product product);
+    public Task Update(Product product);
+    public Task<List<Product>> Search(string name);
 }

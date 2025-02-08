@@ -14,9 +14,9 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,Ge
 
     public async Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query, CancellationToken cancellationToken = default)
     {
-        return await Task.FromResult(new GetProductByIdResponse
-        {
-            Product = _productsStorage.GetById(query.ProductId)
-        });
+        var product = await _productsStorage.GetById(query.ProductId);
+
+        
+        return new GetProductByIdResponse { Product = product  };
     }
 }

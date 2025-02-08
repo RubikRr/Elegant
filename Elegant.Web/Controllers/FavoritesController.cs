@@ -22,9 +22,9 @@ public class FavoritesController : Controller
         return View(Mapping.ToProductsViewModel(favoriteProducts));
     }
 
-    public IActionResult Add(Guid productId)
+    public async Task<IActionResult> Add(Guid productId)
     {
-        var product = _productsStorage.GetById(productId);
+        var product = await _productsStorage.GetById(productId);
         if (product == null) { return RedirectToAction("Index"); }
         _favoritesStorage.Add(DbConstants.UserId, product);
         return RedirectToAction("Index");
