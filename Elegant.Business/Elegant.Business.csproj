@@ -9,6 +9,11 @@
     <ItemGroup>
       <ProjectReference Include="..\Elegant.Abstraction\Elegant.Abstraction.csproj" />
       <ProjectReference Include="..\Elegant.Core\Elegant.Core.csproj" />
+      <ProjectReference Include="..\Elegant.DAL\Elegant.DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>

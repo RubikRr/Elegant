@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Elegant.Web.Helpers;
+namespace Elegant.Common.Helpers;
 
 public class EnumHelper
 {

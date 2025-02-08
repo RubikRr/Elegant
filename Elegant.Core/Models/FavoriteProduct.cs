@@ -1,6 +1,4 @@
-﻿using Elegant.Abstraction.Entity;
-
-namespace Elegant.Core.Models;
+﻿namespace Elegant.Core.Models;
 
 //TODO подумать в сторону того чтобы поменять свойства. Мб привезать к конкертному пользователю его список любимых продуктов.
 public class FavoriteProduct : IEntity

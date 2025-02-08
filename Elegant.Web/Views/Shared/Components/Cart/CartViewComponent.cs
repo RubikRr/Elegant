@@ -1,6 +1,5 @@
 ﻿using Elegant.DAL;
 using Elegant.DAL.Interfaces;
-using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Views.Shared.Components.Cart

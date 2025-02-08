@@ -1,5 +1,6 @@
 using System.Globalization;
-using Elegant.Business.Services;
+using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Elegant.Core.Models;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
@@ -37,10 +38,7 @@ namespace Elegant.Web
                 };
             });
 
-            builder.Services.AddTransient<IProductsStorage, DbProductsStorage>();
-            builder.Services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
-            builder.Services.AddTransient<ICartsStorage, DbCartsStorage>();
-            builder.Services.AddTransient<IOrdersStorage, DbOrdersStorage>();
+           
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new[] { new CultureInfo("en-US") };

@@ -1,5 +1,5 @@
 using Elegant.Abstraction.Handlers.Query;
-using Elegant.Business.Services;
+using Elegant.DAL.Interfaces;
 
 namespace Elegant.Business.Handlers.Product.Query.GetProductById;
 
@@ -12,9 +12,9 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,Ge
         _productsStorage = productsStorage;
     }
 
-    public Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query, CancellationToken cancellationToken = default)
+    public async Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(new GetProductByIdResponse
+        return await Task.FromResult(new GetProductByIdResponse
         {
             Product = _productsStorage.GetById(query.ProductId)
         });

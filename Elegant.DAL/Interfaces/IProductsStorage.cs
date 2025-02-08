@@ -1,6 +1,6 @@
 ﻿using Elegant.Core.Models;
 
-namespace Elegant.Business.Services;
+namespace Elegant.DAL.Interfaces;
 
 public interface IProductsStorage
 {
