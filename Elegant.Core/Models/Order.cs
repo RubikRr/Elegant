@@ -1,6 +1,4 @@
-﻿using Elegant.Abstraction.Entity;
-
-namespace Elegant.Core.Models;
+﻿namespace Elegant.Core.Models;
 
 public class Order : IEntity
 {

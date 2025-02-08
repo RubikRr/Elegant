@@ -10,12 +10,4 @@ public static class Bootstrapper
     {
         services.AddScoped<IQueryHandler<GetProductByIdRequest,GetProductByIdResponse>, GetProductByIdQueryHandler>();
     }
-
-    // public static void AddRepositories(this IServiceCollection services)
-    // {
-    //     services.AddTransient<IProductsStorage, DbProductsStorage>();
-    //     services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
-    //     services.AddTransient<ICartsStorage, DbCartsStorage>();
-    //     services.AddTransient<IOrdersStorage, DbOrdersStorage>();
-    // }
 }

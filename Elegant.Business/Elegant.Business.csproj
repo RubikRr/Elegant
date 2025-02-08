@@ -12,8 +12,4 @@
       <ProjectReference Include="..\Elegant.DAL\Elegant.DAL.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
-
 </Project>
