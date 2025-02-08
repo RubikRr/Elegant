@@ -5,22 +5,17 @@ namespace Elegant.Web;
 
 public static class Mapping
 {
-    public static ProductViewModel ToProductViewModel(Product productModel)
+    public static ProductViewModel ToProductViewModel(Product product)
     {
-        if (productModel != null)
+        return new ProductViewModel
         {
-            return new ProductViewModel
-            {
-                Id = productModel.Id,
-                Name = productModel.Name,
-                Cost = productModel.Cost,
-                Description = productModel.Description,
-                ImageItemsPaths = productModel.ImageItems.Select(imageItem => imageItem.ImagePath).ToList(),
-                ImagePath = productModel.ImagePath
-            };
-        }
-        return null;
-
+            Id = product.Id,
+            Name = product.Name,
+            Cost = product.Cost,
+            Description = product.Description,
+            ImageItemsPaths = product.ImageItems.Select(imageItem => imageItem.ImagePath).ToList(),
+            ImagePath = product.ImagePath
+        };
     }
     public static Product ToProductModel(ProductViewModel productViewModel)
     {

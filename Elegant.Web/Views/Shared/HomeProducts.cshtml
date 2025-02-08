@@ -14,9 +14,8 @@
                     <a class="card-title fs-5"
                     asp-area=""
                     asp-controller="product" 
-                    asp-action="index"
+                    asp-action="GetProductById"
                     asp-route-productId=@product.Id> @product.Name </a>
-
                     <h5>Цена:@product.Cost р.</h5>
                     <p>Описание:@product.Description</p>
                     <a class="btn btn-dark" 
