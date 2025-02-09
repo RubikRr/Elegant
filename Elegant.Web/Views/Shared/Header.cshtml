@@ -1,55 +1,38 @@
 ﻿@using Elegant.DAL
- <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WomanShop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="Index">Главная</a>
-                        </li>
-                    @if(User.Identity.IsAuthenticated)
-                    {
-                         <li class="nav-item">
-                             @await Component.InvokeAsync("Favorite")
-                        </li>
-                         <li class="nav-item">
-                             @await Component.InvokeAsync("Cart")
-                        </li>
-                        
-                        <li class="nav-item">
-                            @User.Identity.Name
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="Logout">Выход</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="favorites" asp-action="Index">Избранное</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="cart" asp-action="Index">Корзина</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="login">Войти</a>
-                        </li>
-                    }
-                    @if (User.IsInRole(Constants.AdminRoleName))
-                    {
-                     
-                       <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="admin" asp-controller="home" asp-action="index" >Администратор</a>
-                        </li>
-                    }
-                    </ul> 
-                    
-                </div>
-            </div>
-        </nav>
-    </header>
+
+     <header class="header headd">
+         <div class="container">
+             <a class="logotip" href="">
+                 <img class="logo" src="images/dress.png" alt="">
+                 <a class="logo_text" href="">WOMAZING</a>
+             </a>
+             <ul class="list">
+                 <a class="li_a" href="">
+                     <li class="li_">Главная</li>
+                 </a>
+                 <a class="li_b" href="">
+                     <li class="li_">Магазин</li>
+                 </a>
+                 <a class="li_v" href="">
+                     <li class="li_">О бренде</li>
+                 </a>
+                 <a class="li_c" href="">
+                     <li class="li_ contact">Контакты</li>
+                 </a>
+             </ul>
+             <a class="phonee" href="">
+                 <img class="phone" src="images/Заказ звонка.png" alt="">
+             </a>
+             <a class="telephone" href="">+7 (495) 823-54-12</a>
+             <a href="">
+                 <img class="basket" src="images/shopping-bags 1.png" alt="">
+             </a>
+             <div class="menu-btn">
+                 <a href="">
+                     <div class="burger"></div>
+                     <div class="burger"></div>
+                     <div class="burger"></div>
+                 </a>
+             </div>
+         </div>
+     </header>
