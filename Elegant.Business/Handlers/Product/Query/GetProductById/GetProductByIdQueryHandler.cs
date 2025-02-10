@@ -16,7 +16,11 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,Ge
     {
         var product = await _productsStorage.GetById(query.ProductId);
 
-        
+        if (product == null)
+        {
+            throw new Exception($"Товар с таким не был найден");
+        }
+
         return new GetProductByIdResponse { Product = product  };
     }
 }
