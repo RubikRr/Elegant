@@ -1,6 +1,6 @@
-﻿using Elegant.Web.ViewModels.Cart;
+﻿using Elegant.Business.Models.ViewModels.Cart;
 
-namespace Elegant.Web.ViewModels.Order;
+namespace Elegant.Business.Models.ViewModels.Order;
 
 public class OrderViewModel
 {

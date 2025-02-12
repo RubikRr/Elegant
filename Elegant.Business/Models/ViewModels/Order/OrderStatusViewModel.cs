@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.ViewModels.Order;
+namespace Elegant.Business.Models.ViewModels.Order;
 
 public enum OrderStatusViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace Elegant.Web.ViewModels.Cart;
+﻿namespace Elegant.Business.Models.ViewModels.Cart;
 
 public class CartViewModel
 {

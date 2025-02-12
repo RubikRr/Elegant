@@ -1,4 +1,5 @@
 ﻿using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business;
 using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,6 @@ public class ProductController : Controller
         var response =
             await _getProductByIdQuery.HandleAsync(new GetProductByIdRequest { ProductId = productId },
                 cancellationToken);
-        return View(nameof(GetProductById), Mapping.ToProductViewModel(response.Product));
+        return View(nameof(GetProductById), response.Product);
     }
 }

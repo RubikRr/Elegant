@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
-namespace Elegant.Web.Areas.Admin.ViewModels.Product;
+namespace Elegant.Business.Models.ViewModels.Product;
 
 public class CreateProductViewModel
 {

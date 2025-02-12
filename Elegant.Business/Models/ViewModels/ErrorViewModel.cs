@@ -1,4 +1,4 @@
-namespace Elegant.Web.ViewModels;
+namespace Elegant.Business.Models.ViewModels;
 
 public class ErrorViewModel
 {

@@ -1,7 +1,8 @@
-﻿using Elegant.Core.Models;
+﻿using Elegant.Business;
+using Elegant.Business.Models.ViewModels.Order;
+using Elegant.Core.Models;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
-using Elegant.Web.ViewModels.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

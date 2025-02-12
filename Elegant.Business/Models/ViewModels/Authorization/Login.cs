@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.ViewModels.Authorization;
+namespace Elegant.Business.Models.ViewModels.Authorization;
 
 public class Login
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.Areas.Admin.ViewModels.User;
+namespace Elegant.Business.Models.ViewModels.User;
 
 public class AddUserViewModel
 {

@@ -12,7 +12,8 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest, G
         _productsStorage = productsStorage;
     }
 
-    public async Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query, CancellationToken cancellationToken = default)
+    public async Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query,
+        CancellationToken cancellationToken = default)
     {
         var product = await _productsStorage.GetById(query.ProductId);
 
@@ -21,6 +22,6 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest, G
             throw new Exception($"Товар с таким не был найден");
         }
 
-        return new GetProductByIdResponse { Product = product };
+        return new GetProductByIdResponse { Product = Mapping.ToProductViewModel(product) };
     }
 }

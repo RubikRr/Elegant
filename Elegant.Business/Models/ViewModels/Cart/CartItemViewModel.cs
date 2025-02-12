@@ -1,6 +1,6 @@
-﻿using Elegant.Web.ViewModels.Product;
+﻿using Elegant.Business.Models.ViewModels.Product;
 
-namespace Elegant.Web.ViewModels.Cart;
+namespace Elegant.Business.Models.ViewModels.Cart;
 
 public class CartItemViewModel
 {

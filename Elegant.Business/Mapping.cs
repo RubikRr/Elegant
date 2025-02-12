@@ -1,10 +1,10 @@
-﻿using Elegant.Core.Models;
-using Elegant.Web.ViewModels.Cart;
-using Elegant.Web.ViewModels.Order;
-using Elegant.Web.ViewModels.Product;
-using Elegant.Web.ViewModels.User;
+﻿using Elegant.Business.Models.ViewModels.Cart;
+using Elegant.Business.Models.ViewModels.Order;
+using Elegant.Business.Models.ViewModels.Product;
+using Elegant.Business.Models.ViewModels.User;
+using Elegant.Core.Models;
 
-namespace Elegant.Web;
+namespace Elegant.Business;
 
 public static class Mapping
 {
