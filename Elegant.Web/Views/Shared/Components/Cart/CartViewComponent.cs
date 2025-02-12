@@ -1,5 +1,4 @@
-﻿using Elegant.Business;
-using Elegant.Business.Mapping;
+﻿using Elegant.Business.Mapping;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +22,6 @@ namespace Elegant.Web.Views.Shared.Components.Cart
             if (cart.Quantity != 0) { return View("Cart", cart.Quantity.ToString()); }
 
             return View("Cart", "");
-            ;
         }
     }
 }

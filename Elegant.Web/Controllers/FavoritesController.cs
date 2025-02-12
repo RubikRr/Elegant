@@ -1,5 +1,4 @@
-﻿using Elegant.Business;
-using Elegant.Business.Mapping;
+﻿using Elegant.Business.Mapping;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Authorization;

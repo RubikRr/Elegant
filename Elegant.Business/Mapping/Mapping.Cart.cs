@@ -1,7 +1,4 @@
 ﻿using Elegant.Business.Models.ViewModels.Cart;
-using Elegant.Business.Models.ViewModels.Order;
-using Elegant.Business.Models.ViewModels.Product;
-using Elegant.Business.Models.ViewModels.User;
 using Elegant.Core.Models;
 
 namespace Elegant.Business.Mapping;
