@@ -1,4 +1,4 @@
-﻿namespace Elegant.Web.ViewModels;
+﻿namespace Elegant.Web.ViewModels.Product;
 
 public class ProductViewModel
 {
