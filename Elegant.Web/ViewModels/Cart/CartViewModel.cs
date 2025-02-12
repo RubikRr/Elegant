@@ -1,4 +1,4 @@
-﻿namespace Elegant.Web.ViewModels;
+﻿namespace Elegant.Web.ViewModels.Cart;
 
 public class CartViewModel
 {
@@ -8,16 +8,11 @@ public class CartViewModel
 
     public decimal Total
     {
-        get
-        {
-            return Items?.Sum(cartItem => cartItem.Total) ?? 0;
-        }
+        get { return Items.Sum(cartItem => cartItem.Total); }
     }
+
     public int Quantity
     {
-        get
-        {
-            return Items?.Sum(cartItem => cartItem.Quantity) ?? 0;
-        }
+        get { return Items.Sum(cartItem => cartItem.Quantity); }
     }
 }

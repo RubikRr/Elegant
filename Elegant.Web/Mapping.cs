@@ -1,5 +1,8 @@
 ﻿using Elegant.Core.Models;
-using Elegant.Web.ViewModels;
+using Elegant.Web.ViewModels.Cart;
+using Elegant.Web.ViewModels.Order;
+using Elegant.Web.ViewModels.Product;
+using Elegant.Web.ViewModels.User;
 
 namespace Elegant.Web;
 

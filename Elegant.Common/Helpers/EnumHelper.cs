@@ -5,8 +5,9 @@ namespace Elegant.Common.Helpers;
 
 public static class EnumHelper
 {
-    public static string GetDisplayName(Enum enumValue)
+    public static string? GetDisplayName(Enum enumValue)
     {
-        return enumValue.GetType().GetMember(enumValue.ToString()).First().GetCustomAttribute<DisplayAttribute>()?.GetName();
+        var memberInfo = enumValue.GetType().GetMember(enumValue.ToString()).FirstOrDefault();
+        return memberInfo == null ? null : memberInfo.GetCustomAttribute<DisplayAttribute>()?.GetName();
     }
 }

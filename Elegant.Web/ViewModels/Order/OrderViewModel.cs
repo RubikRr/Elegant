@@ -1,4 +1,6 @@
-﻿namespace Elegant.Web.ViewModels;
+﻿using Elegant.Web.ViewModels.Cart;
+
+namespace Elegant.Web.ViewModels.Order;
 
 public class OrderViewModel
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elegant.Web.ViewModels;
+namespace Elegant.Web.ViewModels.Order;
 
 public class UserDeliveryInfoViewModel
 {
