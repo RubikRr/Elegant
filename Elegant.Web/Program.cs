@@ -65,7 +65,7 @@ namespace Elegant.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value;
+            var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>()!.Value;
             app.UseRequestLocalization(localizationOptions);
             app.MapControllerRoute(
                 name: "MyArea",

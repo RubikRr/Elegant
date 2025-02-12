@@ -3,8 +3,8 @@
 public class OrderViewModel
 {
     public Guid Id { get; init; }
-    public UserDeliveryInfoViewModel DeliveryInfo { get; init; }
-    public List<CartItemViewModel> Items { get; init; }
+    public UserDeliveryInfoViewModel DeliveryInfo { get; init; } = null!;
+    public List<CartItemViewModel> Items { get; init; } = null!;
     public OrderStatusViewModel Status { get; init; }
     public decimal Total
     {
@@ -16,7 +16,6 @@ public class OrderViewModel
 
     public DateTime Date { get; init; }
 
-    public OrderViewModel() { }
     public OrderViewModel(UserDeliveryInfoViewModel deliveryInfo, List<CartItemViewModel> items)
     {
         Id = Guid.NewGuid();
@@ -26,4 +25,7 @@ public class OrderViewModel
         Date = DateTime.Now;
     }
 
+    public OrderViewModel()
+    {
+    }
 }

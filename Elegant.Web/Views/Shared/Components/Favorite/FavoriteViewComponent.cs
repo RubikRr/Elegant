@@ -16,7 +16,7 @@ namespace Elegant.Web.Views.Shared.Components.Favorite
         public IViewComponentResult Invoke()
         {
             var userFavoriteProductsCount = _favoritesStorage.GetAllProducts(DbConstants.UserId).Count();
-            if (userFavoriteProductsCount != null && userFavoriteProductsCount != 0)
+            if (userFavoriteProductsCount != 0)
             {
                 return View("Favorite", userFavoriteProductsCount.ToString());
             }
