@@ -22,6 +22,6 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest, G
             throw new Exception($"Товар с таким не был найден");
         }
 
-        return new GetProductByIdResponse { Product = Mapping.ToProductViewModel(product) };
+        return new GetProductByIdResponse { Product = Mapping.Mapping.ToProductViewModel(product) };
     }
 }

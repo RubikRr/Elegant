@@ -1,4 +1,5 @@
 ﻿using Elegant.Business;
+using Elegant.Business.Mapping;
 using Elegant.Business.Models.ViewModels.User;
 using Elegant.Core.Models;
 using Elegant.DAL;
