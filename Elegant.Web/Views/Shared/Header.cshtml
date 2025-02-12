@@ -40,7 +40,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="login">Войти</a>
                         </li>
                     }
-                    @if (User.IsInRole(Constants.AdminRoleName))
+                    @if (User.IsInRole(DbConstants.AdminRoleName))
                     {
                      
                        <li class="nav-item">

@@ -10,13 +10,13 @@ namespace Elegant.Web.Views.Shared.Components.Favorite
 
         public FavoriteViewComponent(IFavoritesStorage favoritesStorage)
         {
-           _favoritesStorage = favoritesStorage;
+            _favoritesStorage = favoritesStorage;
         }
 
         public IViewComponentResult Invoke()
         {
-            var userFavoriteProductsCount = _favoritesStorage.GetAllProducts(Constants.UserId).Count();
-            if (userFavoriteProductsCount != null && userFavoriteProductsCount != 0)
+            var userFavoriteProductsCount = _favoritesStorage.GetAllProducts(DbConstants.UserId).Count();
+            if (userFavoriteProductsCount != 0)
             {
                 return View("Favorite", userFavoriteProductsCount.ToString());
             }

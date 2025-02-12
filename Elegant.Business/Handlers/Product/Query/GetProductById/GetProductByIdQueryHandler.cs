@@ -1,9 +1,9 @@
 using Elegant.Abstraction.Handlers.Query;
-using Elegant.Business.Services;
+using Elegant.DAL.Interfaces;
 
 namespace Elegant.Business.Handlers.Product.Query.GetProductById;
 
-public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,GetProductByIdResponse>
+public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest, GetProductByIdResponse>
 {
     private readonly IProductsStorage _productsStorage;
 
@@ -12,11 +12,15 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,Ge
         _productsStorage = productsStorage;
     }
 
-    public Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query, CancellationToken cancellationToken = default)
+    public async Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest query, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(new GetProductByIdResponse
+        var product = await _productsStorage.GetById(query.ProductId);
+
+        if (product == null)
         {
-            Product = _productsStorage.GetById(query.ProductId)
-        });
+            throw new Exception($"Товар с таким не был найден");
+        }
+
+        return new GetProductByIdResponse { Product = product };
     }
 }

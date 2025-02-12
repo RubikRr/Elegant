@@ -1,6 +1,5 @@
 ﻿using Elegant.Core.Models;
 using Elegant.DAL.Interfaces;
-using Elegant.Web.Helpers;
 using Elegant.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,8 +1,9 @@
-﻿using Elegant.Business.Services;
-using Elegant.Core.Models;
+﻿using Elegant.Core.Models;
+using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Elegant.DAL.Storages;
+
 public class DbProductsStorage : IProductsStorage
 {
     private readonly EfCoreDbContext _dbContext;
@@ -12,39 +13,58 @@ public class DbProductsStorage : IProductsStorage
         _dbContext = efCoreDbContext;
     }
 
-    public List<Product> GetAll() => _dbContext
+    public Task<List<Product>> GetAll() => _dbContext
         .Products
         .Include(product => product.CartItems)
         .Include(product => product.ImageItems)
-        .ToList();
-    public void Add(Product product)
+        .AsSplitQuery()
+        .ToListAsync();
+
+    public async Task Add(Product product)
     {
         _dbContext.Products.Add(product);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
-    public void Update(Product product)
+
+    public async Task Update(Product product)
     {
-        var productInStorage = GetById(product.Id);
-        productInStorage.Name = product.Name;
-        productInStorage.Cost = product.Cost;
-        productInStorage.Description = product.Description;
-        productInStorage.ImagePath = product.ImagePath;
-        _dbContext.SaveChanges();
+        var productInStorage = await GetById(product.Id);
+        if (productInStorage != null)
+        {
+            productInStorage.Name = product.Name;
+            productInStorage.Cost = product.Cost;
+            productInStorage.Description = product.Description;
+            productInStorage.ImagePath = product.ImagePath;
+        }
+
+        await _dbContext.SaveChangesAsync();
     }
-    public List<Product> Search(string name)
+
+    public async Task<List<Product>> Search(string name)
     {
-        if (string.IsNullOrWhiteSpace(name))
-            return new List<Product>();
-        return _dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
+        return string.IsNullOrWhiteSpace(name)
+            ? new List<Product>()
+            : await _dbContext.Products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToListAsync();
     }
-    public void Remove(Guid productId)
+
+    public async Task Remove(Guid productId)
     {
-        var product = GetById(productId);
+        var product = await GetById(productId);
+        if (product == null)
+        {
+            return;
+        }
+
         _dbContext.Products.Remove(product);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
     }
-    public Product GetById(Guid id)
+
+    public async Task<Product?> GetById(Guid id)
     {
-        return _dbContext.Products.Include(product => product.CartItems).Include(product => product.ImageItems).FirstOrDefault(pr => pr.Id == id);
+        return await _dbContext.Products
+            .Include(product => product.CartItems)
+            .Include(product => product.ImageItems)
+            .AsSplitQuery()
+            .FirstOrDefaultAsync(pr => pr.Id == id);
     }
 }

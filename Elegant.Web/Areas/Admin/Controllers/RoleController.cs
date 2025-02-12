@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Areas.Admin.Controllers;
 
-[Area(Constants.AdminRoleName)]
-[Authorize(Roles = Constants.AdminRoleName)]
+[Area(DbConstants.AdminRoleName)]
+[Authorize(Roles = DbConstants.AdminRoleName)]
 public class RoleController : Controller
 {
 

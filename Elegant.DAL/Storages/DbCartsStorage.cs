@@ -10,9 +10,8 @@ public class DbCartsStorage : ICartsStorage
     public DbCartsStorage(EfCoreDbContext efCoreDbContext)
     {
         _dbContext = efCoreDbContext;
-
     }
-        
+
     public void Add(int userId, Product product)
     {
         var cart = _dbContext.Carts.FirstOrDefault(cart => cart.UserId == userId);

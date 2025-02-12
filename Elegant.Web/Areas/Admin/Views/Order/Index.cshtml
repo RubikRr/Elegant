@@ -1,4 +1,4 @@
-﻿@using Elegant.Web.Helpers
+﻿@using Elegant.Common.Helpers
 @model List<Elegant.Web.ViewModels.OrderViewModel>
 <div class="row">
         @await Html.PartialAsync("LeftAdminMenu")
@@ -21,7 +21,7 @@
                     <tr onclick="window.location.href='/admin/order/Details?orderId=@Model[i].Id'; return false">
                         <td>@(i+1)</td>
                         <td>@Model[i].Total</td>
-                        <td>@EnumHelper.GetDisplaName(@Model[i].Status)</td>
+                        <td>@EnumHelper.GetDisplayName(@Model[i].Status)</td>
                         <td>@Model[i].DeliveryInfo.Name</td>
                         <td>@Model[i].Date.ToShortDateString()</td>
                         <td>@Model[i].Date.ToShortTimeString()</td>

@@ -65,7 +65,7 @@ public class AuthController : Controller
             var result = _userManager.CreateAsync(user, registration.Password).Result;
             if (result.Succeeded)
             {
-                _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+                _userManager.AddToRoleAsync(user, DbConstants.UserRoleName).Wait();
                 var loginResult = _signInManager.PasswordSignInAsync(registration.Email, registration.Password, false, false).Result;
                 if (loginResult.Succeeded)
                     return Redirect(registration.ReturnUrl);

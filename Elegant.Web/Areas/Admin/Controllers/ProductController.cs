@@ -1,16 +1,14 @@
-﻿using Elegant.Business.Services;
-using Elegant.Core.Models;
+﻿using Elegant.Core.Models;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Elegant.Web.Areas.Admin.ViewModels;
-using Elegant.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Areas.Admin.Controllers;
 
-[Area(Constants.AdminRoleName)]
-[Authorize(Roles = Constants.AdminRoleName)]
+[Area(DbConstants.AdminRoleName)]
+[Authorize(Roles = DbConstants.AdminRoleName)]
 public class ProductController : Controller
 {
     private readonly IProductsStorage _productsStorage;
@@ -22,9 +20,9 @@ public class ProductController : Controller
         _appEnvironment = appEnvironment;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var products = _productsStorage.GetAll();
+        var products = await _productsStorage.GetAll();
         return View(Mapping.ToProductsViewModel(products));
     }
 
@@ -83,9 +81,9 @@ public class ProductController : Controller
         return View();
     }
 
-    public IActionResult Update(Guid productId)
+    public async Task<IActionResult> Update(Guid productId)
     {
-        var product = _productsStorage.GetById(productId);
+        var product = await _productsStorage.GetById(productId);
 
         return View(new EditProductViewModel
         {
@@ -110,7 +108,10 @@ public class ProductController : Controller
         product.ImagePath = "/images/products/" + fileName;
         _productsStorage.Update(new Product
         {
-            Id = product.Id, Name = product.Name, Cost = product.Cost, Description = product.Description,
+            Id = product.Id,
+            Name = product.Name,
+            Cost = product.Cost,
+            Description = product.Description,
             ImagePath = product.ImagePath
         });
 

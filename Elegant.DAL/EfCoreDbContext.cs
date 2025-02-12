@@ -34,12 +34,12 @@ public sealed class EfCoreDbContext : DbContext
         modelBuilder
             .Entity<Image>()
             .HasData(new Image
-                {
-                    Id = Guid.NewGuid(),
-                    ProductId = guidProduct,
-                    ImagePath = "/images/products/image1.png",
-                    Product = null!
-                },
+            {
+                Id = Guid.NewGuid(),
+                ProductId = guidProduct,
+                ImagePath = "/images/products/image1.png",
+                Product = null!
+            },
                 new Image
                 {
                     Id = Guid.NewGuid(),
