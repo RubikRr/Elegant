@@ -1,4 +1,6 @@
-﻿using Elegant.Abstraction.Handlers.Query;
+﻿using Elegant.Abstraction.Handlers.Command;
+using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Command.RemoveProductById;
 using Elegant.Business.Handlers.Product.Query.GetAllProducts;
 using Elegant.Business.Models.ViewModels.Product;
 using Elegant.Core.Models;
@@ -17,12 +19,17 @@ public class ProductController : Controller
     private readonly IWebHostEnvironment _appEnvironment;
     private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
 
+    private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse>
+        _removeProductByIdRequestHandler;
+
     public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment,
-        IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler)
+        IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler,
+        ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> removeProductByIdRequestHandler)
     {
         _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
         _getAllProductsRequestHandler = getAllProductsRequestHandler;
+        _removeProductByIdRequestHandler = removeProductByIdRequestHandler;
     }
 
     public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken = default)
@@ -31,10 +38,11 @@ public class ProductController : Controller
         return View(nameof(GetAllProducts), response.Products);
     }
 
-    public IActionResult Remove(Guid productId, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> Remove(Guid productId, CancellationToken cancellationToken = default)
     {
-        _productsStorage.Remove(productId, cancellationToken);
-        return RedirectToAction("GetAllProducts");
+       await _removeProductByIdRequestHandler.HandleAsync(new RemoveProductByIdRequest { ProductId = productId },
+            cancellationToken);
+        return RedirectToAction(nameof(GetAllProducts));
     }
 
     public IActionResult Add()

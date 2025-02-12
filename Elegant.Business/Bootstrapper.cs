@@ -1,4 +1,6 @@
+using Elegant.Abstraction.Handlers.Command;
 using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Command.RemoveProductById;
 using Elegant.Business.Handlers.Product.Query.GetAllProducts;
 using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,5 +13,7 @@ public static class Bootstrapper
     {
         services.AddScoped<IQueryHandler<GetProductByIdRequest, GetProductByIdResponse>, GetProductByIdQueryHandler>();
         services.AddScoped<IQueryHandler<GetAllProductsRequest, GetAllProductsResponse>, GetAllProductsQueryHandler>();
+        
+        services.AddScoped<ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse>, RemoveProductByIdCommandHandler>();
     }
 }
