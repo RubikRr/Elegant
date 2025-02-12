@@ -3,7 +3,7 @@ using Elegant.DAL.Interfaces;
 
 namespace Elegant.Business.Handlers.Product.Query.GetProductById;
 
-public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,GetProductByIdResponse>
+public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest, GetProductByIdResponse>
 {
     private readonly IProductsStorage _productsStorage;
 
@@ -21,6 +21,6 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest,Ge
             throw new Exception($"Товар с таким не был найден");
         }
 
-        return new GetProductByIdResponse { Product = product  };
+        return new GetProductByIdResponse { Product = product };
     }
 }

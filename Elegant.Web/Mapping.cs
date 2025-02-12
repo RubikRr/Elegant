@@ -19,56 +19,42 @@ public static class Mapping
     }
     public static Product ToProductModel(ProductViewModel productViewModel)
     {
-        if (productViewModel != null)
+        return new Product
         {
-            return new Product
-            {
-                Id = productViewModel.Id,
-                Name = productViewModel.Name,
-                Cost = productViewModel.Cost,
-                Description = productViewModel.Description,
-                ImagePath = productViewModel.ImagePath
-            };
-        }
-        return null;
+            Id = productViewModel.Id,
+            Name = productViewModel.Name,
+            Cost = productViewModel.Cost,
+            Description = productViewModel.Description,
+            ImagePath = productViewModel.ImagePath
+        };
     }
     public static List<ProductViewModel> ToProductsViewModel(List<Product> productsModel)
     {
-        var ans = productsModel.Select(ToProductViewModel).ToList() ?? null;
-        return ans;
+        return productsModel.Select(ToProductViewModel).ToList();
     }
 
-    public static CartItemViewModel ToCartItemViewModel(CartOrder cartOrderModel)
+    private static CartItemViewModel ToCartItemViewModel(CartOrder cartOrderModel)
     {
-        if (cartOrderModel != null)
+        return new CartItemViewModel
         {
-            return new CartItemViewModel
-            {
-                Product = ToProductViewModel(cartOrderModel.Product),
-                Quantity = cartOrderModel.Quantity
-            };
-        }
-        return null;
-
+            Product = ToProductViewModel(cartOrderModel.Product),
+            Quantity = cartOrderModel.Quantity
+        };
     }
-    public static List<CartItemViewModel> ToCartItemsViewModel(List<CartOrder> cartItemsModel)
+
+    private static List<CartItemViewModel> ToCartItemsViewModel(List<CartOrder> cartItemsModel)
     {
-        var ans = cartItemsModel?.Select(ToCartItemViewModel)?.ToList() ?? null;
-        return ans;
+        return cartItemsModel.Select(ToCartItemViewModel).ToList();
     }
 
     public static CartViewModel ToCartViewModel(Cart cartModel)
     {
-        if (cartModel != null)
+        return new CartViewModel
         {
-            return new CartViewModel
-            {
-                Id = cartModel.Id,
-                Items = ToCartItemsViewModel(cartModel.Items),
-                UserId = cartModel.UserId
-            };
-        }
-        return null;
+            Id = cartModel.Id,
+            Items = ToCartItemsViewModel(cartModel.Items),
+            UserId = cartModel.UserId
+        };
     }
 
     public static DeliveryInfo ToUserDeliveryInfoModel(UserDeliveryInfoViewModel userInfo)
@@ -80,7 +66,8 @@ public static class Mapping
             Phone = userInfo.Phone
         };
     }
-    public static UserDeliveryInfoViewModel ToUserDeliveryInfoViewModel(DeliveryInfo info)
+
+    private static UserDeliveryInfoViewModel ToUserDeliveryInfoViewModel(DeliveryInfo info)
     {
         return new UserDeliveryInfoViewModel
         {
@@ -103,19 +90,19 @@ public static class Mapping
 
     public static List<OrderViewModel> ToOrdersViewModel(List<Order> orders)
     {
-        return orders.Select(ToOrderViewModel).ToList() ?? null;
+        return orders.Select(ToOrderViewModel).ToList();
     }
 
-    public static UserViewModel ToUserViewModel(User user)
+    private static UserViewModel ToUserViewModel(User user)
     {
         return new UserViewModel
         {
-            Id = user.Id.ToString(),
-            Email = user.Email,
-            Name = user.UserName,
-            Phone = user.PhoneNumber,
+            Id = user.Id,
+            Email = user.Email ?? string.Empty,
+            Name = user.UserName ?? string.Empty,
+            Phone = user.PhoneNumber ?? string.Empty,
         };
-    } 
+    }
     public static UserViewModel ToUserViewModel(User user, List<string> roles)
     {
         var newUser = ToUserViewModel(user);
@@ -124,7 +111,6 @@ public static class Mapping
     }
     public static List<UserViewModel> ToUsersViewModel(List<User> users)
     {
-        return users.Select(ToUserViewModel).ToList() ?? null;
+        return users.Select(ToUserViewModel).ToList();
     }
-
 }

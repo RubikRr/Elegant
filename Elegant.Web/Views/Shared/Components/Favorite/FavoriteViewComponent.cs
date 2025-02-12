@@ -10,7 +10,7 @@ namespace Elegant.Web.Views.Shared.Components.Favorite
 
         public FavoriteViewComponent(IFavoritesStorage favoritesStorage)
         {
-           _favoritesStorage = favoritesStorage;
+            _favoritesStorage = favoritesStorage;
         }
 
         public IViewComponentResult Invoke()

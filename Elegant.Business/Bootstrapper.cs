@@ -8,6 +8,6 @@ public static class Bootstrapper
 {
     public static void AddHandlers(this IServiceCollection services)
     {
-        services.AddScoped<IQueryHandler<GetProductByIdRequest,GetProductByIdResponse>, GetProductByIdQueryHandler>();
+        services.AddScoped<IQueryHandler<GetProductByIdRequest, GetProductByIdResponse>, GetProductByIdQueryHandler>();
     }
 }

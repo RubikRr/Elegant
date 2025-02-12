@@ -108,7 +108,10 @@ public class ProductController : Controller
         product.ImagePath = "/images/products/" + fileName;
         _productsStorage.Update(new Product
         {
-            Id = product.Id, Name = product.Name, Cost = product.Cost, Description = product.Description,
+            Id = product.Id,
+            Name = product.Name,
+            Cost = product.Cost,
+            Description = product.Description,
             ImagePath = product.ImagePath
         });
 
