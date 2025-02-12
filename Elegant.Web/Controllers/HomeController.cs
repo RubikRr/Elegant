@@ -12,17 +12,17 @@ public class HomeController : Controller
         _productsStorage = productsStorage;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
-        var productsModel = await _productsStorage.GetAll();
+        var productsModel = await _productsStorage.GetAll(cancellationToken);
         var test = Mapping.ToProductsViewModel(productsModel);
         return View(test);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Search(string productName)
+    public async Task<IActionResult> Search(string productName, CancellationToken cancellationToken)
     {
-        var productsModel = await _productsStorage.Search(productName);
+        var productsModel = await _productsStorage.Search(productName, cancellationToken);
         return View(Mapping.ToProductsViewModel(productsModel));
     }
 }

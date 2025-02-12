@@ -1,4 +1,5 @@
-﻿using Elegant.Business;
+﻿using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Query.GetAllProducts;
 using Elegant.Business.Models.ViewModels.Product;
 using Elegant.Core.Models;
 using Elegant.DAL;
@@ -14,22 +15,24 @@ public class ProductController : Controller
 {
     private readonly IProductsStorage _productsStorage;
     private readonly IWebHostEnvironment _appEnvironment;
+    private readonly IQueryHandler<GetAllProductsRequest,GetAllProductsResponse> _getAllProductsRequestHandler;
 
-    public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment)
+    public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment, IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler)
     {
         _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
+        _getAllProductsRequestHandler = getAllProductsRequestHandler;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(CancellationToken cancellationToken = default)
     {
-        var products = await _productsStorage.GetAll();
-        return View(Mapping.ToProductsViewModel(products));
+        var response = await _getAllProductsRequestHandler.HandleAsync(new GetAllProductsRequest(), cancellationToken);
+        return View(response.Products);
     }
 
-    public IActionResult Remove(Guid productId)
+    public IActionResult Remove(Guid productId, CancellationToken cancellationToken = default)
     {
-        _productsStorage.Remove(productId);
+        _productsStorage.Remove(productId, cancellationToken);
         return RedirectToAction("Index");
     }
 
@@ -39,7 +42,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
-    public IActionResult Add(CreateProductViewModel product)
+    public IActionResult Add(CreateProductViewModel product, CancellationToken cancellationToken)
     {
         if (ModelState.IsValid)
         {
@@ -75,16 +78,16 @@ public class ProductController : Controller
                 ImagePath = "/images/products/image1"
             };
 
-            _productsStorage.Add(newProduct);
+            _productsStorage.Add(newProduct, cancellationToken);
             return RedirectToAction("Index");
         }
 
         return View();
     }
 
-    public async Task<IActionResult> Update(Guid productId)
+    public async Task<IActionResult> Update(Guid productId, CancellationToken cancellationToken = default)
     {
-        var product = await _productsStorage.GetById(productId);
+        var product = await _productsStorage.GetById(productId, cancellationToken);
 
         return View(new EditProductViewModel
         {
@@ -97,7 +100,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
-    public IActionResult Update(EditProductViewModel product)
+    public IActionResult Update(EditProductViewModel product, CancellationToken cancellationToken)
     {
         var productImagePath = Path.Combine(_appEnvironment.WebRootPath + "/images/products/");
         var fileName = Guid.NewGuid() + "." + product.UploadedImage.FileName.Split('.').Last();
@@ -114,7 +117,7 @@ public class ProductController : Controller
             Cost = product.Cost,
             Description = product.Description,
             ImagePath = product.ImagePath
-        });
+        }, cancellationToken);
 
         return RedirectToAction("Index");
     }

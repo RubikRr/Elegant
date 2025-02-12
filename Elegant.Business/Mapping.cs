@@ -31,7 +31,7 @@ public static class Mapping
             ImagePath = productViewModel.ImagePath
         };
     }
-    public static List<ProductViewModel> ToProductsViewModel(List<Product> productsModel)
+    public static IReadOnlyCollection<ProductViewModel> ToProductsViewModel(List<Product> productsModel)
     {
         return productsModel.Select(ToProductViewModel).ToList();
     }

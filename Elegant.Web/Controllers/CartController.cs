@@ -17,9 +17,9 @@ public class CartController : Controller
         CartsStorage = cartStorage;
     }
 
-    public async Task<IActionResult> Add(Guid productId)
+    public async Task<IActionResult> Add(Guid productId,CancellationToken cancellationToken)
     {
-        var product = await ProductsStorage.GetById(productId);
+        var product = await ProductsStorage.GetById(productId, cancellationToken);
         CartsStorage.Add(DbConstants.UserId, product);
 
         return RedirectToAction("Index");
