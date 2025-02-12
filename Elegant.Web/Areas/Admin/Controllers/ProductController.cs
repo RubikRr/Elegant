@@ -15,25 +15,26 @@ public class ProductController : Controller
 {
     private readonly IProductsStorage _productsStorage;
     private readonly IWebHostEnvironment _appEnvironment;
-    private readonly IQueryHandler<GetAllProductsRequest,GetAllProductsResponse> _getAllProductsRequestHandler;
+    private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
 
-    public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment, IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler)
+    public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment,
+        IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler)
     {
         _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
         _getAllProductsRequestHandler = getAllProductsRequestHandler;
     }
 
-    public async Task<IActionResult> Index(CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken = default)
     {
         var response = await _getAllProductsRequestHandler.HandleAsync(new GetAllProductsRequest(), cancellationToken);
-        return View(response.Products);
+        return View(nameof(GetAllProducts), response.Products);
     }
 
     public IActionResult Remove(Guid productId, CancellationToken cancellationToken = default)
     {
         _productsStorage.Remove(productId, cancellationToken);
-        return RedirectToAction("Index");
+        return RedirectToAction("GetAllProducts");
     }
 
     public IActionResult Add()
@@ -79,7 +80,7 @@ public class ProductController : Controller
             };
 
             _productsStorage.Add(newProduct, cancellationToken);
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAllProducts");
         }
 
         return View();
@@ -119,6 +120,6 @@ public class ProductController : Controller
             ImagePath = product.ImagePath
         }, cancellationToken);
 
-        return RedirectToAction("Index");
+        return RedirectToAction("GetAllProducts");
     }
 }
