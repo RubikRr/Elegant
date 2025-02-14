@@ -81,7 +81,7 @@ public class ProductController : Controller
         return RedirectToAction(nameof(GetAllProducts));
     }
 
-    public async Task<IActionResult> Update(Guid productId, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> UpdateProduct(Guid productId, CancellationToken cancellationToken = default)
     {
         var response =
             await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId, },
@@ -93,17 +93,17 @@ public class ProductController : Controller
             Cost = response.Product.Cost,
             Description = response.Product.Description,
         };
-        return View(nameof(Update), editedProduct);
+        return View(nameof(UpdateProduct), editedProduct);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Update(UpdateProductViewModel product, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateProduct(UpdateProductViewModel product, CancellationToken cancellationToken)
     {
         var productImageDirectoryPath = Path.Combine(_appEnvironment.WebRootPath + Constants.ProductImageDirectoryPath);
         
         if (!ModelState.IsValid)
         {
-            return View(nameof(Update));
+            return View(nameof(UpdateProduct));
         }
         await _updateProductRequestHandler.HandleAsync(new UpdateProductRequest { ViewModel = product, ProductImageDirectoryPath = productImageDirectoryPath }, cancellationToken);
         

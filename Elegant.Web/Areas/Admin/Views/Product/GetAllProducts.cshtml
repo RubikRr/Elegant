@@ -21,7 +21,7 @@
                         @*<td>@(product.Id+1)</td>*@
                         <td>@product.Name</td>
                         <td class="w-25">@product.Cost</td>
-                        <td><a class="btn btn-primary" asp-area="admin" asp-controller="product" asp-action="update" asp-route-productId=@product.Id>Редактировать</a></td>
+                        <td><a class="btn btn-primary" asp-area="admin" asp-controller="product" asp-action="UpdateProduct" asp-route-productId=@product.Id>Редактировать</a></td>
                         <td> <button type="button" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#exampleModal">Удалить</button></td>
                     </tr>
 
