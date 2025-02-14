@@ -39,7 +39,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.CartOrder", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace Elegant.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartOrder");
                 });
 
             modelBuilder.Entity("Elegant.DAL.Models.FavoriteProduct", b =>
@@ -158,7 +158,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("UserDeliveryInfo");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.CartOrder", b =>
                 {
                     b.HasOne("Elegant.DAL.Models.Cart", null)
                         .WithMany("Items")
@@ -169,7 +169,7 @@ namespace Elegant.DAL.Migrations
                         .HasForeignKey("OrderId");
 
                     b.HasOne("Elegant.DAL.Models.Product", "Product")
-                        .WithMany("CartItems")
+                        .WithMany("CartOrders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -211,7 +211,7 @@ namespace Elegant.DAL.Migrations
 
             modelBuilder.Entity("Elegant.DAL.Models.Product", b =>
                 {
-                    b.Navigation("CartItems");
+                    b.Navigation("CartOrders");
                 });
 #pragma warning restore 612, 618
         }

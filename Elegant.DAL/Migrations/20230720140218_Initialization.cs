@@ -92,7 +92,7 @@ namespace Elegant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItem",
+                name: "CartOrder",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -103,19 +103,19 @@ namespace Elegant.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItem", x => x.Id);
+                    table.PrimaryKey("PK_CartOrder", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItem_Carts_CartId",
+                        name: "FK_CartOrder_Carts_CartId",
                         column: x => x.CartId,
                         principalTable: "Carts",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_CartItem_Orders_OrderId",
+                        name: "FK_CartOrder_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_CartItem_Products_ProductId",
+                        name: "FK_CartOrder_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -123,18 +123,18 @@ namespace Elegant.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_CartId",
-                table: "CartItem",
+                name: "IX_CartOrder_CartId",
+                table: "CartOrder",
                 column: "CartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_OrderId",
-                table: "CartItem",
+                name: "IX_CartOrder_OrderId",
+                table: "CartOrder",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItem_ProductId",
-                table: "CartItem",
+                name: "IX_CartOrder_ProductId",
+                table: "CartOrder",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -152,7 +152,7 @@ namespace Elegant.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CartItem");
+                name: "CartOrder");
 
             migrationBuilder.DropTable(
                 name: "FavoriteProducts");

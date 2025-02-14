@@ -34,7 +34,6 @@ public class DbProductsStorage : IProductsStorage
             productInStorage.Name = product.Name;
             productInStorage.Cost = product.Cost;
             productInStorage.Description = product.Description;
-            productInStorage.ImagePath = product.ImagePath;
         }
 
         await _dbContext.SaveChangesAsync(cancellationToken);

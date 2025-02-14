@@ -14,7 +14,6 @@ public static partial class Mapping
             Cost = product.Cost,
             Description = product.Description,
             ImageItemsPaths = product.ImageItems.Select(imageItem => imageItem.ImagePath).ToList(),
-            ImagePath = product.ImagePath
         };
     }
 
@@ -26,7 +25,6 @@ public static partial class Mapping
             Name = productViewModel.Name,
             Cost = productViewModel.Cost,
             Description = productViewModel.Description,
-            ImagePath = productViewModel.ImagePath
         };
     }
 

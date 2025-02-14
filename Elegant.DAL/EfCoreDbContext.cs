@@ -24,8 +24,6 @@ public sealed class EfCoreDbContext : DbContext
             Name = "Пиджак",
             Cost = 3750.50m,
             Description = "Крутой пиджак для крутой леди",
-            ImagePath = "/images/products/image1.png"
-
         };
         modelBuilder
             .Entity<Product>()

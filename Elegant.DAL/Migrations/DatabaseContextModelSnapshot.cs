@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Elegant.DAL.Migrations
 {
     [DbContext(typeof(EfCoreDbContext))]
@@ -15,12 +17,12 @@ namespace Elegant.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Elegant.DAL.Models.Cart", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +36,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.Core.Models.CartOrder", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,10 +62,33 @@ namespace Elegant.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartOrder");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.FavoriteProduct", b =>
+            modelBuilder.Entity("Elegant.Core.Models.DeliveryInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DeliveryInfo");
+                });
+
+            modelBuilder.Entity("Elegant.Core.Models.FavoriteProduct", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +107,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("FavoriteProducts");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.ImageItem", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Image", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,23 +125,9 @@ namespace Elegant.DAL.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ImageItems");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b422ac72-39b5-41c9-851e-95d6a18ad191"),
-                            ImagePath = "/images/products/image1.png",
-                            ProductId = new Guid("8001a098-bf36-4fb7-9b46-c3c21102e288")
-                        },
-                        new
-                        {
-                            Id = new Guid("ade8cac6-89f9-48e7-9666-cc3109ab9a06"),
-                            ImagePath = "/images/products/image2.png",
-                            ProductId = new Guid("8001a098-bf36-4fb7-9b46-c3c21102e288")
-                        });
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.Order", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -138,7 +149,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.Product", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,10 +162,6 @@ namespace Elegant.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -162,53 +169,20 @@ namespace Elegant.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8001a098-bf36-4fb7-9b46-c3c21102e288"),
-                            Cost = 3750.50m,
-                            Description = "Крутой пиджак для крутой леди",
-                            ImagePath = "/images/products/image1.png",
-                            Name = "Пиджак"
-                        });
                 });
 
-            modelBuilder.Entity("WomanShop.Models.UserDeliveryInfo", b =>
+            modelBuilder.Entity("Elegant.Core.Models.CartOrder", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserDeliveryInfo");
-                });
-
-            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
-                {
-                    b.HasOne("Elegant.DAL.Models.Cart", null)
+                    b.HasOne("Elegant.Core.Models.Cart", null)
                         .WithMany("Items")
                         .HasForeignKey("CartId");
 
-                    b.HasOne("Elegant.DAL.Models.Order", null)
+                    b.HasOne("Elegant.Core.Models.Order", null)
                         .WithMany("Items")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("Elegant.DAL.Models.Product", "Product")
-                        .WithMany("CartItems")
+                    b.HasOne("Elegant.Core.Models.Product", "Product")
+                        .WithMany("CartOrders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -216,9 +190,9 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.FavoriteProduct", b =>
+            modelBuilder.Entity("Elegant.Core.Models.FavoriteProduct", b =>
                 {
-                    b.HasOne("Elegant.DAL.Models.Product", "Product")
+                    b.HasOne("Elegant.Core.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -227,9 +201,9 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.ImageItem", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Image", b =>
                 {
-                    b.HasOne("Elegant.DAL.Models.Product", "Product")
+                    b.HasOne("Elegant.Core.Models.Product", "Product")
                         .WithMany("ImageItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -238,9 +212,9 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.Order", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Order", b =>
                 {
-                    b.HasOne("WomanShop.Models.UserDeliveryInfo", "DeliveryInfo")
+                    b.HasOne("Elegant.Core.Models.DeliveryInfo", "DeliveryInfo")
                         .WithMany()
                         .HasForeignKey("DeliveryInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -249,19 +223,19 @@ namespace Elegant.DAL.Migrations
                     b.Navigation("DeliveryInfo");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.Cart", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Cart", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.Order", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Order", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.Product", b =>
+            modelBuilder.Entity("Elegant.Core.Models.Product", b =>
                 {
-                    b.Navigation("CartItems");
+                    b.Navigation("CartOrders");
 
                     b.Navigation("ImageItems");
                 });

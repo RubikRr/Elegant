@@ -1,5 +1,6 @@
 ﻿using Elegant.Abstraction.Handlers.Command;
 using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Command.AddProduct;
 using Elegant.Business.Handlers.Product.Command.RemoveProductById;
 using Elegant.Business.Handlers.Product.Query.GetAllProducts;
 using Elegant.Business.Handlers.Product.Query.GetProductById;
@@ -21,19 +22,22 @@ public class ProductController : Controller
     private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
     private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQueryHandler;
 
-    private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse>
-        _removeProductByIdRequestHandler;
+    private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> _removeProductByIdRequestHandler;
+
+    private readonly ICommandHandler<AddProductRequest, AddProductResponse> _addProductRequestHandler;
 
     public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment,
         IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler,
         ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> removeProductByIdRequestHandler,
-        IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler)
+        IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler,
+        ICommandHandler<AddProductRequest, AddProductResponse> addProductRequestHandler)
     {
         _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
         _getAllProductsRequestHandler = getAllProductsRequestHandler;
         _removeProductByIdRequestHandler = removeProductByIdRequestHandler;
         _getProductByIdQueryHandler = getProductByIdQueryHandler;
+        _addProductRequestHandler = addProductRequestHandler;
     }
 
     public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken = default)
@@ -44,7 +48,7 @@ public class ProductController : Controller
 
     public async Task<IActionResult> Remove(Guid productId, CancellationToken cancellationToken = default)
     {
-       await _removeProductByIdRequestHandler.HandleAsync(new RemoveProductByIdRequest { ProductId = productId },
+        await _removeProductByIdRequestHandler.HandleAsync(new RemoveProductByIdRequest { ProductId = productId },
             cancellationToken);
         return RedirectToAction(nameof(GetAllProducts));
     }
@@ -56,52 +60,23 @@ public class ProductController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddProduct(CreateProductViewModel product, CancellationToken cancellationToken)
+    public async Task<IActionResult> AddProduct(CreateProductViewModel product, CancellationToken cancellationToken)
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            var productImagePath = Path.Combine(_appEnvironment.WebRootPath + "/images/products/");
-            if (!Directory.Exists(productImagePath))
-            {
-                Directory.CreateDirectory(productImagePath);
-            }
-
-            var imageItems = new List<Image>();
-            foreach (var image in product.UploadedImage)
-            {
-                var fileName = Guid.NewGuid() + "." + image.FileName.Split('.').Last();
-                using (var fileStream = new FileStream(productImagePath + fileName, FileMode.Create))
-                {
-                    image.CopyTo(fileStream);
-                }
-
-                imageItems.Add(new Image
-                {
-                    ImagePath = "/images/products/" + fileName,
-                    Product = null
-                });
-            }
-
-            var newProduct = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = product.Name,
-                Cost = product.Cost,
-                Description = product.Description,
-                ImageItems = imageItems,
-                ImagePath = "/images/products/image1"
-            };
-
-            _productsStorage.Add(newProduct, cancellationToken);
-            return RedirectToAction("GetAllProducts");
+            return View(nameof(AddProduct));
         }
 
-        return View();
+        await _addProductRequestHandler.HandleAsync(new AddProductRequest { ViewModel = product }, cancellationToken);
+
+        return RedirectToAction(nameof(GetAllProducts));
     }
 
     public async Task<IActionResult> Update(Guid productId, CancellationToken cancellationToken = default)
     {
-        var response = await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId }, cancellationToken);
+        var response =
+            await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId },
+                cancellationToken);
         var editedProduct = new EditProductViewModel
         {
             Id = response.Product.Id,
@@ -130,7 +105,6 @@ public class ProductController : Controller
             Name = product.Name,
             Cost = product.Cost,
             Description = product.Description,
-            ImagePath = product.ImagePath
         }, cancellationToken);
 
         return RedirectToAction("GetAllProducts");
