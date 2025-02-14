@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Elegant.DAL.Migrations
 {
     [DbContext(typeof(EfCoreDbContext))]
-    [Migration("20230720140218_Initialization")]
+    [Migration("20230722114901_Initialization")]
     partial class Initialization
     {
         /// <inheritdoc />

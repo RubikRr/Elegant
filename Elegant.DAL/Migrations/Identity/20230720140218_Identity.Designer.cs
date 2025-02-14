@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Elegant.DAL.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230722114901_Identity")]
+    [Migration("20230720140218_Identity")]
     partial class Identity
     {
         /// <inheritdoc />

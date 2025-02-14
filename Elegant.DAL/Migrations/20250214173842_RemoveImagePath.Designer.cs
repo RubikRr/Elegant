@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Elegant.DAL.Migrations
 {
     [DbContext(typeof(EfCoreDbContext))]
-    [Migration("20250214173842_RemoveImagePath1")]
+    [Migration("20250214173842_RemoveImagePath")]
     partial class RemoveImagePath
     {
         /// <inheritdoc />
