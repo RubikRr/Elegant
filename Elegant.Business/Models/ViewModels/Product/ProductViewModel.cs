@@ -7,5 +7,4 @@ public class ProductViewModel
     public decimal Cost { get; init; }
     public string Description { get; init; } = string.Empty;
     public List<string> ImageItemsPaths { get; init; } = new();
-    public string ImagePath { get; init; } = string.Empty;
 }

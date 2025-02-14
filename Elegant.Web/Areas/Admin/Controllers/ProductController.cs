@@ -83,7 +83,6 @@ public class ProductController : Controller
             Name = response.Product.Name,
             Cost = response.Product.Cost,
             Description = response.Product.Description,
-            ImagePath = response.Product.ImagePath,
         };
         return View(nameof(Update), editedProduct);
     }
