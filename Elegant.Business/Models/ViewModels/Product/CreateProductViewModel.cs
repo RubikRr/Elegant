@@ -15,6 +15,5 @@ public class CreateProductViewModel
     [StringLength(10000, ErrorMessage = "Описание до 10000 символов")]
     public string Description { get; init; } = string.Empty;
 
-    [Required(ErrorMessage = "Выберете фотографию")]
-    public IFormFile[] UploadedImage { get; init; } = null!;
+    public IFormFile[]? UploadedImage { get; init; }
 }

@@ -1,4 +1,5 @@
 using Elegant.Abstraction.Handlers.Command;
+using Elegant.Core.Models;
 using Elegant.DAL.Interfaces;
 
 namespace Elegant.Business.Handlers.Product.Command.AddProduct;
@@ -14,15 +15,15 @@ public class AddProductCommandHandler : ICommandHandler<AddProductRequest, AddPr
 
     public async Task<AddProductResponse> HandleAsync(AddProductRequest command, CancellationToken cancellationToken = default)
     {
-         var newProduct = new Core.Models.Product
-         {
-             Id = Guid.NewGuid(),
-             Name = command.ViewModel.Name,
-             Cost = command.ViewModel.Cost,
-             Description = command.ViewModel.Description,
-         };
-        
-         await _productsStorage.Add(newProduct, cancellationToken);
+        var newProduct = new Core.Models.Product
+        {
+            Id = Guid.NewGuid(),
+            Name = command.ViewModel.Name,
+            Cost = command.ViewModel.Cost,
+            Description = command.ViewModel.Description,
+        };
+
+        await _productsStorage.Add(newProduct, cancellationToken);
         return new AddProductResponse();
     }
 }
