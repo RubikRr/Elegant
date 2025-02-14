@@ -25,7 +25,7 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Search(string productName, CancellationToken cancellationToken)
     {
-        var productsModel = await _productsStorage.Search(productName, cancellationToken);
+        var productsModel = await _productsStorage.SearchAsync(productName, cancellationToken);
         return View(Mapping.ToProductsViewModel(productsModel));
     }
 }

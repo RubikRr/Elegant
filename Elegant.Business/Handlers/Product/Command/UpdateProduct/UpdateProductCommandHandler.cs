@@ -30,7 +30,7 @@ public class UpdateProductCommandHandler : ICommandHandler<UpdateProductRequest,
             UpdateImagesForProduct(updatedProduct, command.ViewModel.UploadedImage, command.ProductImageDirectoryPath);
         }
 
-        await _productsStorage.Update(updatedProduct, cancellationToken);
+        await _productsStorage.UpdateAsync(updatedProduct, cancellationToken);
 
         return new UpdateProductResponse();
     }
@@ -51,7 +51,7 @@ public class UpdateProductCommandHandler : ICommandHandler<UpdateProductRequest,
 
     private async Task ResetPreviousImagesForProduct(Guid productId, string productImageDirectoryPath, CancellationToken cancellationToken = default)
     {
-        var product = await _productsStorage.GetById(productId, cancellationToken);
+        var product = await _productsStorage.GetByIdAsync(productId, cancellationToken);
 
         if (product == null)
         {

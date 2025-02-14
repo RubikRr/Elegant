@@ -25,7 +25,7 @@ public class FavoritesController : Controller
 
     public async Task<IActionResult> Add(Guid productId, CancellationToken cancellationToken)
     {
-        var product = await _productsStorage.GetById(productId, cancellationToken);
+        var product = await _productsStorage.GetByIdAsync(productId, cancellationToken);
         if (product == null) { return RedirectToAction("Index"); }
         _favoritesStorage.Add(DbConstants.UserId, product);
         return RedirectToAction("Index");

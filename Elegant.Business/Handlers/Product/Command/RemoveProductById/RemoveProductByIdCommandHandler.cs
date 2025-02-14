@@ -15,7 +15,7 @@ public class RemoveProductByIdCommandHandler : ICommandHandler<RemoveProductById
     public async Task<RemoveProductByIdResponse> HandleAsync(RemoveProductByIdRequest command,
         CancellationToken cancellationToken = default)
     {
-        await _productsStorage.Remove(command.ProductId, cancellationToken);
+        await _productsStorage.RemoveAsync(command.ProductId, cancellationToken);
         return new RemoveProductByIdResponse();
     }
 }

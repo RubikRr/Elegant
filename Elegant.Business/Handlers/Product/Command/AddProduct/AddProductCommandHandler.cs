@@ -29,7 +29,7 @@ public class AddProductCommandHandler : ICommandHandler<AddProductRequest, AddPr
             AddImagesForProduct(newProduct, command.ViewModel.UploadedImage, command.ProductImageDirectoryPath);
         }
 
-        await _productsStorage.Add(newProduct, cancellationToken);
+        await _productsStorage.AddAsync(newProduct, cancellationToken);
         return new AddProductResponse();
     }
 

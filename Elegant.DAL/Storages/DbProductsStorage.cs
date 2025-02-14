@@ -13,22 +13,22 @@ public class DbProductsStorage : IProductsStorage
         _dbContext = efCoreDbContext;
     }
 
-    public async Task<List<Product>> GetAll(CancellationToken cancellationToken) =>await _dbContext
+    public async Task<List<Product>> GetAllAsync(CancellationToken cancellationToken) =>await _dbContext
         .Products
         .Include(product => product.CartItems)
         .Include(product => product.ImageItems)
         .AsSplitQuery()
         .ToListAsync(cancellationToken: cancellationToken);
 
-    public async Task Add(Product product, CancellationToken cancellationToken)
+    public async Task AddAsync(Product product, CancellationToken cancellationToken)
     {
         _dbContext.Products.Add(product);
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Update(Product product, CancellationToken cancellationToken)
+    public async Task UpdateAsync(Product product, CancellationToken cancellationToken)
     {
-        var productInStorage = await GetById(product.Id, cancellationToken);
+        var productInStorage = await GetByIdAsync(product.Id, cancellationToken);
         if (productInStorage != null)
         {
             productInStorage.Name = product.Name;
@@ -40,7 +40,7 @@ public class DbProductsStorage : IProductsStorage
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<Product>> Search(string name, CancellationToken cancellationToken)
+    public async Task<List<Product>> SearchAsync(string name, CancellationToken cancellationToken)
     {
         return string.IsNullOrWhiteSpace(name)
             ? new List<Product>()
@@ -48,9 +48,9 @@ public class DbProductsStorage : IProductsStorage
                 .ToListAsync(cancellationToken);
     }
 
-    public async Task Remove(Guid productId, CancellationToken cancellationToken)
+    public async Task RemoveAsync(Guid productId, CancellationToken cancellationToken)
     {
-        var product = await GetById(productId, cancellationToken);
+        var product = await GetByIdAsync(productId, cancellationToken);
         if (product == null)
         {
             return;
@@ -60,7 +60,7 @@ public class DbProductsStorage : IProductsStorage
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<Product?> GetById(Guid id, CancellationToken cancellationToken)
+    public async Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _dbContext.Products
             .Include(product => product.CartItems)

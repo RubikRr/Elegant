@@ -16,6 +16,6 @@ public class GetAllProductsQueryHandler : IQueryHandler<GetAllProductsRequest, G
         CancellationToken cancellationToken = default)
     {
         return new GetAllProductsResponse
-            { Products = Mapping.Mapping.ToProductsViewModel(await _productsStorage.GetAll(cancellationToken)) };
+            { Products = Mapping.Mapping.ToProductsViewModel(await _productsStorage.GetAllAsync(cancellationToken)) };
     }
 }

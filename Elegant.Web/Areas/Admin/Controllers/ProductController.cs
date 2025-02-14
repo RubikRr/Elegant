@@ -19,7 +19,6 @@ namespace Elegant.Web.Areas.Admin.Controllers;
 [Authorize(Roles = DbConstants.AdminRoleName)]
 public class ProductController : Controller
 {
-    private readonly IProductsStorage _productsStorage;
     private readonly IWebHostEnvironment _appEnvironment;
     private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
     private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQueryHandler;
@@ -30,14 +29,13 @@ public class ProductController : Controller
     private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> _removeProductByIdRequestHandler;
 
 
-    public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment,
+    public ProductController(IWebHostEnvironment appEnvironment,
         IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler,
         ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> removeProductByIdRequestHandler,
         IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler,
         ICommandHandler<AddProductRequest, AddProductResponse> addProductRequestHandler,
         ICommandHandler<UpdateProductRequest, UpdateProductResponse> updateProductRequestHandler)
     {
-        _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
         _getAllProductsRequestHandler = getAllProductsRequestHandler;
         _removeProductByIdRequestHandler = removeProductByIdRequestHandler;
