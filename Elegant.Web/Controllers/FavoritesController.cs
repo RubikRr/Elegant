@@ -1,4 +1,5 @@
-﻿using Elegant.DAL;
+﻿using Elegant.Business.Mapping;
+using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,9 @@ public class FavoritesController : Controller
         return View(Mapping.ToProductsViewModel(favoriteProducts));
     }
 
-    public async Task<IActionResult> Add(Guid productId)
+    public async Task<IActionResult> Add(Guid productId, CancellationToken cancellationToken)
     {
-        var product = await _productsStorage.GetById(productId);
+        var product = await _productsStorage.GetByIdAsync(productId, cancellationToken);
         if (product == null) { return RedirectToAction("Index"); }
         _favoritesStorage.Add(DbConstants.UserId, product);
         return RedirectToAction("Index");

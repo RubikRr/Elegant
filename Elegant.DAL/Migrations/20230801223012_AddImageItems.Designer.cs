@@ -39,7 +39,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.CartOrder", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace Elegant.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartOrder");
                 });
 
             modelBuilder.Entity("Elegant.DAL.Models.FavoriteProduct", b =>
@@ -153,32 +153,6 @@ namespace Elegant.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e9869a80-68c8-42a5-8f5e-aa1f7d6714b0"),
-                            Cost = 3750.50m,
-                            Description = "Крутой пиджак для крутой леди",
-                            ImagePath = "/images/products/image1.png",
-                            Name = "Пиджак"
-                        },
-                        new
-                        {
-                            Id = new Guid("816373ff-e3b1-486a-855b-9649462f0799"),
-                            Cost = 5700.75m,
-                            Description = "Даже патрик обзавидуется такому платью",
-                            ImagePath = "/images/products/image2.png",
-                            Name = "Платье"
-                        },
-                        new
-                        {
-                            Id = new Guid("84f2c652-5b7d-4cbd-bb9c-dbfdfbe91be3"),
-                            Cost = 3500.75m,
-                            Description = "Туфельки для красотульки",
-                            ImagePath = "/images/products/image3.png",
-                            Name = "Туфли"
-                        });
                 });
 
             modelBuilder.Entity("WomanShop.Models.UserDeliveryInfo", b =>
@@ -204,7 +178,7 @@ namespace Elegant.DAL.Migrations
                     b.ToTable("UserDeliveryInfo");
                 });
 
-            modelBuilder.Entity("Elegant.DAL.Models.CartItem", b =>
+            modelBuilder.Entity("Elegant.DAL.Models.CartOrder", b =>
                 {
                     b.HasOne("Elegant.DAL.Models.Cart", null)
                         .WithMany("Items")
@@ -215,7 +189,7 @@ namespace Elegant.DAL.Migrations
                         .HasForeignKey("OrderId");
 
                     b.HasOne("Elegant.DAL.Models.Product", "Product")
-                        .WithMany("CartItems")
+                        .WithMany("CartOrders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -268,7 +242,7 @@ namespace Elegant.DAL.Migrations
 
             modelBuilder.Entity("Elegant.DAL.Models.Product", b =>
                 {
-                    b.Navigation("CartItems");
+                    b.Navigation("CartOrders");
 
                     b.Navigation("ImageItems");
                 });

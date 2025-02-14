@@ -6,18 +6,18 @@ namespace Elegant.Web.Controllers;
 
 public class ProductController : Controller
 {
-    private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQuery;
+    private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQueryHandler;
 
-    public ProductController(IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQuery)
+    public ProductController(IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler)
     {
-        _getProductByIdQuery = getProductByIdQuery;
+        _getProductByIdQueryHandler = getProductByIdQueryHandler;
     }
 
     public async Task<IActionResult> GetProductById(Guid productId, CancellationToken cancellationToken = default)
     {
         var response =
-            await _getProductByIdQuery.HandleAsync(new GetProductByIdRequest { ProductId = productId },
+            await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId },
                 cancellationToken);
-        return View(nameof(GetProductById), Mapping.ToProductViewModel(response.Product));
+        return View(nameof(GetProductById), response.Product);
     }
 }

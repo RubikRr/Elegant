@@ -1,0 +1,37 @@
+﻿@model Elegant.Business.Models.ViewModels.Product.CreateProductViewModel
+<form method="post" enctype="multipart/form-data" asp-area="admin" asp-controller="product" asp-action="AddProduct">
+    <div class="row mb-3">
+        <div class="col-12">
+            <h1>Добавление продукта</h1>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="name" class="col-sm-2 col-form-label">Название</label>
+        <div class="col-sm-4">
+            <input type="text" asp-for="Name" id="name"class="form-control" >
+         </div>
+         <span style="color:red" asp-validation-for="Name"></span>
+    </div>
+    <div class="row mb-3">
+        <label for="cost" class="col-sm-2 col-form-label">Цена ₽</label>
+        <div class="col-sm-4">
+            <input type="number" asp-for="Cost" id="cost"class="form-control">
+         </div>
+         <span style="color:red" asp-validation-for="Cost"></span>
+    </div>
+     <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label">Описание</label>
+        <div class="col-sm-4">
+            <textarea class="form-control" asp-for="Description" id="description"></textarea>
+         </div>
+         <span style="color:red" asp-validation-for="Description"></span>
+    </div>
+    <div class="row mb-3">
+        <label for="image" class="col-sm-2 col-form-label">Картинка</label>
+        <div class="col-sm-4">
+            <input type="file" multiple asp-for="UploadedImage" id="image" class="form-control">
+        </div>
+        <span style="color:red"></span>
+    </div>
+   <button class="btn btn-success" type="submit">Добавить</button>
+</form>

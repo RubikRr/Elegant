@@ -1,4 +1,4 @@
-﻿@model List<Elegant.Web.ViewModels.Product.ProductViewModel>
+﻿@model IReadOnlyCollection<Elegant.Business.Models.ViewModels.Product.ProductViewModel>
 
 @if (Model == null)
 {
@@ -20,7 +20,6 @@ else
                     asp-action="remove"
                     asp-route-productId=@product.Id style="color:red" class="btn ml-3 fa fa-heart"><i class=""></i></a>
                      </div>
-                <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="...">
                 <div class="card-body">
                    
                     <a class="card-title" asp-area=""

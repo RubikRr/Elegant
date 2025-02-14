@@ -1,11 +1,11 @@
-﻿@model Elegant.Web.ViewModels.Product.ProductViewModel
+﻿@model Elegant.Business.Models.ViewModels.Product.ProductViewModel
 
 <div class="row">
     <div class="col-6">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="~/images/dsds.jpg" class="d-block w-100" alt="...">
+                    <img src="~/images/products/default.jpg" class="d-block w-100" alt="...">
                 </div>
                 @foreach (var path in Model.ImageItemsPaths)
                 {
