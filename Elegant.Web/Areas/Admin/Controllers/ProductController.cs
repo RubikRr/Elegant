@@ -2,6 +2,7 @@
 using Elegant.Abstraction.Handlers.Query;
 using Elegant.Business.Handlers.Product.Command.RemoveProductById;
 using Elegant.Business.Handlers.Product.Query.GetAllProducts;
+using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Elegant.Business.Models.ViewModels.Product;
 using Elegant.Core.Models;
 using Elegant.DAL;
@@ -18,18 +19,21 @@ public class ProductController : Controller
     private readonly IProductsStorage _productsStorage;
     private readonly IWebHostEnvironment _appEnvironment;
     private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
+    private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQueryHandler;
 
     private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse>
         _removeProductByIdRequestHandler;
 
     public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment,
         IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler,
-        ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> removeProductByIdRequestHandler)
+        ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> removeProductByIdRequestHandler,
+        IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler)
     {
         _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
         _getAllProductsRequestHandler = getAllProductsRequestHandler;
         _removeProductByIdRequestHandler = removeProductByIdRequestHandler;
+        _getProductByIdQueryHandler = getProductByIdQueryHandler;
     }
 
     public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken = default)
@@ -45,13 +49,14 @@ public class ProductController : Controller
         return RedirectToAction(nameof(GetAllProducts));
     }
 
-    public IActionResult Add()
+    [HttpGet]
+    public IActionResult AddProduct()
     {
-        return View();
+        return View(nameof(AddProduct));
     }
 
     [HttpPost]
-    public IActionResult Add(CreateProductViewModel product, CancellationToken cancellationToken)
+    public IActionResult AddProduct(CreateProductViewModel product, CancellationToken cancellationToken)
     {
         if (ModelState.IsValid)
         {
@@ -96,16 +101,16 @@ public class ProductController : Controller
 
     public async Task<IActionResult> Update(Guid productId, CancellationToken cancellationToken = default)
     {
-        var product = await _productsStorage.GetById(productId, cancellationToken);
-
-        return View(new EditProductViewModel
+        var response = await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId }, cancellationToken);
+        var editedProduct = new EditProductViewModel
         {
-            Id = product.Id,
-            Name = product.Name,
-            Cost = product.Cost,
-            Description = product.Description,
-            ImagePath = product.ImagePath,
-        });
+            Id = response.Product.Id,
+            Name = response.Product.Name,
+            Cost = response.Product.Cost,
+            Description = response.Product.Description,
+            ImagePath = response.Product.ImagePath,
+        };
+        return View(nameof(Update), editedProduct);
     }
 
     [HttpPost]

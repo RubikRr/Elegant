@@ -4,23 +4,23 @@
     <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Название</label>
         <div class="col-sm-4">
-            <input type="text" asp-for="Name" id="name"value=@Model.Name class="form-control" >
-         </div>
-          <span style="color:red" asp-validation-for="Name"></span>
+            <input type="text" asp-for="Name" id="name"value=@Model.Name class="form-control">
+        </div>
+        <span style="color:red" asp-validation-for="Name"></span>
     </div>
     <div class="row mb-3">
         <label for="cost" class="col-sm-2 col-form-label">Цена ₽</label>
         <div class="col-sm-4">
             <input type="number" asp-for="Cost" id="cost" value=@Model.Cost class="form-control">
-         </div>
-         <span style="color:red" asp-validation-for="Cost"></span>
+        </div>
+        <span style="color:red" asp-validation-for="Cost"></span>
     </div>
-     <div class="row mb-3">
+    <div class="row mb-3">
         <label for="description" class="col-sm-2 col-form-label">Описание</label>
         <div class="col-sm-4">
             <textarea class="form-control" asp-for="Description" id="description">@Model.Description</textarea>
-         </div>
-         <span style="color:red" asp-validation-for="Description"></span>
+        </div>
+        <span style="color:red" asp-validation-for="Description"></span>
     </div>
     <div class="row mb-3">
         <label for="image" class="col-sm-2 col-form-label">Старое изображение</label>
@@ -37,8 +37,8 @@
     </div>
     <div class="row mb-3">
         <div class="col-sm-4">
-            <input  asp-for="Id" hidden="true" value=@Model.Id class="form-control">
-         </div>
+            <input asp-for="Id" hidden="true" value=@Model.Id class="form-control">
+        </div>
     </div>
-   <button class="btn btn-success"  type="submit">Изменить</button>
+    <button class="btn btn-success" type="submit">Изменить</button>
 </form>
