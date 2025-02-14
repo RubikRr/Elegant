@@ -3,6 +3,7 @@ using Elegant.Abstraction.Handlers.Query;
 using Elegant.Business;
 using Elegant.Business.Handlers.Product.Command.AddProduct;
 using Elegant.Business.Handlers.Product.Command.RemoveProductById;
+using Elegant.Business.Handlers.Product.Command.UpdateProduct;
 using Elegant.Business.Handlers.Product.Query.GetAllProducts;
 using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Elegant.Business.Models.ViewModels.Product;
@@ -23,15 +24,18 @@ public class ProductController : Controller
     private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
     private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQueryHandler;
 
-    private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> _removeProductByIdRequestHandler;
 
     private readonly ICommandHandler<AddProductRequest, AddProductResponse> _addProductRequestHandler;
+    private readonly ICommandHandler<UpdateProductRequest, UpdateProductResponse> _updateProductRequestHandler;
+    private readonly ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> _removeProductByIdRequestHandler;
+
 
     public ProductController(IProductsStorage productsStorage, IWebHostEnvironment appEnvironment,
         IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> getAllProductsRequestHandler,
         ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse> removeProductByIdRequestHandler,
         IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler,
-        ICommandHandler<AddProductRequest, AddProductResponse> addProductRequestHandler)
+        ICommandHandler<AddProductRequest, AddProductResponse> addProductRequestHandler,
+        ICommandHandler<UpdateProductRequest, UpdateProductResponse> updateProductRequestHandler)
     {
         _productsStorage = productsStorage;
         _appEnvironment = appEnvironment;
@@ -39,6 +43,7 @@ public class ProductController : Controller
         _removeProductByIdRequestHandler = removeProductByIdRequestHandler;
         _getProductByIdQueryHandler = getProductByIdQueryHandler;
         _addProductRequestHandler = addProductRequestHandler;
+        _updateProductRequestHandler = updateProductRequestHandler;
     }
 
     public async Task<IActionResult> GetAllProducts(CancellationToken cancellationToken = default)
@@ -81,7 +86,7 @@ public class ProductController : Controller
         var response =
             await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId, },
                 cancellationToken);
-        var editedProduct = new EditProductViewModel
+        var editedProduct = new UpdateProductViewModel
         {
             Id = response.Product.Id,
             Name = response.Product.Name,
@@ -92,24 +97,16 @@ public class ProductController : Controller
     }
 
     [HttpPost]
-    public IActionResult Update(EditProductViewModel product, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(UpdateProductViewModel product, CancellationToken cancellationToken)
     {
-        var productImagePath = Path.Combine(_appEnvironment.WebRootPath + "/images/products/");
-        var fileName = Guid.NewGuid() + "." + product.UploadedImage.FileName.Split('.').Last();
-        using (var fileStream = new FileStream(productImagePath + fileName, FileMode.Create))
+        var productImageDirectoryPath = Path.Combine(_appEnvironment.WebRootPath + Constants.ProductImageDirectoryPath);
+        
+        if (!ModelState.IsValid)
         {
-            product.UploadedImage.CopyTo(fileStream);
+            return View(nameof(Update));
         }
-
-        product.ImagePath = "/images/products/" + fileName;
-        _productsStorage.Update(new Product
-        {
-            Id = product.Id,
-            Name = product.Name,
-            Cost = product.Cost,
-            Description = product.Description,
-        }, cancellationToken);
-
-        return RedirectToAction("GetAllProducts");
+        await _updateProductRequestHandler.HandleAsync(new UpdateProductRequest { ViewModel = product, ProductImageDirectoryPath = productImageDirectoryPath }, cancellationToken);
+        
+        return RedirectToAction(nameof(GetAllProducts));
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Elegant.Business.Models.ViewModels.Product;
 
-public class EditProductViewModel
+public class UpdateProductViewModel
 {
     public Guid Id { get; init; }
     public string Name { get; init; } = string.Empty;
@@ -16,8 +16,5 @@ public class EditProductViewModel
     [StringLength(10000, ErrorMessage = "Описание до 10000 символов")]
     public string Description { get; init; } = string.Empty;
 
-    [Required(ErrorMessage = "Выберете фотографию")]
-    public string ImagePath { get; set; } = string.Empty;
-
-    public IFormFile UploadedImage { get; init; } = null!;
+    public IFormFile[]? UploadedImage { get; init; }
 }
