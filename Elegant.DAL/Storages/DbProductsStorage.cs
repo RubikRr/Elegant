@@ -13,7 +13,7 @@ public class DbProductsStorage : IProductsStorage
         _dbContext = efCoreDbContext;
     }
 
-    public Task<List<Product>> GetAll(CancellationToken cancellationToken) => _dbContext
+    public async Task<List<Product>> GetAll(CancellationToken cancellationToken) =>await _dbContext
         .Products
         .Include(product => product.CartItems)
         .Include(product => product.ImageItems)

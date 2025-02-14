@@ -1,5 +1,6 @@
 ﻿using Elegant.Abstraction.Handlers.Command;
 using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business;
 using Elegant.Business.Handlers.Product.Command.AddProduct;
 using Elegant.Business.Handlers.Product.Command.RemoveProductById;
 using Elegant.Business.Handlers.Product.Query.GetAllProducts;
@@ -67,7 +68,10 @@ public class ProductController : Controller
             return View(nameof(AddProduct));
         }
 
-        await _addProductRequestHandler.HandleAsync(new AddProductRequest { ViewModel = product }, cancellationToken);
+        var productImageDirectoryPath = Path.Combine(_appEnvironment.WebRootPath + Constants.ProductImageDirectoryPath);
+
+        await _addProductRequestHandler.HandleAsync(
+            new AddProductRequest { ViewModel = product, ProductImageDirectoryPath = productImageDirectoryPath }, cancellationToken);
 
         return RedirectToAction(nameof(GetAllProducts));
     }
@@ -75,7 +79,7 @@ public class ProductController : Controller
     public async Task<IActionResult> Update(Guid productId, CancellationToken cancellationToken = default)
     {
         var response =
-            await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId },
+            await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId, },
                 cancellationToken);
         var editedProduct = new EditProductViewModel
         {

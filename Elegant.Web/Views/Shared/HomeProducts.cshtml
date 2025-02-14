@@ -13,7 +13,7 @@
                         <i class=""></i>
                     </a>
                 </div>
-                <img src=@(product.ImageItemsPaths.Count != 0 ? product.ImageItemsPaths.FirstOrDefault() : "/images/products/default.jpg") class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
+                <img src=@(product.ImageItemsPaths.Count != 0 ? product.ImageItemsPaths.First() : "/images/products/default.jpg") class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
                 <div class="card-body">
                     <a class="card-title fs-5"
                        asp-area=""
