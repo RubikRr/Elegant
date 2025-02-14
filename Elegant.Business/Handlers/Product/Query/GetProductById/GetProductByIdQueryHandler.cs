@@ -19,7 +19,7 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdRequest, G
 
         if (product == null)
         {
-            throw new Exception($"Товар с таким не был найден");
+            throw new Exception($"Товар с таким id не был найден");
         }
 
         return new GetProductByIdResponse { Product = Mapping.Mapping.ToProductViewModel(product) };

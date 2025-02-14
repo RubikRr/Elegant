@@ -40,7 +40,7 @@ public class DbProductsStorage : IProductsStorage
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<Product>> SearchAsync(string name, CancellationToken cancellationToken)
+    public async Task<List<Product>> GetByNameAsync(string name, CancellationToken cancellationToken)
     {
         return string.IsNullOrWhiteSpace(name)
             ? new List<Product>()
