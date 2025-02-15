@@ -1,4 +1,4 @@
-﻿@model List<Elegant.Web.ViewModels.UserViewModel>
+﻿@model List<Elegant.Business.Models.ViewModels.User.UserViewModel>
 <div class="row">
     @await Html.PartialAsync("LeftAdminMenu")
 
@@ -18,8 +18,8 @@
                 <tbody>
                     <tr onclick="window.location.href='/admin/user/Details?userId=@user.Id'; return false">
                         <td>@user.Email</td>
-                        <td>@(user?.Name ?? "-")</td>
-                        <td>@(user?.Phone ?? "-")</td>
+                        <td>@(user.Name ?? "-")</td>
+                        <td>@(user.Phone ?? "-")</td>
                     </tr>
                 </tbody>
             }

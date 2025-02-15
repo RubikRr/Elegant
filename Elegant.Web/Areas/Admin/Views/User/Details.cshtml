@@ -1,4 +1,4 @@
-﻿@model Elegant.Web.ViewModels.UserViewModel
+﻿@model Elegant.Business.Models.ViewModels.User.UserViewModel
 <div class="row">
         @await Html.PartialAsync("LeftAdminMenu")
   
@@ -48,23 +48,23 @@
                                      asp-area="admin"
                                         asp-controller="user"
                                         asp-action="ResetPassword"
-                                        asp-route-userId=@Model.Id>Смена пароля</a></li>
+                                        asp-route-userId=@Model?.Id>Смена пароля</a></li>
                                     <li><a class="dropdown-item"
                                         asp-area="admin"
                                         asp-controller="user"
                                         asp-action="update"
-                                        asp-route-userId=@Model.Id>Редактирование данных</a></li>
+                                        asp-route-userId=@Model?.Id>Редактирование данных</a></li>
                                     <li><a class="dropdown-item"
                                          asp-area="admin"
                                         asp-controller="user"
                                         asp-action="updateRole"
-                                        asp-route-userId=@Model.Id>Права доступа</a></li>
+                                        asp-route-userId=@Model?.Id>Права доступа</a></li>
                                     <li>
                                         <a class="dropdown-item"
                                         asp-area="admin"
                                         asp-controller="user"
                                         asp-action="remove"
-                                        asp-route-userId=@Model.Id>Удалить пользователя</a>
+                                        asp-route-userId=@Model?.Id>Удалить пользователя</a>
                                     </li>
                                 </ul>
                             </div>

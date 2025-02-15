@@ -1,28 +1,36 @@
-﻿using Elegant.Business.Services;
+﻿using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Query.GetAllProducts;
+using Elegant.Business.Handlers.Product.Query.GetProductsByName;
+using Elegant.Business.Mapping;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+
 namespace Elegant.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IProductsStorage _productsStorage;
+    private readonly IQueryHandler<GetAllProductsRequest, GetAllProductsResponse> _getAllProductsRequestHandler;
+    private readonly IQueryHandler<GetProductsByNameRequest, GetProductsByNameResponse> _getProductsByNameRequestHandler;
 
-    public HomeController(IProductsStorage productsStorage)
+    public HomeController(IQueryHandler<GetAllProductsRequest,
+            GetAllProductsResponse> getAllProductsRequestHandler,
+        IQueryHandler<GetProductsByNameRequest, GetProductsByNameResponse> getProductsByNameRequestHandler)
     {
-        _productsStorage = productsStorage;
+        _getAllProductsRequestHandler = getAllProductsRequestHandler;
+        _getProductsByNameRequestHandler = getProductsByNameRequestHandler;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
-        var productsModel = _productsStorage.GetAll();
-        var test = Mapping.ToProductsViewModel(productsModel);
-        return View(test);
+        var response = await _getAllProductsRequestHandler.HandleAsync(new GetAllProductsRequest(), cancellationToken);
+        return View(nameof(Index), response.Products);
     }
 
     [HttpPost]
-    public IActionResult Search(string productName)
+    public async Task<IActionResult> Search(string productName, CancellationToken cancellationToken)
     {
-        var productsModel = _productsStorage.Search(productName);
-        return View(Mapping.ToProductsViewModel(productsModel));
+        var response = await _getProductsByNameRequestHandler.HandleAsync(new GetProductsByNameRequest { ProductName = productName },
+            cancellationToken);
+        return View(nameof(Search), response.Products);
     }
 }

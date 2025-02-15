@@ -1,8 +1,8 @@
-﻿using Elegant.Core.Models;
+﻿using Elegant.Business;
+using Elegant.Business.Mapping;
+using Elegant.Business.Models.ViewModels.User;
+using Elegant.Core.Models;
 using Elegant.DAL;
-using Elegant.Web.Areas.Admin.ViewModels;
-using Elegant.Web.Helpers;
-using Elegant.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Elegant.Web.Areas.Admin.Controllers;
 
-[Area(Constants.AdminRoleName)]
-[Authorize(Roles = Constants.AdminRoleName)]
+[Area(DbConstants.AdminRoleName)]
+[Authorize(Roles = DbConstants.AdminRoleName)]
 public class UserController : Controller
 {
     private readonly UserManager<User> _userManager;
@@ -185,8 +185,8 @@ public class UserController : Controller
         var userRoles = new List<string>(await _userManager.GetRolesAsync(user));
         if (userRoles.Count == 0)
         {
-            userRoles = [Constants.UserRoleName];
-            _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+            userRoles = [DbConstants.UserRoleName];
+            _userManager.AddToRoleAsync(user, DbConstants.UserRoleName).Wait();
         }
 
         return View(new UpdateUserRoleViewModel { RoleName = userRoles.First(), UserId = user.Id.ToString() });
@@ -209,7 +209,7 @@ public class UserController : Controller
                 }
                 else
                 {
-                    _userManager.AddToRoleAsync(user, Constants.UserRoleName).Wait();
+                    _userManager.AddToRoleAsync(user, DbConstants.UserRoleName).Wait();
                 }
             }
 
