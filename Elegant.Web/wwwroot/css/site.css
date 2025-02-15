@@ -48,7 +48,8 @@ a {
     
 }
 .container{
-
+    width: 1110px;
+    margin: 0 auto;
     display: flex;
     margin-top: 51px;
     
@@ -85,3 +86,5 @@ header{
 .basket{
     margin-left: 35px;
 }
+
+
