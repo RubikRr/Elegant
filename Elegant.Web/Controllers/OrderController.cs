@@ -13,12 +13,12 @@ public class OrderController : Controller
 {
     private readonly IOrdersStorage _ordersStorage;
 
-    private readonly ICartsStorage _cartsStorage;
+    private readonly ICartRepository _cartRepository;
 
-    public OrderController(IOrdersStorage ordersStorage, ICartsStorage cartStorage)
+    public OrderController(IOrdersStorage ordersStorage, ICartRepository cartStorage)
     {
         _ordersStorage = ordersStorage;
-        _cartsStorage = cartStorage;
+        _cartRepository = cartStorage;
     }
 
     public IActionResult Index()

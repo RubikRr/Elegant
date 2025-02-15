@@ -2,7 +2,7 @@
 
 namespace Elegant.DAL.Interfaces;
 
-public interface IProductsStorage
+public interface IProductRepository
 {
     public Task<List<Product>> GetAllAsync(CancellationToken cancellationToken);
     public Task<Product?> GetByIdAsync(Guid id, CancellationToken cancellationToken);

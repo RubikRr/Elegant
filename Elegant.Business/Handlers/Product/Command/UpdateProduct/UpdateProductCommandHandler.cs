@@ -7,11 +7,11 @@ namespace Elegant.Business.Handlers.Product.Command.UpdateProduct;
 
 public class UpdateProductCommandHandler : ICommandHandler<UpdateProductRequest, UpdateProductResponse>
 {
-    private readonly IProductsStorage _productsStorage;
+    private readonly IProductRepository _productRepository;
 
-    public UpdateProductCommandHandler(IProductsStorage productsStorage)
+    public UpdateProductCommandHandler(IProductRepository productRepository)
     {
-        _productsStorage = productsStorage;
+        _productRepository = productRepository;
     }
 
     public async Task<UpdateProductResponse> HandleAsync(UpdateProductRequest command, CancellationToken cancellationToken = default)
@@ -30,7 +30,7 @@ public class UpdateProductCommandHandler : ICommandHandler<UpdateProductRequest,
             UpdateImagesForProduct(updatedProduct, command.ViewModel.UploadedImage, command.ProductImageDirectoryPath);
         }
 
-        await _productsStorage.UpdateAsync(updatedProduct, cancellationToken);
+        await _productRepository.UpdateAsync(updatedProduct, cancellationToken);
 
         return new UpdateProductResponse();
     }
@@ -51,7 +51,7 @@ public class UpdateProductCommandHandler : ICommandHandler<UpdateProductRequest,
 
     private async Task ResetPreviousImagesForProduct(Guid productId, string productImageDirectoryPath, CancellationToken cancellationToken = default)
     {
-        var product = await _productsStorage.GetByIdAsync(productId, cancellationToken);
+        var product = await _productRepository.GetByIdAsync(productId, cancellationToken);
 
         if (product == null)
         {

@@ -1,5 +1,5 @@
 using Elegant.DAL.Interfaces;
-using Elegant.DAL.Storages;
+using Elegant.DAL.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Elegant.DAL;
@@ -8,9 +8,9 @@ public static class Bootstrapper
 {
     public static void AddRepositories(this IServiceCollection services)
     {
-        services.AddTransient<IProductsStorage, DbProductsStorage>();
+        services.AddTransient<IProductRepository, ProductRepository>();
         services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
-        services.AddTransient<ICartsStorage, DbCartsStorage>();
+        services.AddTransient<ICartRepository, CartRepository>();
         services.AddTransient<IOrdersStorage, DbOrdersStorage>();
     }
 }

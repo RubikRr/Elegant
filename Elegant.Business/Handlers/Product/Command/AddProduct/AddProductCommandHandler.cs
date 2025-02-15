@@ -7,11 +7,11 @@ namespace Elegant.Business.Handlers.Product.Command.AddProduct;
 
 public class AddProductCommandHandler : ICommandHandler<AddProductRequest, AddProductResponse>
 {
-    private readonly IProductsStorage _productsStorage;
+    private readonly IProductRepository _productRepository;
 
-    public AddProductCommandHandler(IProductsStorage productsStorage)
+    public AddProductCommandHandler(IProductRepository productRepository)
     {
-        _productsStorage = productsStorage;
+        _productRepository = productRepository;
     }
 
     public async Task<AddProductResponse> HandleAsync(AddProductRequest command, CancellationToken cancellationToken = default)
@@ -29,7 +29,7 @@ public class AddProductCommandHandler : ICommandHandler<AddProductRequest, AddPr
             AddImagesForProduct(newProduct, command.ViewModel.UploadedImage, command.ProductImageDirectoryPath);
         }
 
-        await _productsStorage.AddAsync(newProduct, cancellationToken);
+        await _productRepository.AddAsync(newProduct, cancellationToken);
         return new AddProductResponse();
     }
 

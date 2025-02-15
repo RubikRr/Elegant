@@ -9,13 +9,13 @@ namespace Elegant.Web.Controllers;
 [Authorize]
 public class FavoritesController : Controller
 {
-    private readonly IProductsStorage _productsStorage;
+    private readonly IProductRepository _productRepository;
     private readonly IFavoritesStorage _favoritesStorage;
 
-    public FavoritesController(IFavoritesStorage favoritesStorage, IProductsStorage productsStorage)
+    public FavoritesController(IFavoritesStorage favoritesStorage, IProductRepository productRepository)
     {
         _favoritesStorage = favoritesStorage;
-        _productsStorage = productsStorage;
+        _productRepository = productRepository;
     }
     public IActionResult Index()
     {
@@ -25,7 +25,7 @@ public class FavoritesController : Controller
 
     public async Task<IActionResult> Add(Guid productId, CancellationToken cancellationToken)
     {
-        var product = await _productsStorage.GetByIdAsync(productId, cancellationToken);
+        var product = await _productRepository.GetByIdAsync(productId, cancellationToken);
         if (product == null) { return RedirectToAction("Index"); }
         _favoritesStorage.Add(DbConstants.UserId, product);
         return RedirectToAction("Index");

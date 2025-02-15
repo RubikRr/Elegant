@@ -2,7 +2,7 @@
 using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Elegant.DAL.Storages;
+namespace Elegant.DAL.Repositories;
 
 public class DbFavoritesStorage : IFavoritesStorage
 {

@@ -5,17 +5,17 @@ namespace Elegant.Business.Handlers.Product.Query.GetProductsByName;
 
 public class GetProductsByNameQueryHandler : IQueryHandler<GetProductsByNameRequest, GetProductsByNameResponse>
 {
-    private readonly IProductsStorage _productsStorage;
+    private readonly IProductRepository _productRepository;
 
-    public GetProductsByNameQueryHandler(IProductsStorage productsStorage)
+    public GetProductsByNameQueryHandler(IProductRepository productRepository)
     {
-        _productsStorage = productsStorage;
+        _productRepository = productRepository;
     }
 
     public async Task<GetProductsByNameResponse> HandleAsync(GetProductsByNameRequest query,
         CancellationToken cancellationToken = default)
     {
-        var product = await _productsStorage.GetByNameAsync(query.ProductName, cancellationToken);
+        var product = await _productRepository.GetByNameAsync(query.ProductName, cancellationToken);
 
         if (product == null)
         {

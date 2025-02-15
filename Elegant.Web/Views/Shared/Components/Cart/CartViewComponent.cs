@@ -7,11 +7,11 @@ namespace Elegant.Web.Views.Shared.Components.Cart
 {
     public class CartViewComponent : ViewComponent
     {
-        private readonly ICartsStorage _cartsStorage;
+        private readonly ICartRepository _cartRepository;
 
-        public CartViewComponent(ICartsStorage cartsStorage)
+        public CartViewComponent(ICartRepository cartRepository)
         {
-            _cartsStorage = cartsStorage;
+            _cartRepository = cartRepository;
         }
 
         public IViewComponentResult Invoke()

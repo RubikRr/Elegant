@@ -11,19 +11,19 @@ namespace Elegant.Web.Controllers;
 [Authorize]
 public class CartController : Controller
 {
-    private IProductsStorage ProductsStorage { get; }
+    private IProductRepository ProductRepository { get; }
 
-    private ICartsStorage CartsStorage { get; set; }
+    private ICartRepository CartRepository { get; set; }
 
-    public CartController(IProductsStorage productsStorage, ICartsStorage cartStorage)
+    public CartController(IProductRepository productRepository, ICartRepository cartStorage)
     {
-        ProductsStorage = productsStorage;
-        CartsStorage = cartStorage;
+        ProductRepository = productRepository;
+        CartRepository = cartStorage;
     }
 
     public async Task<IActionResult> Add(Guid productId,CancellationToken cancellationToken)
     {
-        var product = await ProductsStorage.GetByIdAsync(productId, cancellationToken);
+        var product = await ProductRepository.GetByIdAsync(productId, cancellationToken);
         //CartsStorage.Add(DbConstants.UserId, product);
 
         return RedirectToAction("Index");
@@ -45,7 +45,7 @@ public class CartController : Controller
     }
     public IActionResult ChangeCount(Guid cartId, Guid productId, string act)
     {
-        CartsStorage.Change(cartId, productId, act);
+        //CartRepository.Change(cartId, productId, act);
         return RedirectToAction("Index");
     }
 }

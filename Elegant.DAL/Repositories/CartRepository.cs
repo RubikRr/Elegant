@@ -2,16 +2,21 @@
 using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Elegant.DAL.Storages;
+namespace Elegant.DAL.Repositories;
 
-public class DbCartsStorage : ICartsStorage
+public class CartRepository : ICartRepository
 {
     private readonly EfCoreDbContext _dbContext;
-    public DbCartsStorage(EfCoreDbContext efCoreDbContext)
+    public CartRepository(EfCoreDbContext efCoreDbContext)
     {
         _dbContext = efCoreDbContext;
     }
-
+    
+    public Task AddAsync(Guid userId, Product product)
+    {
+        throw new NotImplementedException();
+    }
+    
     public void Add(Guid userId, Product product)
     {
         var cart = _dbContext.Carts.FirstOrDefault(cart => cart.UserId == userId);
@@ -108,4 +113,20 @@ public class DbCartsStorage : ICartsStorage
         _dbContext.SaveChanges();
     }
 
+   
+
+    public Task<Cart> GetByUserIdAsync(Guid userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Cart> GetByIdAsync(Guid cartId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task ClearItemsAsync(Guid userId)
+    {
+        throw new NotImplementedException();
+    }
 }

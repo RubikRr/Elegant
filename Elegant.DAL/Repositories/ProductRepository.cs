@@ -2,13 +2,13 @@
 using Elegant.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Elegant.DAL.Storages;
+namespace Elegant.DAL.Repositories;
 
-public class DbProductsStorage : IProductsStorage
+public class ProductRepository : IProductRepository
 {
     private readonly EfCoreDbContext _dbContext;
 
-    public DbProductsStorage(EfCoreDbContext efCoreDbContext)
+    public ProductRepository(EfCoreDbContext efCoreDbContext)
     {
         _dbContext = efCoreDbContext;
     }

@@ -5,17 +5,17 @@ namespace Elegant.Business.Handlers.Product.Command.RemoveProductById;
 
 public class RemoveProductByIdCommandHandler : ICommandHandler<RemoveProductByIdRequest, RemoveProductByIdResponse>
 {
-    private readonly IProductsStorage _productsStorage;
+    private readonly IProductRepository _productRepository;
 
-    public RemoveProductByIdCommandHandler(IProductsStorage productsStorage)
+    public RemoveProductByIdCommandHandler(IProductRepository productRepository)
     {
-        _productsStorage = productsStorage;
+        _productRepository = productRepository;
     }
 
     public async Task<RemoveProductByIdResponse> HandleAsync(RemoveProductByIdRequest command,
         CancellationToken cancellationToken = default)
     {
-        await _productsStorage.RemoveAsync(command.ProductId, cancellationToken);
+        await _productRepository.RemoveAsync(command.ProductId, cancellationToken);
         return new RemoveProductByIdResponse();
     }
 }
