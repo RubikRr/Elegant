@@ -28,20 +28,20 @@ public class OrderController : Controller
     [HttpPost]
     public IActionResult Confirm(UserDeliveryInfoViewModel userDeliveryInfo)
     {
-        if (ModelState.IsValid)
-        {
-            var cart = _cartsStorage.TryGetByUserId(DbConstants.UserId);
-            var orderItems = new List<CartOrder>();
-            orderItems.AddRange(cart.Items);
-            var order = new Order
-            {
-                DeliveryInfo = Mapping.ToUserDeliveryInfoModel(userDeliveryInfo),
-                Items = orderItems
-            };
-            _ordersStorage.Add(order);
-            _cartsStorage.Clear(DbConstants.UserId);
-            return View();
-        }
+        // if (ModelState.IsValid)
+        // {
+        //     var cart = _cartsStorage.TryGetByUserId(DbConstants.UserId);
+        //     var orderItems = new List<CartOrder>();
+        //     orderItems.AddRange(cart.Items);
+        //     var order = new Order
+        //     {
+        //         DeliveryInfo = Mapping.ToUserDeliveryInfoModel(userDeliveryInfo),
+        //         Items = orderItems
+        //     };
+        //     _ordersStorage.Add(order);
+        //     _cartsStorage.Clear(DbConstants.UserId);
+        //     return View();
+        // }
         return RedirectToAction("Checkout", userDeliveryInfo);
     }
 

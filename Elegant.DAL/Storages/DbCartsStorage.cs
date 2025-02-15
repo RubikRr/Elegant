@@ -12,7 +12,7 @@ public class DbCartsStorage : ICartsStorage
         _dbContext = efCoreDbContext;
     }
 
-    public void Add(int userId, Product product)
+    public void Add(Guid userId, Product product)
     {
         var cart = _dbContext.Carts.FirstOrDefault(cart => cart.UserId == userId);
         if (cart == null)
@@ -68,7 +68,7 @@ public class DbCartsStorage : ICartsStorage
         }
         _dbContext.SaveChanges();
     }
-    public Cart TryGetByUserId(int userId)
+    public Cart TryGetByUserId(Guid userId)
     {
         try
         {
@@ -94,14 +94,14 @@ public class DbCartsStorage : ICartsStorage
             .FirstOrDefault(cart => cart.Id == cartId) ?? throw new InvalidOperationException();
     }
 
-    public void Clear(int userId)
+    public void Clear(Guid userId)
     {
         var cart = TryGetByUserId(userId);
         cart.Items.Clear();
         _dbContext.SaveChanges();
     }
 
-    public void Destroy(int userId)
+    public void Destroy(Guid userId)
     {
         var cart = TryGetByUserId(userId);
         _dbContext.Carts.Remove(cart);

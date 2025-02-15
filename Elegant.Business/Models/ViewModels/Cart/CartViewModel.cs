@@ -3,7 +3,7 @@
 public class CartViewModel
 {
     public Guid Id { get; init; }
-    public int UserId { get; init; }
+    public Guid UserId { get; init; }
     public List<CartItemViewModel> Items { get; init; } = new();
 
     public decimal Total
