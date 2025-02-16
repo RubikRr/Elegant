@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Security.Principal;
 using Elegant.Business.Mapping;
+using Elegant.Business.Models.ViewModels.Cart;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +22,7 @@ public class CartController : Controller
         CartRepository = cartStorage;
     }
 
-    public async Task<IActionResult> Add(Guid productId,CancellationToken cancellationToken)
+    public async Task<IActionResult> Add(Guid productId, CancellationToken cancellationToken)
     {
         var product = await ProductRepository.GetByIdAsync(productId, cancellationToken);
         //CartsStorage.Add(DbConstants.UserId, product);
@@ -29,13 +30,12 @@ public class CartController : Controller
         return RedirectToAction("Index");
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //var userCart = CartsStorage.TryGetByUserId(DbConstants.UserId);
+        var userCart = await CartRepository.GetByUserIdAsync(Guid.Parse(userId));
 
-        return View();
+        return View(userCart is null ? new CartViewModel() : Mapping.ToCartViewModel(userCart));
     }
 
     public IActionResult Clear()
@@ -43,6 +43,7 @@ public class CartController : Controller
         //CartsStorage.Clear(DbConstants.UserId);
         return RedirectToAction("Index");
     }
+
     public IActionResult ChangeCount(Guid cartId, Guid productId, string act)
     {
         //CartRepository.Change(cartId, productId, act);

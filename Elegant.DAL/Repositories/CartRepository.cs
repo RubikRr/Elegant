@@ -7,126 +7,106 @@ namespace Elegant.DAL.Repositories;
 public class CartRepository : ICartRepository
 {
     private readonly EfCoreDbContext _dbContext;
+    private readonly int _defaultCartOrderValue = 1;
+
     public CartRepository(EfCoreDbContext efCoreDbContext)
     {
         _dbContext = efCoreDbContext;
     }
-    
-    public Task AddAsync(Guid userId, Product product)
+
+    public async Task AddItemAsync(Guid userId, Product product, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
-    
-    public void Add(Guid userId, Product product)
-    {
-        var cart = _dbContext.Carts.FirstOrDefault(cart => cart.UserId == userId);
-        if (cart == null)
-        {
-            var newCart = new Cart
-            {
-                UserId = userId,
-            };
-            newCart.Items = new List<CartOrder>
-            {
-                new CartOrder()
-                {
-                    Quantity=1,
-                    Product=product
-                }
-            };
-            _dbContext.Carts.Add(newCart);
-        }
-        else
+        var cart = await GetByUserIdAsync(userId, cancellationToken);
+
+        if (cart != null)
         {
             var existingCartItem = cart.Items.FirstOrDefault(item => item.Product.Id == product.Id);
             if (existingCartItem == null)
             {
-                cart.Items.Add(new CartOrder() { Quantity = 1, Product = product });
+                cart.Items.Add(new CartOrder { Product = product });
             }
-            else
-            {
-                existingCartItem.Quantity++;
-            }
-        }
-        _dbContext.SaveChanges();
-    }
 
-    public void Change(Guid cartId, Guid productId, string act)
-    {
-        var cart = TryGetById(cartId);
-        var cartItem = cart.Items.FirstOrDefault(item => item.Product.Id == productId);
-        if (cartItem == null) { return; }
-        if (act == "increase")
-        {
-            cartItem.Quantity++;
+            existingCartItem!.Quantity++;
         }
-        else if (act == "decrease")
+        else
         {
-            if (cartItem.Quantity == 1 || cartItem.Quantity == 0)
+            var newItem = new CartOrder { Product = product, Quantity = _defaultCartOrderValue };
+            var newCart = new Cart
             {
-                cart.Items.Remove(cartItem);
-            }
-            else
-            {
-                cartItem.Quantity--;
-            }
-        }
-        _dbContext.SaveChanges();
-    }
-    public Cart TryGetByUserId(Guid userId)
-    {
-        try
-        {
-            return _dbContext
-                .Carts
-                .Include(cart => cart.Items)
-                .ThenInclude(item => item.Product)
-                .FirstOrDefault(cart => cart.UserId == userId) ?? throw new InvalidOperationException();
-        }
-        catch (Exception e)
-        {
+                UserId = userId,
+                Items = [newItem]
+            };
+
+            _dbContext.Carts.Add(newCart);
         }
 
-        return new Cart();
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public Cart TryGetById(Guid cartId)
+    public async Task<Cart?> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken)
     {
-        return _dbContext
+        return await _dbContext
             .Carts
             .Include(cart => cart.Items)
             .ThenInclude(item => item.Product)
-            .FirstOrDefault(cart => cart.Id == cartId) ?? throw new InvalidOperationException();
+            .AsSplitQuery()
+            .FirstOrDefaultAsync(cart => cart.UserId == userId, cancellationToken);
     }
 
-    public void Clear(Guid userId)
+    public async Task<Cart?> GetByIdAsync(Guid cartId, CancellationToken cancellationToken)
     {
-        var cart = TryGetByUserId(userId);
-        cart.Items.Clear();
-        _dbContext.SaveChanges();
+        return await _dbContext
+            .Carts
+            .Include(cart => cart.Items)
+            .ThenInclude(item => item.Product)
+            .FirstOrDefaultAsync(cart => cart.Id == cartId, cancellationToken);
     }
 
-    public void Destroy(Guid userId)
-    {
-        var cart = TryGetByUserId(userId);
-        _dbContext.Carts.Remove(cart);
-        _dbContext.SaveChanges();
-    }
+    // public void Change(Guid cartId, Guid productId, string act)
+    // {
+    //     var cart = TryGetById(cartId);
+    //     var cartItem = cart.Items.FirstOrDefault(item => item.Product.Id == productId);
+    //     if (cartItem == null)
+    //     {
+    //         return;
+    //     }
+    //
+    //     if (act == "increase")
+    //     {
+    //         cartItem.Quantity++;
+    //     }
+    //     else if (act == "decrease")
+    //     {
+    //         if (cartItem.Quantity == 1 || cartItem.Quantity == 0)
+    //         {
+    //             cart.Items.Remove(cartItem);
+    //         }
+    //         else
+    //         {
+    //             cartItem.Quantity--;
+    //         }
+    //     }
+    //
+    //     _dbContext.SaveChanges();
+    // }
 
-   
+    // public void Clear(Guid userId)
+    // {
+    //     var cart = TryGetByUserId(userId);
+    //     cart.Items.Clear();
+    //     _dbContext.SaveChanges();
+    // }
+    //
+    // public void Destroy(Guid userId)
+    // {
+    //     var cart = TryGetByUserId(userId);
+    //     _dbContext.Carts.Remove(cart);
+    //     _dbContext.SaveChanges();
+    // }
 
-    public Task<Cart> GetByUserIdAsync(Guid userId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Cart> GetByIdAsync(Guid cartId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task ClearItemsAsync(Guid userId)
-    {
-        throw new NotImplementedException();
-    }
+    //
+    // public Task ClearItemsAsync(Guid userId)
+    // {
+    //     throw new NotImplementedException();
+    // }
 }
