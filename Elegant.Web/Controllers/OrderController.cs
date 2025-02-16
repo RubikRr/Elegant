@@ -1,7 +1,8 @@
-﻿using Elegant.Core.Models;
+﻿using Elegant.Business.Mapping;
+using Elegant.Business.Models.ViewModels.Order;
+using Elegant.Core.Models;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
-using Elegant.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +30,7 @@ public class OrderController : Controller
     {
         if (ModelState.IsValid)
         {
-            var cart = _cartsStorage.TryGetByUserId(Constants.UserId);
+            var cart = _cartsStorage.TryGetByUserId(DbConstants.UserId);
             var orderItems = new List<CartOrder>();
             orderItems.AddRange(cart.Items);
             var order = new Order
@@ -38,7 +39,7 @@ public class OrderController : Controller
                 Items = orderItems
             };
             _ordersStorage.Add(order);
-            _cartsStorage.Clear(Constants.UserId);
+            _cartsStorage.Clear(DbConstants.UserId);
             return View();
         }
         return RedirectToAction("Checkout", userDeliveryInfo);

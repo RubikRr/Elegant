@@ -9,13 +9,13 @@ public static class IdentityInitializer
     {
         var adminEmail = "admin@gmail.com";
         var password = "_Aa123456";
-        if (roleManager.FindByNameAsync(Constants.AdminRoleName).Result == null)
+        if (roleManager.FindByNameAsync(DbConstants.AdminRoleName).Result == null)
         {
-            roleManager.CreateAsync(new IdentityRole(Constants.AdminRoleName)).Wait();
+            roleManager.CreateAsync(new IdentityRole(DbConstants.AdminRoleName)).Wait();
         }
-        if (roleManager.FindByNameAsync(Constants.UserRoleName).Result == null)
+        if (roleManager.FindByNameAsync(DbConstants.UserRoleName).Result == null)
         {
-            roleManager.CreateAsync(new IdentityRole(Constants.UserRoleName)).Wait();
+            roleManager.CreateAsync(new IdentityRole(DbConstants.UserRoleName)).Wait();
         }
         if (userManager.FindByEmailAsync(adminEmail).Result == null)
         {
@@ -23,7 +23,7 @@ public static class IdentityInitializer
             var result = userManager.CreateAsync(admin, password).Result;
             if (result.Succeeded)
             {
-                userManager.AddToRoleAsync(admin, Constants.AdminRoleName).Wait();
+                userManager.AddToRoleAsync(admin, DbConstants.AdminRoleName).Wait();
             }
         }
     }

@@ -1,13 +1,13 @@
-﻿using Elegant.DAL;
-using Elegant.Web.Areas.Admin.ViewModels;
+﻿using Elegant.Business.Models.ViewModels.Role;
+using Elegant.DAL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Areas.Admin.Controllers;
 
-[Area(Constants.AdminRoleName)]
-[Authorize(Roles = Constants.AdminRoleName)]
+[Area(DbConstants.AdminRoleName)]
+[Authorize(Roles = DbConstants.AdminRoleName)]
 public class RoleController : Controller
 {
 

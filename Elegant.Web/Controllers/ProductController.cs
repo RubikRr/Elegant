@@ -1,20 +1,23 @@
-﻿using Elegant.Business.Services;
+﻿using Elegant.Abstraction.Handlers.Query;
+using Elegant.Business.Handlers.Product.Query.GetProductById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Elegant.Web.Controllers;
 
 public class ProductController : Controller
 {
-    private readonly IProductsStorage _productsStorage;
-    
-    public ProductController(IProductsStorage productsStorage)
+    private readonly IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> _getProductByIdQueryHandler;
+
+    public ProductController(IQueryHandler<GetProductByIdRequest, GetProductByIdResponse> getProductByIdQueryHandler)
     {
-        _productsStorage = productsStorage;
+        _getProductByIdQueryHandler = getProductByIdQueryHandler;
     }
-    public IActionResult Index(Guid productId)
+
+    public async Task<IActionResult> GetProductById(Guid productId, CancellationToken cancellationToken = default)
     {
-        var product = _productsStorage.GetById(productId);
-        var ans = Mapping.ToProductViewModel(product);
-        return View(ans);
+        var response =
+            await _getProductByIdQueryHandler.HandleAsync(new GetProductByIdRequest { ProductId = productId },
+                cancellationToken);
+        return View(nameof(GetProductById), response.Product);
     }
 }

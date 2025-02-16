@@ -1,4 +1,4 @@
-﻿using Elegant.Business.Services;
+﻿using Elegant.Business.Mapping;
 using Elegant.DAL;
 using Elegant.DAL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -19,21 +19,21 @@ public class FavoritesController : Controller
     }
     public IActionResult Index()
     {
-        var favoriteProducts = _favoritesStorage.GetAllProducts(Constants.UserId);
+        var favoriteProducts = _favoritesStorage.GetAllProducts(DbConstants.UserId);
         return View(Mapping.ToProductsViewModel(favoriteProducts));
     }
 
-    public IActionResult Add(Guid productId)
+    public async Task<IActionResult> Add(Guid productId, CancellationToken cancellationToken)
     {
-        var product = _productsStorage.GetById(productId);
+        var product = await _productsStorage.GetByIdAsync(productId, cancellationToken);
         if (product == null) { return RedirectToAction("Index"); }
-        _favoritesStorage.Add(Constants.UserId, product);
+        _favoritesStorage.Add(DbConstants.UserId, product);
         return RedirectToAction("Index");
     }
 
     public IActionResult Remove(Guid productId)
     {
-        _favoritesStorage.Remove(Constants.UserId, productId);
+        _favoritesStorage.Remove(DbConstants.UserId, productId);
         return RedirectToAction("Index");
     }
 }

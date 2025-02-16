@@ -10,9 +10,8 @@ public class DbCartsStorage : ICartsStorage
     public DbCartsStorage(EfCoreDbContext efCoreDbContext)
     {
         _dbContext = efCoreDbContext;
-
     }
-        
+
     public void Add(int userId, Product product)
     {
         var cart = _dbContext.Carts.FirstOrDefault(cart => cart.UserId == userId);
@@ -71,11 +70,19 @@ public class DbCartsStorage : ICartsStorage
     }
     public Cart TryGetByUserId(int userId)
     {
-        return _dbContext
-            .Carts
-            .Include(cart => cart.Items)
-            .ThenInclude(item => item.Product)
-            .FirstOrDefault(cart => cart.UserId == userId) ?? throw new InvalidOperationException();
+        try
+        {
+            return _dbContext
+                .Carts
+                .Include(cart => cart.Items)
+                .ThenInclude(item => item.Product)
+                .FirstOrDefault(cart => cart.UserId == userId) ?? throw new InvalidOperationException();
+        }
+        catch (Exception e)
+        {
+        }
+
+        return new Cart();
     }
 
     public Cart TryGetById(Guid cartId)

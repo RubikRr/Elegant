@@ -1,4 +1,4 @@
-﻿@model Elegant.Web.ViewModels.Registration
+﻿@model Elegant.Business.Models.ViewModels.Authorization.Registration
 <form method="post" asp-area="" asp-controller="auth" asp-action="registration">
   <div class="row justify-content-center">
       <div class="col-6">
@@ -17,7 +17,7 @@
               <span style="color:red" asp-validation-for="ConfirmPassword"></span>
               <input asp-for="ConfirmPassword" type="password"  class="form-control" placeholder="Повторите пароль">
           </div>
-           <input type="text" hidden value=@(string.IsNullOrEmpty(@Model.ReturnUrl) ? "/Home/index":Model.ReturnUrl) name="ReturnUrl"></input>
+           <input type="text" hidden value=@(string.IsNullOrEmpty(@Model.ReturnUrl) ? "/Home/index":Model.ReturnUrl) name="ReturnUrl">
           <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
        </div>
     </div>

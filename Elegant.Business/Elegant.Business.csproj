@@ -9,6 +9,17 @@
     <ItemGroup>
       <ProjectReference Include="..\Elegant.Abstraction\Elegant.Abstraction.csproj" />
       <ProjectReference Include="..\Elegant.Core\Elegant.Core.csproj" />
+      <ProjectReference Include="..\Elegant.DAL\Elegant.DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Http.Features">
+        <HintPath>..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
