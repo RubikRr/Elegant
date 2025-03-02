@@ -1,21 +1,43 @@
 @model Elegant.Business.Models.ViewModels.Product.ProductViewModel
-<div class="container">
-    <div class="name_of_clothing">
-        <p class="product_name">Свитшот Sweet Shot</p>
-        <div class="container_cart">
-        <div class="cloth">
-            <img src="images/products/602a4bce-0823-4dbe-a4cd-06aec762f4a2.jpg" alt="">
-        </div>
-        <div class="container_size_price">
-            <p class="product_size">Выберите размер</p>
-            <div>
-                <span class="clothing_size">XS</span>
-                <span class="clothing_size">S</span>
-                <span class="clothing_size">M</span>
-                <span class="clothing_size">L</span>
-                <span class="clothing_size">XL</span>
+<body class="general_class">
+        <div class="name_of_clothing">
+            <p class="product_name">Свитшот Sweet Shot</p>
+            <div class="container_cart">
+                <div class="cloth">
+                    <img src="/images/products/product.png" alt="">
+                </div>
+                <div class="container_size_price">
+                    <p class="product_size">Выберите размер</p>
+                    <div class="all_sizes">
+                        <span class="clothing_size">XS</span>
+                        <span class="clothing_size">S</span>
+                        <span class="clothing_size">M</span>
+                        <span class="clothing_size">L</span>
+                        <span class="clothing_size">XL</span>
+                    </div>
+                    <div class="container_add_to_cart">
+                        <button class="add_to_cart">Добавить в корзину</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="related_products">
+            <p class="related_products_text">Связанные товары</p>
+            <div class="product_information_container">
+            <div class="product_information">
+                    <img class="product1" src="/images/products/товар1.png" alt="">
+                 <div class="price">
+                     <span>Футболка USA</span>
+                     <span class="pr">$129</span>
+                 </div>
+            </div>
+            <div class="product_information">
+                <img src="/images/products/товар2.png" alt="">
+                <div class="price">
+                    <span>Футболка USA</span>
+                    <span class="pr">$129</span>
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
-</div>
+</body>

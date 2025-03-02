@@ -17,9 +17,9 @@ html {
     min-height: 100%;
 }
 
-body {
+/*body {
     margin-bottom: 60px;
-}
+}*/
 
 .counter {
     width:40px;
@@ -38,13 +38,18 @@ a {
 
 
 
-
+.general_class{
+    width: 1110px;
+    margin: 0 auto;
+    margin-top: 51px;
+    margin-bottom: 130px;
+}
 .container_cart{
     display: flex;
 }
 .cloth{
     padding-right: 74px;
-    width: 100%;
+   
 }
 .product_name {
     font-family: Raleway;
@@ -58,6 +63,7 @@ a {
     margin: 0 auto;
     display: flex;
     margin-top: 51px;
+    margin-bottom: 130px;
 
 }
 header{
@@ -92,6 +98,7 @@ header{
 .basket{
     margin-left: 35px;
 }
+
 .product_size{
     margin: 0 auto;
     padding-top: 220px;
@@ -106,7 +113,51 @@ header{
     font-weight: 500;
     font-size: 17px;
     line-height: 23.8px;
+    border: 1px solid black;
+    padding: 9px 15px;
+    margin-right: 14px;
+    cursor: pointer;
 }
-.container_size_price{
+.all_sizes{
+    margin-bottom: 60px;
+}
+.clothing_size:hover{
+    background-color: black;    
+    color: white;
+    /*box-shadow: 0 0 0 99999px rgba(0, 0, 0, .5); /* fallback for IE */
+
+}
+.add_to_cart {
+    background: rgba(110, 156, 159, 1);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    cursor: pointer;
+    padding: 22px 50px;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23.61px;
+    letter-spacing: 2%;
+    text-align: center;
+}
+.product_information_container{
+    display: flex;
+}
+.related_products_text{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    letter-spacing: 2%;
+    margin-bottom: 67px;
+}
+.name_of_clothing{
+    margin-bottom: 130px;
+}
+.product1{
+    margin-right: 30px;
+}
+.price{
+    text-align: center;
     
 }
