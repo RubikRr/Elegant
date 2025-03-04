@@ -1,3 +1,6 @@
+li{
+    list-style-type: none;
+}
 html {
     font-size: 14px;
 }
@@ -39,7 +42,7 @@ a {
 
 
 .general_class{
-    width: 1110px;
+   /* width: 1110px;*/
     margin: 0 auto;
     margin-top: 51px;
     margin-bottom: 130px;
@@ -101,7 +104,7 @@ header{
 
 .product_size{
     margin: 0 auto;
-    padding-top: 220px;
+    padding-top: 180px;
     padding-bottom: 34px;
     font-family: Raleway;
     font-weight: 500;
@@ -159,5 +162,50 @@ header{
 }
 .price{
     text-align: center;
-    
+    display: grid;
+}
+.pr{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 2%;
+
+}
+.name_product_span{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 2%;
+
+}
+
+/*..............................................FOOTER..............................................*/
+footer{
+    background: #F1EADC;
+
+}
+.footer{
+    display: flex;
+    /*margin-left:200px;*/
+    padding-top: 101px;
+    padding-bottom:101px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.list_{
+    display: flex;
+    margin-top: 2px;
+    margin-right: 257px;
+}
+.li__{
+    margin-right: 45px;
+    font-family: Raleway;
+    font-weight:500;
+    font-size: 15px;
+}
+.logo_text_{
+    margin-right:146px;
+    margin-top: 4px;
 }
