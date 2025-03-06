@@ -37,15 +37,43 @@ a {
     width:150px;
     height:60px;
 }
+a{
+    margin: 0 auto;
+}
 
-
-
+/*.............................................HEADER........................................................*/
+.logo_text{
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    padding-left:10px;
+    margin-top:3px;
+}
+header{
+    width: 1110px;
+    margin: 0 auto;
+}
+.list{
+    margin-left: 146px;
+    margin-right: 80px;
+    display: flex;
+    margin-top: 0px;
+}
+.li_{
+    list-style-type:none;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 45px;
+}
+/*..............................................MAIN..........................................................*/
 
 .general_class{
    /* width: 1110px;*/
     margin: 0 auto;
     margin-top: 51px;
-    margin-bottom: 130px;
+ 
 }
 .container_cart{
     display: flex;
@@ -69,24 +97,7 @@ a {
     margin-bottom: 130px;
 
 }
-header{
-    width: 1110px;
-    margin: 0 auto;
-}
-.list{
-    margin-left: 146px;
-    margin-right: 80px;
-    display: flex;
-}
-.li_{
-    list-style-type:none;
-    position: relative;
-    bottom:10px;
-    font-family: Raleway;
-    font-size: 16px;
-    font-weight: 400;
-    margin-right: 45px;
-}
+
 .li_a{
     display: flex;
 }
