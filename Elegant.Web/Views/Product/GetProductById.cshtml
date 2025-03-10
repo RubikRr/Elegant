@@ -1,12 +1,13 @@
 @model Elegant.Business.Models.ViewModels.Product.ProductViewModel
 <body class="general_class">
         <div class="name_of_clothing">
-            <p class="product_name">Свитшот Sweet Shot</p>
+            <p class="product_name">@Model.Name</p>
             <div class="container_cart">
                 <div class="cloth">
-                    <img src="/images/products/product.png" alt="">
+                    <img class="img_width" src="@Model.ImageItemsPaths[0]" alt="">
                 </div>
                 <div class="container_size_price">
+                    <div class="price_card_cloth">$@Model.Cost</div>
                     <p class="product_size">Выберите размер</p>
                     <div class="all_sizes">
                         <span class="clothing_size">XS</span>
@@ -21,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="related_products">
+        @*<div class="related_products">
             <p class="related_products_text">Связанные товары</p>
             <div class="product_information_container">
             <div class="product_information">
@@ -39,5 +40,5 @@
                 </div>
             </div>
             </div>
-        </div>
+        </div>*@
 </body>

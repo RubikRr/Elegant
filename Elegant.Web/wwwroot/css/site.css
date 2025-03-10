@@ -77,9 +77,21 @@ header{
 .container_cart{
     display: flex;
 }
+.img_width{
+    width: 536px;
+}
 .cloth{
     padding-right: 74px;
    
+}
+.price_card_cloth{
+    margin-top: 117px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+    color: #808080;
 }
 .product_name {
     font-family: Raleway;
@@ -114,7 +126,7 @@ header{
 
 .product_size{
     margin: 0 auto;
-    padding-top: 180px;
+    padding-top: 80px;
     padding-bottom: 34px;
     font-family: Raleway;
     font-weight: 500;
