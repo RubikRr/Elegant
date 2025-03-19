@@ -275,7 +275,50 @@ input{
 }
 .password{
     margin-top: 37px;
+    margin-bottom: 37px;
     font-weight: 300;
     font-family: Raleway;
     font-size: 20px;
+}
+.change_me_checkbox{
+    position: relative;
+    margin-right: 13px;
+}
+.container_change_me{
+    display: flex;
+}
+.change_me{
+    font-weight:500 ;
+    font-family: Raleway;
+}
+.login_button{
+    margin-top: 37px;
+}
+.login_to_account{
+    font-family: Raleway;
+    font-size: 15px;
+    font-weight: 500;
+    border:none;
+    padding: 10px;
+    border-radius: 10px;
+    background: indianred;
+    cursor: pointer;
+    background:darkgrey ;
+    margin-right: 10px;
+}
+.login_to_account:hover{
+    background-color: lightblue;
+}
+.new_user_registration{
+    font-family: Raleway;
+    font-size: 15px;
+    font-weight:500 ;
+    border:none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: darkgrey;
+}
+.new_user_registration:hover{
+    background-color: lightblue;
 }

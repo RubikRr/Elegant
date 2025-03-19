@@ -4,8 +4,16 @@
 <form class="login" action="">
     <span class="log_in">Вход</span>
     <div class="input_class">
-        <input type="text"  asp-for="Email" class="form-control" placeholder="Email">
-        <input type="text" class="password" placeholder="Password">
+        <input type="text"  asp-for="Email" class="form-control" placeholder="Почта">
+        <input type="text" class="password" placeholder="Пароль">
+        <div class="container_change_me">
+            <input type="checkbox" class="change_me_checkbox">
+            <span class="change_me">Запомнить меня</span>
+        </div>
+        <div class="login_button">
+            <button class="login_to_account">Войти</button>
+            <button class="new_user_registration">Регистрация нового пользователя</button>
+        </div>
     </div>
 </form>
 
