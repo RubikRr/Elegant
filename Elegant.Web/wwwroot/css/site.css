@@ -293,6 +293,7 @@ input{
 }
 .login_button{
     margin-top: 37px;
+    text-align: center;
 }
 .login_to_account{
     font-family: Raleway;
@@ -321,4 +322,18 @@ input{
 }
 .new_user_registration:hover{
     background-color: lightblue;
+}
+/*....................................РЕГИСТРАЦИЯ.................................*/
+.repeat_the_password{
+    margin-bottom: 37px;
+    font-weight: 300;
+    font-family: Raleway;
+    font-size: 20px;
+}
+.registration {
+    font-family: Raleway;
+    font-size: 40px;
+    color: #333333;
+    line-height: 1.2;
+    font-weight: 1000;
 }
