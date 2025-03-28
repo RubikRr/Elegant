@@ -1,25 +1,28 @@
+li{
+    list-style-type: none;
+}
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
+/*body {
+    margin-bottom: 60px;
+}*/
 
 .counter {
     width:40px;
@@ -28,8 +31,420 @@ body {
 
 a {
     text-decoration: none;
+    color: black;
 }
 .addUser {
     width:150px;
     height:60px;
+}
+a{
+    margin: 0 auto;
+}
+
+/*.............................................HEADER........................................................*/
+.logo_text{
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    padding-left:10px;
+    margin-top:3px;
+}
+header{
+    width: 1110px;
+    margin: 0 auto;
+}
+.list{
+    margin-left: 146px;
+    margin-right: 60px;
+    display: flex;
+    margin-top: 0px;
+}
+.li_{
+    list-style-type:none;
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 45px;
+}
+.avatar_img{
+    width: 27px;
+    margin-left: 10px;
+}
+.telephone{
+    margin-top: 3px;
+}
+/*..............................................MAIN..........................................................*/
+
+.general_class{
+   /* width: 1110px;*/
+    margin: 0 auto;
+    margin-top: 51px;
+}
+.container_cart{
+    display: flex;
+}
+.img_width{
+    width: 536px;
+}
+.cloth{
+    padding-right: 74px;
+   
+}
+.price_card_cloth{
+    margin-top: 117px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+    color: #808080;
+}
+.product_name {
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 55px;
+    line-height: 60.5px;
+
+}
+.container_{
+    width: 1110px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 51px;
+    margin-bottom: 130px;
+
+}
+
+.li_a{
+    display: flex;
+}
+.telephone_{
+    margin-left:20px;
+    margin-top: 3px;
+    font-family: Raleway;
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 60px;
+}
+.basket{
+    margin-left: 35px;
+}
+
+.product_size{
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-bottom: 34px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+}
+.clothing_size{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23.8px;
+    border: 1px solid black;
+    padding: 9px 15px;
+    margin-right: 14px;
+    cursor: pointer;
+}
+.all_sizes{
+    margin-bottom: 60px;
+}
+.clothing_size:hover{
+    background-color: black;    
+    color: white;
+    /*box-shadow: 0 0 0 99999px rgba(0, 0, 0, .5); /* fallback for IE */
+
+}
+.add_to_cart {
+    background: rgba(110, 156, 159, 1);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+    cursor: pointer;
+    padding: 22px 50px;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23.61px;
+    letter-spacing: 2%;
+    text-align: center;
+}
+.product_information_container{
+    display: flex;
+}
+.related_products_text{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    letter-spacing: 2%;
+    margin-bottom: 67px;
+}
+.name_of_clothing{
+    margin: 0 auto;
+    margin-bottom: 130px;
+    margin-top: 51px;
+    width: 1110px;
+}
+.product1{
+    margin-right: 30px;
+}
+.price{
+    text-align: center;
+    display: grid;
+}
+.pr{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 21px;
+    letter-spacing: 2%;
+
+}
+.name_product_span{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 2%;
+
+}
+
+/*..............................................FOOTER..............................................*/
+footer{
+    background: #F1EADC;
+
+}
+.footer{
+    display: flex;
+    /*margin-left:200px;*/
+    padding-top: 101px;
+    padding-bottom:101px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+.list_{
+    display: flex;
+    margin-top: 2px;
+    margin-right: 257px;
+}
+.li__{
+    margin-right: 45px;
+    font-family: Raleway;
+    font-weight:500;
+    font-size: 15px;
+}
+.logo_text_{
+    margin-right:146px;
+    margin-top: 4px;
+}
+/*..................................LOGIN..................................................*/
+.login{
+    padding: 50px 55px 53px;
+    width: 390px;
+    margin: 0 auto;
+    box-shadow:1px 1px 1px 1px darkgray;
+    border-radius:10px;
+    margin-bottom: 80px;
+
+}
+.log_in{
+    font-family: Raleway;
+    font-size: 40px;
+    color: #333333;
+    line-height: 1.2;
+    font-weight: 1000;
+    /*text-align: center;*/
+}
+input{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid grey ;
+}
+.input_class{
+    display: grid;
+}
+.form-control{
+    margin-top: 47px;
+    font-weight: 300;
+    font-family: Raleway;
+    font-size: 20px;
+}
+.password{
+    margin-top: 37px;
+    margin-bottom: 37px;
+    font-weight: 300;
+    font-family: Raleway;
+    font-size: 20px;
+}
+.change_me_checkbox{
+    position: relative;
+    margin-right: 13px;
+}
+.container_change_me{
+    display: flex;
+}
+.change_me{
+    font-weight:500 ;
+    font-family: Raleway;
+}
+.login_button{
+    margin-top: 37px;
+    text-align: center;
+}
+.login_to_account{
+    font-family: Raleway;
+    font-size: 15px;
+    font-weight: 500;
+    border:none;
+    padding: 10px;
+    border-radius: 10px;
+    background: indianred;
+    cursor: pointer;
+    background:darkgrey ;
+    margin-right: 10px;
+}
+.login_to_account:hover{
+    background-color: lightblue;
+}
+.new_user_registration{
+    font-family: Raleway;
+    font-size: 15px;
+    font-weight:500 ;
+    border:none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: darkgrey;
+}
+.new_user_registration:hover{
+    background-color: lightblue;
+}
+/*....................................РЕГИСТРАЦИЯ.................................*/
+.repeat_the_password{
+    margin-bottom: 37px;
+    font-weight: 300;
+    font-family: Raleway;
+    font-size: 20px;
+}
+.registration {
+    font-family: Raleway;
+    font-size: 40px;
+    color: #333333;
+    line-height: 1.2;
+    font-weight: 1000;
+}
+/*......................................КОРЗИНА.............................*/
+.table_headers{
+    display: flex;
+    width: 1110px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding-bottom: 30px;
+}
+.table_rows{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-right: 416px;
+}
+.product_table_rows{
+    margin-right: 416px;
+}
+.price_table_rows{
+    margin-right: 139px;
+}
+.quantity_table_rows{
+    margin-right: 167px;
+}
+.item_in_cart{
+    display: flex;
+}
+.product_in_cart{
+    margin-right: 250px;
+    display: flex;
+    align-items: center;
+}
+.foto_cart{ 
+    width: 140px;
+    padding-top: 49px;
+    padding-bottom: 49px;
+    margin-right: 30px;
+}
+.price_rows{
+    margin-right: 187px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    padding-top: 133px;
+}
+.quantity_rows{
+    margin-right: 207px ;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    padding-top: 120px;
+    
+}
+.quantity_inp {
+    width: 47px;
+    height: 35px;
+    text-align: center;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+}
+.total_amount{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    padding-top: 133px;
+}
+.container_price{
+    margin-top: 120px;
+    display: flex;
+    justify-content: end;
+}
+.place_an_order{
+    margin-left: 15px;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 139%;
+    letter-spacing: 2%;
+    text-align: center;
+    color:rgba(255, 255, 255, 1);
+    border: none;
+    padding: 22px 50px;
+    background: rgba(110, 156, 159, 1);
+    cursor: pointer;
+}
+.subtotal_amount{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    background: rgba(241, 234, 220, 1);
+    padding: 17px 51px;
+}
+.product_in_cart_name{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+
 }

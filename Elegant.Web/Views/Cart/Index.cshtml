@@ -1,68 +1,33 @@
 ﻿@model Elegant.Business.Models.ViewModels.Cart.CartViewModel
-
-@if (Model.Items.Count==0)
-{
-    <h1>Товары в корзине отсутствуют</h1>
-}
-else
-{
-<table class="table">
-  <thead style="margin-bottom:10px">
-   <tr>
-      <th scope="col">Название</th>
-      <th scope="col">Кол-во</th>
-      <th scope="col">Стоймость</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-     @foreach (var position in Model.Items)
-       {
-          <tr>
-              <td>@position.Product.Name</td>
-              <td>@position.Quantity</td>
-              <td>@position.Product.Cost</td>
-              <td><a class="btn btn-dark border counter"
-                  asp-area=""
-                  asp-controller="cart"
-                  asp-action="ChangeCount"
-                  asp-route-cartId=@Model.Id
-                  asp-route-productId=@position.Product.Id
-                  asp-route-act="decrease">-</a></td>
-              <td><a class="btn btn-dark border counter"
-                  asp-area=""
-                  asp-controller="cart"
-                  asp-action="ChangeCount"
-                  asp-route-cartId=@Model.Id
-                  asp-route-productId=@position.Product.Id
-                  asp-route-act="increase">+</a></td>
-          </tr>
-        }
-  </tbody>
-  <tfoot>
-     <tr>
-        <td>Итого</td>
-        <td></td>
-        <td> @Model.Total₽</td>
-        <td></td>
-        <td></td>
-    </tr>
-  </tfoot>
-</table>
+<body class="general_class">
+    <main class="name_of_clothing">
+        <p class="product_name">Корзина</p>
+        <table class="">
+            <tr class="table_headers">
+                <th class="table_rows product_table_rows">Товар</th>
+                <th class="table_rows price_table_rows">Цена</th>
+                <th class="table_rows quantity_table_rows">Количество</th>
+                <th class="table_rows total_table_rows">Всего</th>
+            </tr>
+            <tr class="item_in_cart">
+                <th class="product_in_cart">
+                    <img class="foto_cart" src="\images\products\товар1.png" alt="">
+                    <p class="product_in_cart_name">Футболка USA</p>
+                </th>
+                <th class="price_rows">$129</th>
+                <th class="quantity_rows">
+                    <input class="quantity_inp" type="text" placeholder="1">
+                    
+                </th>
+                <th class="total_amount">$129</th>
+            </tr>
+        </table>
+        <div class="container_price">
+            <span class="subtotal_amount">Итого:    $129</span>
+            <button class="place_an_order">Оформить заказ</button>
+        </div>
+    </main>
+</body>
 
 
-<div class="row">
-    <div class="col-3"> 
-         <a class="btn btn-primary" href="/home/index">Продолжить покупки</a>
-    </div>
-    <div class="col-2">
-        <a class="btn btn-success" href="/order/checkout">Оформить заказ</a>
-    </div>
-     <div class="col-3">
-         <a class="btn btn-danger" href="/cart/clear">Очистить карзину</a>
-    </div>
-</div>
-
-}
 
