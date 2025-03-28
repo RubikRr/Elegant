@@ -366,10 +366,13 @@ input{
 }
 .product_in_cart{
     margin-right: 250px;
+    display: flex;
+    align-items: center;
 }
 .foto_cart{ 
     width: 140px;
-    padding-top: 90px;
+    padding-top: 49px;
+    padding-bottom: 49px;
     margin-right: 30px;
 }
 .price_rows{
@@ -379,7 +382,7 @@ input{
     font-size: 17px;
     line-height: 140%;
     letter-spacing: 2%;
-    padding-top: 157px;
+    padding-top: 133px;
 }
 .quantity_rows{
     margin-right: 207px ;
@@ -388,7 +391,7 @@ input{
     font-size: 17px;
     line-height: 140%;
     letter-spacing: 2%;
-    padding-top: 137px;
+    padding-top: 120px;
     
 }
 .quantity_inp {
@@ -407,7 +410,7 @@ input{
     font-size: 17px;
     line-height: 140%;
     letter-spacing: 2%;
-    padding-top: 157px;
+    padding-top: 133px;
 }
 .container_price{
     margin-top: 120px;
