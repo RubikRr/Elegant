@@ -33,4 +33,8 @@ public class HomeController : Controller
             cancellationToken);
         return View(nameof(Search), response.Products);
     }
+    public IActionResult About()
+    {
+        return View(nameof(About));
+    }
 }
