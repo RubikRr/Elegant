@@ -648,5 +648,88 @@ h4{
     font-size: 17px;
     line-height: 140%;
     letter-spacing: 2%;
+}
+/*....................................................О БРЕНДЕ...........................................*/
+.container_foto_idea_woman{
+    margin-top: 140px;
+    display: flex;
+    margin-bottom: 130px;
+}
+.idea_woman_container{
+    margin-left: 94px;
+}
+.idea_and_woman{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-bottom: 46px;
+    margin-top: 113px;
+}
+.p_foundation_womazing{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-bottom: 30px;
 
+}
+.p_formula_womazing{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+}
+.container_foto_magic_details{
+    display: flex;
+    margin-bottom: 130px;
+}
+.magic_in_the_details_container{
+    margin-right: 123px;
+}
+.magic_in_the_details{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-bottom: 46px;
+    margin-top: 77px;
+}
+.p_first_store{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-bottom: 30px;
+
+}
+.p_founders_story{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+
+}
+.go_to_the_store{
+    padding: 22px 50px;
+    color: white;
+    background:  rgba(110, 156, 159, 1);
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 139%;
+    letter-spacing: 2%;
+    text-align: center;
+}
+.go_to_the_store:hover{
+    background: #629f9d;
+}
+.div_go_to_the_store{
+    text-align: center;
 }
