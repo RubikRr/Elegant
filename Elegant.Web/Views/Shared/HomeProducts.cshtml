@@ -1,38 +1,84 @@
 ﻿@model IReadOnlyCollection<Elegant.Business.Models.ViewModels.Product.ProductViewModel> 
-
-<div class="row">
-    @foreach (var product in Model)
-    {
-        <div class="col-3 mb-5">
-            <div class="card h-100">
-                <div class="card-header">
-                    <a onclick="myFunction(this);" asp-area=""
-                       asp-controller="favorites"
-                       asp-action="add"
-                       asp-route-productId=@product.Id class="btn ml-3 fa fa-heart-o">
-                        <i class=""></i>
-                    </a>
+<body class="general_class">
+<main class="name_of_clothing">
+    <div class="container_home">
+        <div class="info_container">
+            <h1>Новые поступления в этом сезоне</h1>
+            <p class="info">Утонченные сочетания и бархатные оттенки - вот то, что вы искали в этом сезоне. Время исследовать.</p>
+            <div class="open_a_store_cont">
+                <a class="vector">
+                    <img class="foto_vector" src="/images/products/Vector 1.png">
+                </a>
+                <button class="open_a_store">Открыть магазин</button>
+            </div>
+        </div>
+        <div class="slaider">
+            <img src="images/products/foto1.png" alt="">
+            <img class="foto_3" src="images/products/foto3.png" alt="">
+            <img class="foto_2" src="images/products/foto2.png" alt="">
+        </div>
+    </div>
+    <div class="new_collection">
+        <h2>Новая коллекция</h2>
+        <div class="slaider_new_collection">
+            <div class="product_information_container">
+                <div class="product_information">
+                    <img class="product1" src="/images/products/товар1.png" alt="">
+                    <div class="price">
+                        <span class="name_product_span">Футболка USA</span>
+                        <span class="pr">$129</span>
+                    </div>
                 </div>
-                <img src=@(product.ImageItemsPaths.Count != 0 ? product.ImageItemsPaths.First() : "/images/products/default.jpg") class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
-                <div class="card-body">
-                    <a class="card-title fs-5"
-                       asp-area=""
-                       asp-controller="product"
-                       asp-action="GetProductById"
-                       asp-route-productId=@product.Id>
-                        @product.Name
-                    </a>
-                    <h5>Цена:@product.Cost р.</h5>
-                    <p>Описание:@product.Description</p>
-                    <a class="btn btn-dark"
-                       asp-area=""
-                       asp-controller="cart"
-                       asp-action="add"
-                       asp-route-productId=@product.Id>
-                        Добавить в корзину
-                    </a>
+                <div class="product_information">
+                    <img class="product1" src="/images/products/товар2.png" alt="">
+                    <div class="price">
+                        <span class="name_product_span">Футболка USA</span>
+                        <span class="pr">$129</span>
+                    </div>
+                </div>
+                <div class="product_information">
+                    <img src="/images/products/product.png" alt="">
+                    <div class="price">
+                        <span class="name_product_span">Футболка USA</span>
+                        <span class="pr">$129</span>
+                    </div>
                 </div>
             </div>
         </div>
-    }
-</div>
+    <div class="cont_new_collection_open_a_store">
+        <a class="new_collection_open_a_store">Открыть магазин</a>
+    </div>
+    </div>    
+    <div class="container_what_is_important_to_us">
+        <h3>Что для нас важно</h3>
+        <div class="what_is_important_to_us">
+            <div class="quality">
+                <img class="img_quality" src="/images/products/quality 1.png" alt="">
+                <p class="span_info">Качество</p>
+                <p class="information_quality">Наши профессионалы работают на лучшем оборудовании для пошива одежды беспрецедентного качества</p>
+            </div>
+        <div class="speed">
+            <img class="img_quality" src="/images/products/Vector.png" alt="">
+            <p class="span_info">Скорость</p>
+            <p class="information_speed">Благодаря отлаженной системе в Womazing мы можем отшивать до 20-ти единиц продукции в наших собственных цехах</p>
+        </div>
+        <div class="responsibility">
+            <img class="img_quality" src="/images/products/hand 1.png" alt="">
+            <p class="span_info">Ответственность</p>
+            <p class="information_responsibility">Мы заботимся о людях и планете. Безотходное производство и комфортные условия труда - все это Womazing</p>
+        </div>
+        </div>
+    </div>
+    <div class="container_dream_team">
+        <h4>Команда мечты</h4>
+        <div class="dream_team_foto_text">
+            <img src="/images/products/adam-winger.png" alt="">
+            <div class="for_each">
+                <p class="p_for_each">Для каждой</p>
+                <p class="every_girl_is_unique">Каждая девушка уникальна. Однако, мы схожи в миллионе мелочей.</p>
+                <p class="every_girl_is_unique">Womazing ищет эти мелочи и создает прекрасные вещи, которые выгодно подчеркивают достоинства каждой девушки.</p>
+            </div>
+        </div>
+    </div>
+</main>
+</body>

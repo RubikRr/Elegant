@@ -446,5 +446,207 @@ input{
     font-size: 17px;
     line-height: 140%;
     letter-spacing: 2%;
+}
+/*...................................ГЛАВНАЯ СТРАНИЦА.........................*/
+.container_home{
+    display: flex;
+    height: 800px   ;
+}
+h1{
+    width: 585px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 55px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+    margin-bottom: 45px;
+}
+.info{
+    width: 385px;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: right;
+    margin-bottom: 52px;
+}
+.open_a_store{
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    text-align: right;
+    color: white;
+    border: none;
+    padding:  22px 50px;
+    background: rgba(110, 156, 159, 1);
+    cursor: pointer;
+}
+.open_a_store:hover{
+    background: CadetBlue;
+
+}
+.info_container{
+    margin-right: 152px;
+}
+.vector{
+    display: inline-block;
+    padding: 20px 29px;
+    background: rgba(110, 156, 159, 0.1);
+    text-align: center;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.vector:hover{
+    background: WhiteSmoke;
+    
+}
+.open_a_store_cont{
+    width: 385px;
+    display: flex;
+    justify-content: flex-end;
+}
+.foto_2{
+    position: relative;
+    bottom: 650px;
+    left: 130px;
+    
+}
+.foto_3{
+    position: relative;
+    bottom: 270px;
+    right: 120px;
+}
+h2{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+}
+.slaider_new_collection{
+    margin-bottom: 90px;
+    margin-top: 92px;
+}
+.new_collection_open_a_store{
+    text-align: center;
+    border:1px solid rgba(110, 156, 159, 1);
+    padding:  22px 50px;
+    margin:0 auto;
+    cursor: pointer;
+    font-family: Raleway;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 139%;
+    letter-spacing: 2%;
+    text-align: center;
+    color:  rgba(110, 156, 159, 1);
+}
+.new_collection_open_a_store:hover{
+    color: white;
+    background: rgba(110, 156, 159, 1);;
+}
+.cont_new_collection_open_a_store{
+    text-align: center;
+}
+.new_collection{
+    height: 900px;
+    margin-bottom: 80px;
+}
+.container_what_is_important_to_us{
+    margin-bottom: 130px;
+}
+h3{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+    padding-bottom: 92px;
+    margin-top: 0px;
+}
+.what_is_important_to_us{
+    display: flex;
+}
+.quality{
+    width: 305px;
+    margin-right: 75px;
+}
+.speed{
+    width: 305px;
+    margin-right: 75px;
+}
+.responsibility{
+    width: 305px;
+}
+
+.img_quality{
+    margin-bottom: 37px;
+}
+.span_info{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-top:0px;
+}
+.information_responsibility{
+    margin-top: 24px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+}
+.information_speed{
+    margin-top: 24px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+
+}
+.information_quality{
+    margin-top: 24px;
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
+
+}
+h4{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 110.00000000000001%;
+    letter-spacing: 2%;
+    margin-bottom: 92px;
+}
+.dream_team_foto_text{
+    display: flex;
+}
+.for_each{
+    margin-left: 124px;
+}
+.p_for_each{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    letter-spacing: 2%;
+    margin-top: 78px;
+}
+.every_girl_is_unique{
+    font-family: Raleway;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 140%;
+    letter-spacing: 2%;
 
 }
