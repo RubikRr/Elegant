@@ -5,7 +5,13 @@
     <span class="log_in">Вход</span>
     <div class="input_class">
         <input type="email"  asp-for="Email" class="form-control" placeholder="Почта">
-        <input type="password" class="password" placeholder="Пароль">
+        @*<div class="eye">*@
+        <input type="password" id="password-input" class="password" placeholder="Пароль">
+        <a class="password_control" href="#"></a>
+            @*
+            <img src="/images/products/eye.png" alt="">
+        *@
+        @*</div>*@
         <div class="container_change_me">
             <input  type="checkbox" class="change_me_checkbox">
             <span class="change_me">Запомнить меня</span>

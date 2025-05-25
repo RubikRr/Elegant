@@ -279,6 +279,7 @@ input{
     font-weight: 300;
     font-family: Raleway;
     font-size: 20px;
+    position: relative;
 }
 .change_me_checkbox{
     position: relative;
@@ -323,6 +324,18 @@ input{
 .new_user_registration:hover{
     background-color: lightblue;
 }
+.password_control{
+    background: url("/images/products/eye.svg");
+    display: inline-block;
+    width: 23px;
+    height: 20px;
+    position: relative;
+    bottom: 63px;
+    left: 170px;
+}
+.password_control.view{
+    background: url("/images/products/eye-off.svg");
+}
 /*....................................РЕГИСТРАЦИЯ.................................*/
 .repeat_the_password{
     margin-bottom: 37px;
@@ -337,6 +350,9 @@ input{
     line-height: 1.2;
     font-weight: 1000;
 }
+/*.eye{
+    position: relative;
+}*/
 /*......................................КОРЗИНА.............................*/
 .table_headers{
     display: flex;

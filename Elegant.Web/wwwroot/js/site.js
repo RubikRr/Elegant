@@ -14,3 +14,22 @@ function myFunction(element, id) {
         element.classList.add("fa-heart");
     }
 }
+$('body').on('click', '.password_control', function(){
+
+    if ($('#password-input').attr('type') == 'password'){
+
+        $(this).addClass('view');
+
+        $('#password-input').attr('type', 'text');
+
+    } else {
+
+        $(this).removeClass('view');
+
+        $('#password-input').attr('type', 'password');
+
+    }
+
+    return false;
+
+});
