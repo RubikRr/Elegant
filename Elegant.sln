@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elegant.Common", "Elegant.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elegant.Business", "Elegant.Business\Elegant.Business.csproj", "{78FCF7EE-054E-4C1A-A474-C6DFFD466AA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elegant.Tests", "Elegant.Tests\Elegant.Tests.csproj", "{3B766ABE-BEA5-457D-91E3-464A2BDDE338}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{78FCF7EE-054E-4C1A-A474-C6DFFD466AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78FCF7EE-054E-4C1A-A474-C6DFFD466AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78FCF7EE-054E-4C1A-A474-C6DFFD466AA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B766ABE-BEA5-457D-91E3-464A2BDDE338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B766ABE-BEA5-457D-91E3-464A2BDDE338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B766ABE-BEA5-457D-91E3-464A2BDDE338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B766ABE-BEA5-457D-91E3-464A2BDDE338}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
